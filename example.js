@@ -1,0 +1,78 @@
+gsap.registerPlugin(ScrollTrigger);
+
+const track = document.querySelector('.image-track');
+const images = gsap.utils.toArray('.bg-image');
+const introTitle = document.querySelector('.intro h1');
+
+function getDistance() {
+  return Math.max(0, track.scrollWidth - window.innerWidth);
+}
+
+// Respect prefers-reduced-motion
+const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (prefersReduced) {
+  // Minimal motion: don't pin; keep images centered
+  track.style.transform = 'translateX(0)';
+} else {
+  // Main horizontal pan timeline
+  let mainTrigger;
+
+  function setupScroller() {
+    const distance = getDistance();
+
+    if (mainTrigger) mainTrigger.kill();
+
+    mainTrigger = ScrollTrigger.create({
+      trigger: '.hero',
+      start: 'top top',
+      end: () => '+=' + distance,
+      pin: true,
+      scrub: 1.2,
+      invalidateOnRefresh: true,
+      onUpdate: (self) => {
+        gsap.set(track, { x: -distance * self.progress, overwrite: true });
+      }
+    });
+
+    // Per-image subtle parallax layers
+    images.forEach((img, i) => {
+      const depth = (i + 1) * 6; // adjust parallax strength
+      ScrollTrigger.create({
+        trigger: '.hero',
+        start: 'top top',
+        end: () => '+=' + distance,
+        scrub: 1.2,
+        onUpdate: (self) => {
+          const offset = gsap.utils.mapRange(0, 1, 0, depth, self.progress);
+          gsap.set(img, { xPercent: -offset });
+        }
+      });
+    });
+
+    // Entrance animation for the intro copy (only once)
+    gsap.from('.intro h1', {
+      y: 30,
+      opacity: 0,
+      duration: 1,
+      ease: 'power3.out',
+      delay: 0.15
+    });
+
+    gsap.from('.intro .lead, .hero-cta', {
+      y: 14,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power3.out',
+      stagger: 0.08,
+      delay: 0.35
+    });
+  }
+
+  setupScroller();
+
+  // Re-setup on resize to recalc distance
+  window.addEventListener('resize', () => {
+    ScrollTrigger.refresh();
+  });
+}
