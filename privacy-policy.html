@@ -1,41 +1,150 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Privacy Policy — My Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact — My Website</title>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <!-- AOS CSS -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <style>
-    :root{--bg1:#0f172a;--bg2:#0b1220;--muted:#94a3b8;--accent:#6ee7b7;--card:rgba(255,255,255,0.03);--radius:14px}
+    :root{
+      --bg1: #0f172a; /* deep navy */
+      --bg2: #0b1220; /* darker */
+      --accent: #6ee7b7; /* soft mint */
+      --muted: #94a3b8;
+      --card: rgba(255,255,255,0.04);
+      --glass: rgba(255,255,255,0.04);
+      --radius: 16px;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
     *{box-sizing:border-box}
-    body{margin:0; min-height:100vh; font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Arial; color:#e6eef8; background: radial-gradient(800px 500px at 10% 15%, rgba(110,231,183,0.04), transparent 8%), radial-gradient(700px 400px at 90% 85%, rgba(96,165,250,0.03), transparent 6%), linear-gradient(180deg,var(--bg1),var(--bg2)); -webkit-font-smoothing:antialiased; padding:48px 20px;}
-    .wrap{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 360px;gap:32px;align-items:start}
-    @media (max-width:920px){.wrap{grid-template-columns:1fr;padding:0 12px}}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.016), rgba(255,255,255,0.01)); padding:32px;border-radius:var(--radius);border:1px solid rgba(255,255,255,0.03);box-shadow:0 12px 40px rgba(2,6,23,0.6)}
-    h1{margin:0 0 6px; font-size:clamp(22px,4vw,34px); font-weight:800}
-    .muted{color:var(--muted); margin:0 0 18px}
-    .toc{margin:18px 0 22px;padding:14px;border-radius:12px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03)}
-    .toc a{color:var(--muted); text-decoration:none; font-size:14px; display:block; padding:6px 0}
-    section.policy-section{margin-bottom:20px}
-    section.policy-section h2{font-size:16px;margin:0 0 8px}
-    p{color: #dbe9f8; line-height:1.6}
-    .aside{position:relative}
-    .meta{position:sticky; top:48px}
-    .meta .card{padding:22px}
-    .muted-small{color:var(--muted); font-size:13px}
-    .btn-link{display:inline-flex; align-items:center; gap:8px; padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,var(--accent),#60a5fa); color:#04202b; font-weight:700; text-decoration:none}
-    .small-note{font-size:13px;color:var(--muted); margin-top:14px}
-    footer{margin-top:18px;color:var(--muted); font-size:13px}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: radial-gradient(1000px 600px at 10% 10%, rgba(110,231,183,0.06), transparent 8%),
+                  radial-gradient(800px 500px at 90% 90%, rgba(96,165,250,0.04), transparent 8%),
+                  linear-gradient(180deg,var(--bg1),var(--bg2));
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:48px 24px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:100vh;
+    }
+    .container{
+      width:100%;
+      max-width:1100px;
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:36px;
+      align-items:center;
+    }
+    @media (max-width:900px){
+      .container{grid-template-columns:1fr; padding:24px}
+    }
+    .hero{
+      padding:40px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius: var(--radius);
+      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+      backdrop-filter: blur(8px) saturate(120%);
+    }
+    h1{font-size: clamp(28px, 4vw, 40px); margin:0 0 12px; line-height:1.05; font-weight:800}
+    p.lead{color:var(--muted); margin:0 0 28px; font-size:1.05rem}
+    .form-card{
+      padding:28px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.015));
+      border-radius:calc(var(--radius) - 6px);
+      border:1px solid rgba(255,255,255,0.04);
+      box-shadow: 0 10px 40px rgba(2,6,23,0.7);
+    }
+    form{display:grid; gap:14px}
+    label{font-size:13px; color:var(--muted)}
+    input[type="text"], input[type="email"], textarea{
+      width:100%;
+      padding:14px 16px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.02);
+      color:inherit;
+      outline:none;
+      transition: box-shadow .18s, transform .12s;
+      font-size:15px;
+    }
+    input:focus, textarea:focus{box-shadow: 0 6px 18px rgba(110,231,183,0.06); transform:translateY(-1px)}
+    textarea{min-height:140px; resize:vertical}
+    .row{display:flex; gap:14px}
+    .row > *{flex:1}
+    .meta{
+      padding:28px;
+      border-radius:var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,0.018), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.03);
+      color:var(--muted);
+    }
+    .contact-info{display:flex; flex-direction:column; gap:18px}
+    .info-item{display:flex; gap:12px; align-items:flex-start}
+    .icon{width:44px; height:44px; flex:0 0 44px; border-radius:10px; display:grid; place-items:center; background:linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));}
+    .btn{
+      display:inline-flex; gap:10px; align-items:center; justify-content:center;
+      padding:12px 18px; border-radius:12px; border:0; cursor:pointer; background:linear-gradient(90deg,var(--accent),#60a5fa);
+      color:#04202b; font-weight:700; letter-spacing:0.2px; transition:transform .14s, box-shadow .14s;
+      box-shadow: 0 8px 28px rgba(99,102,241,0.09);
+    }
+    .btn:active{transform:translateY(1px)}
+    .muted-small{font-size:13px; color:var(--muted)}
+    footer.note{margin-top:18px; font-size:13px; color:var(--muted)}
+    /* subtle decorative underline */
+    .heading-row{display:flex; align-items:center; gap:18px}
+    .accent-pill{height:6px; width:64px; background:linear-gradient(90deg,var(--accent),#60a5fa); border-radius:999px}
 
     /* Header styles from index.html */
     .site-header{position:fixed;left:0;right:0;top:0;z-index:60;background:linear-gradient(180deg, rgba(7,10,20,0.6), rgba(7,10,20,0.25));backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.03)}
-    .header-inner{display:flex;align-items:center;gap:20px;height:72px;max-width:1100px;margin:0 auto;padding:0 20px}
+    .header-inner{display:flex;align-items:center;gap:20px;height:72px;max-width:1100px;margin:0 auto;padding:0 24px}
     .logo{font-family:"Playfair Display",serif;font-weight:700;color:#ffd166;text-decoration:none;font-size:20px}
     .nav{margin-left:8px;display:flex;gap:16px;align-items:center}
     .nav a{color:var(--muted);text-decoration:none;font-weight:600}
     .cta{margin-left:auto;background:linear-gradient(90deg,#ffd166,#06b6d4);padding:10px 14px;border-radius:10px;color:#071024;text-decoration:none;font-weight:700}
     body{padding-top: 72px;} /* Add padding to body to offset fixed header */
+
+    /* Style for the active navigation link - text gradient */
+    .nav a.active{
+      background: linear-gradient(90deg, #ffd166, #06b6d4);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 700;
+    }
+    .nav a.active {
+  position: relative;
+}
+
+/* underline */
+.nav a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px; /* distance under text */
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, #ffd166, #06b6d4);
+
+  transform: scaleX(0);
+  transform-origin: left;
+
+  animation: underlineIn 0.7s ease forwards;
+}
+
+/* animation */
+@keyframes underlineIn {
+  to {
+    transform: scaleX(1);
+  }
+}
   </style>
 </head>
 <body>
@@ -45,159 +154,205 @@
       <nav class="nav" aria-label="Main navigation">
         <a href="index.html#features">Features</a>
         <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
+        <a href="contact.html" class="active">Contact</a>
       </nav>
       <a class="cta" href="contact.html">Get in touch</a>
     </div>
   </header>
-  <main class="wrap">
-    <article class="card">
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
-        <div>
-          <div class="muted-small">Privacy</div>
-          <h1>Privacy policy</h1>
-          <div class="muted">Last updated: June 25, 2026</div>
-        </div>
+  <main id="swup" class="container transition-fade">
+    <section class="hero" aria-labelledby="contact-heading" data-aos="fade-up">
+      <div class="heading-row">
+        <div class="accent-pill" aria-hidden="true"></div>
+        <div class="muted-small">Contact</div>
       </div>
-
-      <div class="toc" aria-label="table of contents">
-        <strong class="muted-small">On this page</strong>
-        <nav aria-hidden="false">
-          <a href="#collect">Information we collect</a>
-          <a href="#use">How we use information</a>
-          <a href="#cookies">Cookies & tracking</a>
-          <a href="#third">Third-party services</a>
-          <a href="#security">Security</a>
-          <a href="#rights">Your rights</a>
-          <a href="#contact">Contact</a>
-        </nav>
-      </div>
-
-      <section id="collect" class="policy-section">
-        <h2>Information we collect</h2>
-        <p>We collect information you provide directly (for example, when you contact us), information collected automatically (such as analytics and log data), and information from third-party services when you interact with integrated services. We only collect the minimum necessary to deliver and improve our services.</p>
-      </section>
-
-      <section id="use" class="policy-section">
-        <h2>How we use information</h2>
-        <p>We use personal information to respond to inquiries, provide and maintain services, send updates or marketing where permitted, and improve the site. Legal bases for processing include consent, contract performance, and legitimate interests (e.g., site security and analytics).</p>
-      </section>
-
-      <section id="cookies" class="policy-section">
-        <h2>Cookies & tracking</h2>
-        <p>We use cookies and similar technologies to remember preferences, analyze site usage, and support essential functionality. You can manage cookie preferences via your browser settings; blocking cookies may affect site features.</p>
-      </section>
-
-      <section id="third" class="policy-section">
-        <h2>Third-party services</h2>
-        <p>We may use third-party tools (analytics, hosting, payment processors). These providers have their own privacy practices. We recommend reviewing their policies before sharing personal data through their services.</p>
-      </section>
-
-      <section id="security" class="policy-section">
-        <h2>Security</h2>
-        <p>We implement reasonable technical and organizational measures to help protect your information. No method of transmission or storage is 100% secure — if you have concerns, contact us and we will assist.</p>
-      </section>
-
-      <section id="rights" class="policy-section">
-        <h2>Your rights</h2>
-        <p>Depending on your jurisdiction you may have rights to access, correct, delete, or restrict processing of your personal data. To exercise these rights, contact us using the details below.</p>
-      </section>
-
-      <section id="children" class="policy-section">
-        <h2>Children's privacy</h2>
-        <p>Our services are not intended for children under 13. We do not knowingly collect personal information from children. If you believe we have data about a child, contact us and we will take appropriate steps.</p>
-      </section>
-
-      <section id="contact" class="policy-section">
-        <h2>Contact</h2>
-        <p>If you have questions or requests about this privacy policy, email <a href="mailto:hello@yourdomain.com" style="color:var(--accent); text-decoration:none">hello@yourdomain.com</a>. We aim to respond within 2 business days.</p>
-      </section>
-
-      <footer class="small-note">This policy is a summary and does not create contractual rights. For full details, contact us.</footer>
-    </article>
-
-    <aside class="aside">
-      <div class="meta card">
-        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+      <h1 id="contact-heading">Let's build something beautiful together</h1>
+      <p class="lead">Got a project, feedback or just want to say hi? Drop a message — I usually reply within 1-2 business days.</p>
+      <div class="form-card">
+        <form id="contact-form" class="contact-form" novalidate>
+          <div class="row">
+            <div>
+              <label for="name">Your name</label>
+              <input id="name" name="name" type="text" placeholder="Jane Doe" required>
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="jane@company.com" required>
+            </div>
+          </div>
           <div>
-            <div style="font-weight:700">Privacy at a glance</div>
-            <div class="muted-small">Simple, transparent, and minimal data collection</div>
+            <label for="subject">Subject</label>
+            <input id="subject" name="subject" type="text" placeholder="Project inquiry, collaboration, etc.">
+          </div>
+          <div>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell me about your project, timeline, and budget." required></textarea>
+          </div>
+          <div style="display:flex; gap:12px; align-items:center; justify-content:space-between; margin-top:6px;">
+            <div class="muted-small">Prefer email? hello@yourdomain.com</div>
+            <div>
+              <button type="submit" class="btn">Send message</button>
+            </div>
+          </div>
+          <footer class="note">By sending you agree to the friendly  <a href="privacy-policy.html" style="color: #3498db !important; text-decoration: underline;">privacy policy</a> — no spam, ever.</footer>
+        </form>
+      </div>
+    </section>
+
+    <aside class="meta" aria-label="Contact details and hours">
+      <div class="contact-info">
+        <div class="info-item">
+          <div class="icon" aria-hidden="true">
+            <!-- mail icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 8.5L12 13l9-4.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div style="font-weight:600">hello@yourdomain.com</div>
+            <div class="muted-small">Best for project inquiries</div>
           </div>
         </div>
-
-        <div style="margin-top:16px">
-          <div style="font-weight:700">Data retention</div>
-          <div class="muted-small">We retain data only as long as necessary for the purposes described.</div>
+        <div class="info-item">
+          <div class="icon" aria-hidden="true">
+            <!-- location icon -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 21s6-4.5 6-10a6 6 0 10-12 0c0 5.5 6 10 6 10z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div style="font-weight:600">Remote / Seattle, WA</div>
+            <div class="muted-small">Working hours: Mon–Fri, 9am–5pm PT</div>
+          </div>
         </div>
-
-        <div style="margin-top:16px">
-          <div style="font-weight:700">Third-party links</div>
-          <div class="muted-small">External links may lead to other sites with different terms.</div>
+        <div class="info-item">
+          <div class="icon" aria-hidden="true">
+            <!-- phone icon -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.86 19.86 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12 1.05.36 2.08.72 3.05a2 2 0 0 1-.45 2.11L8.09 10.91a16 16 0 0 0 6 6l1.03-1.03a2 2 0 0 1 2.11-.45c.97.36 2 .6 3.05.72A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div style="font-weight:600">+1 (555) 123-4567</div>
+            <div class="muted-small">Available for calls with prior scheduling</div>
+          </div>
         </div>
+      </div>
 
-        <a href="contact.html" class="btn-link" style="display:inline-block;margin-top:18px">Contact</a>
-        <div class="small-note">Last updated: June 25, 2026</div>
+      <div style="margin-top:22px; border-top:1px solid rgba(255,255,255,0.03); padding-top:18px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:12px;">
+          <div>
+            <div style="font-weight:700">Quick links</div>
+            <div class="muted-small">Resume · Projects · Terms</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-weight:700">Let's chat</div>
+            <div class="muted-small">or book a time via calendar</div>
+          </div>
+        </div>
       </div>
     </aside>
   </main>
 
+  <!-- AOS & GSAP -> animation libraries -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script src="https://unpkg.com/gsap@3.12.2/dist/gsap.min.js"></script>
   <script src="https://unpkg.com/gsap@3.12.2/dist/ScrollTrigger.min.js"></script>
   <script>
-    window.addEventListener('load', ()=>{
-      gsap.registerPlugin(ScrollTrigger);
+    // Initialize AOS (on scroll animations)
+    AOS.init({
+      duration: 700,
+      easing: 'power2.out',
+      smuth: true
+    });
+  </script>
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
 
-      // Initial load animation for the main layout components
-      const tl = gsap.timeline({
-        defaults: { opacity: 0, ease: 'power3.out' }
-      });
+  gsap.registerPlugin(ScrollTrigger);
 
-      tl.from('article.card, aside .card', {
-  opacity: 0,
-  y: 20,
-  duration: 0.6
-})
-.from('h1, .muted, .btn-link', {
-  opacity: 0,
-  y: 15,
-  duration: 0.6,
-  stagger: 0.05
-}, '<0.2')
-.from('.toc', {
-  opacity: 0,
-  y: 15,
-  duration: 0.6
-}, '<');
+  gsap.utils.toArray([
+    '.accent-pill',
+    '#contact-heading',
+    '.lead',
+    '.form-card',
+    '.meta'
+  ]).forEach((el) => {
 
-      // Animate policy sections on scroll
-      gsap.utils.toArray('.policy-section').forEach(section => {
-        gsap.from(section, {
-          opacity: 0,
-          y: 20,
-          duration: 0.6,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: section,
-            start: 'top 85%', // Start animation when the top of the section is 85% down the viewport
-            toggleActions: 'play none none none',
-            once: true // Animate only once
-          }
-        });
-      });
-
-      // Keep a reference for cleanup
-      window.__introTimeline = tl;
-
-      // After 6 seconds, stop any remaining animations (cleanup)
-      setTimeout(()=>{
-        try{
-          if(window.__introTimeline && typeof window.__introTimeline.kill === 'function'){
-            window.__introTimeline.kill();
-          }
-        }catch(err){
-          // fail silently
+    gsap.fromTo(el,
+      {
+        opacity: 0,
+        y: 25
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 85%",
+          end: "bottom 15%",
+          toggleActions: "play reverse play reverse",
+          // markers: true // enable for debugging
         }
-      }, 6000);
+      }
+    );
+
+  });
+
+  ScrollTrigger.refresh();
+
+});
+
+document.addEventListener('swup:contentReplaced', () => {
+  ScrollTrigger.refresh(true);
+});
+
+const form = document.getElementById('contact-form');
+document.addEventListener('swup:contentReplaced', () => {
+  ScrollTrigger.refresh(true);
+})
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const name = form.name.value.trim();
+  const email = form.email.value.trim();
+  const message = form.message.value.trim();
+
+  if (!name || !email || !message) {
+
+    gsap.fromTo(
+      '.form-card',
+      { x: -8 },
+      {
+        x: 0,
+        duration: 0.4,
+        ease: 'elastic.out(1, 0.5)'
+      }
+    );
+
+    alert('Please complete name, email and message.');
+    return;
+  }
+
+  const btn = form.querySelector('.btn');
+
+  gsap.to(btn, {
+    scale: 0.95,
+    duration: 0.1,
+    yoyo: true,
+    repeat: 1
+  });
+
+  btn.textContent = 'Sending...';
+
+  setTimeout(() => {
+    btn.textContent = 'Sent — thanks!';
+    form.reset();
+  }, 900);
+});
+</script>
+  </script>
+  <!-- Swup.js for page transitions -->
+  <script defer src="https://unpkg.com/swup@4"></script>
+  <script defer src="https://unpkg.com/@swup/fade-theme@2"></script>
+  <script>
+    const swup = new Swup({
+      themes: [new SwupFadeTheme()]
     });
   </script>
 </body>
