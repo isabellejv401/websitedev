@@ -101,10 +101,65 @@
     /* subtle decorative underline */
     .heading-row{display:flex; align-items:center; gap:18px}
     .accent-pill{height:6px; width:64px; background:linear-gradient(90deg,var(--accent),#60a5fa); border-radius:999px}
+
+    /* Header styles from index.html */
+    .site-header{position:fixed;left:0;right:0;top:0;z-index:60;background:linear-gradient(180deg, rgba(7,10,20,0.6), rgba(7,10,20,0.25));backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.03)}
+    .header-inner{display:flex;align-items:center;gap:20px;height:72px;max-width:1100px;margin:0 auto;padding:0 24px}
+    .logo{font-family:"Playfair Display",serif;font-weight:700;color:#ffd166;text-decoration:none;font-size:20px}
+    .nav{margin-left:8px;display:flex;gap:16px;align-items:center}
+    .nav a{color:var(--muted);text-decoration:none;font-weight:600}
+    .cta{margin-left:auto;background:linear-gradient(90deg,#ffd166,#06b6d4);padding:10px 14px;border-radius:10px;color:#071024;text-decoration:none;font-weight:700}
+    body{padding-top: 72px;} /* Add padding to body to offset fixed header */
+
+    /* Style for the active navigation link - text gradient */
+    .nav a.active{
+      background: linear-gradient(90deg, #ffd166, #06b6d4);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 700;
+    }
+    .nav a.active {
+  position: relative;
+}
+
+/* underline */
+.nav a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px; /* distance under text */
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, #ffd166, #06b6d4);
+
+  transform: scaleX(0);
+  transform-origin: left;
+
+  animation: underlineIn 0.7s ease forwards;
+}
+
+/* animation */
+@keyframes underlineIn {
+  to {
+    transform: scaleX(1);
+  }
+}
   </style>
 </head>
 <body>
-  <main class="container">
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="logo" href="index.html">BrandName</a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="index.html#features">Features</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" class="active">Contact</a>
+      </nav>
+      <a class="cta" href="contact.html">Get in touch</a>
+    </div>
+  </header>
+  <main id="swup" class="container transition-fade">
     <section class="hero" aria-labelledby="contact-heading" data-aos="fade-up">
       <div class="heading-row">
         <div class="accent-pill" aria-hidden="true"></div>
@@ -295,6 +350,14 @@ form.addEventListener('submit', (e) => {
   }, 900);
 });
 </script>
+  </script>
+  <!-- Swup.js for page transitions -->
+  <script defer src="https://unpkg.com/swup@4"></script>
+  <script defer src="https://unpkg.com/@swup/fade-theme@2"></script>
+  <script>
+    const swup = new Swup({
+      themes: [new SwupFadeTheme()]
+    });
   </script>
 </body>
 </html>
