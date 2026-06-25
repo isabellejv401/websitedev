@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About — My Website</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg1: #0f172a;
+      --bg2: #0b1220;
+      --accent: #ffd166;
+      --accent-2: #06b6d4;
+      --muted: #94a3b8;
+      --card: rgba(255, 255, 255, 0.04);
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background: linear-gradient(180deg, var(--bg1), var(--bg2));
+      color: #e6eef8;
+      -webkit-font-smoothing: antialiased;
+      padding-top: 72px;
+    }
+    .site-header {
+      position: fixed; left: 0; right: 0; top: 0; z-index: 60;
+      background: linear-gradient(180deg, rgba(7,10,20,0.6), rgba(7,10,20,0.25));
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+    .header-inner {
+      display: flex; align-items: center; gap: 20px; height: 72px;
+      max-width: 1100px; margin: 0 auto; padding: 0 24px;
+    }
+    .logo {
+      font-family: "Playfair Display", serif; font-weight: 700;
+      color: var(--accent); text-decoration: none; font-size: 20px;
+    }
+    .nav { margin-left: 8px; display: flex; gap: 16px; align-items: center; }
+    .nav a { color: var(--muted); text-decoration: none; font-weight: 600; }
+    .nav a.active { color: var(--accent-2); }
+    .cta {
+      margin-left: auto; background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      padding: 10px 14px; border-radius: 10px; color: #071024;
+      text-decoration: none; font-weight: 700;
+    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 48px 24px; }
+    .about-hero { text-align: center; padding: 60px 0; }
+    .about-hero h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(32px, 5vw, 52px);
+      margin: 0 0 12px;
+    }
+    .about-hero .lead { color: var(--muted); max-width: 600px; margin: 0 auto 28px; }
+    .image-gallery {
+      position: relative;
+      height: 500px;
+      overflow: hidden;
+      border-radius: var(--radius);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+    .image-track {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      will-change: transform;
+    }
+    .bg-image {
+      flex: 0 0 auto;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: contrast(110%) saturate(110%);
+    }
+    .content-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      align-items: center;
+      margin-top: 60px;
+    }
+    .content-section h2 { font-family: "Playfair Display", serif; font-size: 28px; }
+    .content-section p { color: var(--muted); line-height: 1.6; }
+    .footer { padding: 30px 0; color: var(--muted); text-align: center; margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.05); }
+        .nav a.active{
+      background: linear-gradient(90deg, #ffd166, #06b6d4);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 700;
+    }
+    .nav a.active {
+  position: relative;
+}
+
+/* underline */
+.nav a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px; /* distance under text */
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, #ffd166, #06b6d4);
+
+  transform: scaleX(0);
+  transform-origin: left;
+
+  animation: underlineIn 0.7s ease forwards;
+}
+
+/* animation */
+@keyframes underlineIn {
+  to {
+    transform: scaleX(1);
+  }
+}
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="logo" href="index.html">BrandName</a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="index.html#features">Features</a>
+        <a href="#about" class="active">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <a class="cta" href="contact.html">Get in touch</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="about-hero" data-aos="fade-up">
+      <h1>About BrandName</h1>
+      <p class="lead">We are a passionate team dedicated to creating beautiful and functional interfaces that delight users and drive results.</p>
+    </section>
+
+    <div class="image-gallery" data-aos="zoom-in" data-aos-delay="200">
+      <div class="image-track" aria-hidden="true">
+        <img class="bg-image" src="https://images.unsplash.com/photo-1549880338-65ddcdfd017b?auto=format&fit=crop&w=1400&q=80" alt="Landscape 1">
+        <img class="bg-image" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1400&q=80" alt="Landscape 2">
+        <img class="bg-image" src="https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1400&q=80" alt="Landscape 3">
+      </div>
+    </div>
+
+    <section class="content-section" data-aos="fade-up" data-aos-delay="300">
+      <div>
+        <h2>Our Mission</h2>
+        <p>Our mission is to blend artistry with technology, crafting digital experiences that are not only visually stunning but also intuitive and accessible to everyone. We believe that great design has the power to solve problems and connect people.</p>
+      </div>
+      <div>
+        <h2>Our Vision</h2>
+        <p>We envision a web where every interaction is meaningful and every interface is a joy to use. We strive to be at the forefront of design and technology, constantly pushing boundaries and setting new standards for excellence.</p>
+      </div>
+    </section>
+  </main>
+  <div>
+    <h1>THIS PAGE IS A WORK IN PROGRESS. IT IS TOO SHORT AND MUST BE LONGER. HAVE FUN. GOOD LUCK.</h1>
+  </div></dive>
+
+  <footer class="footer">
+    <p>© 2026 BrandName — All Rights Reserved</p>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://unpkg.com/gsap@3.12.2/dist/gsap.min.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      easing: 'power2.out',
+      once: true
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const track = document.querySelector('.image-track');
+      const images = gsap.utils.toArray('.bg-image');
+      const numImages = images.length;
+      const imageWidth = images[0].offsetWidth;
+
+      // Clone images for a seamless loop
+      images.forEach(img => {
+        track.appendChild(img.cloneNode(true));
+      });
+
+      // Animate the track
+      gsap.to(track, {
+        x: () => -(numImages * imageWidth),
+        duration: 30,
+        ease: 'none',
+        repeat: -1,
+        modifiers: {
+          x: gsap.utils.unitize(x => parseFloat(x) % (numImages * imageWidth))
+        }
+      });
+    });
+  </script>
+</body>
+</html>
