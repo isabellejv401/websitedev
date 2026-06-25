@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact — My Website</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <!-- AOS CSS -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <style>
+    :root{
+      --bg1: #0f172a; /* deep navy */
+      --bg2: #0b1220; /* darker */
+      --accent: #6ee7b7; /* soft mint */
+      --muted: #94a3b8;
+      --card: rgba(255,255,255,0.04);
+      --glass: rgba(255,255,255,0.04);
+      --radius: 16px;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: radial-gradient(1000px 600px at 10% 10%, rgba(110,231,183,0.06), transparent 8%),
+                  radial-gradient(800px 500px at 90% 90%, rgba(96,165,250,0.04), transparent 8%),
+                  linear-gradient(180deg,var(--bg1),var(--bg2));
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:48px 24px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:100vh;
+    }
+    .container{
+      width:100%;
+      max-width:1100px;
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:36px;
+      align-items:center;
+    }
+    @media (max-width:900px){
+      .container{grid-template-columns:1fr; padding:24px}
+    }
+    .hero{
+      padding:40px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius: var(--radius);
+      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+      backdrop-filter: blur(8px) saturate(120%);
+    }
+    h1{font-size: clamp(28px, 4vw, 40px); margin:0 0 12px; line-height:1.05; font-weight:800}
+    p.lead{color:var(--muted); margin:0 0 28px; font-size:1.05rem}
+    .form-card{
+      padding:28px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.015));
+      border-radius:calc(var(--radius) - 6px);
+      border:1px solid rgba(255,255,255,0.04);
+      box-shadow: 0 10px 40px rgba(2,6,23,0.7);
+    }
+    form{display:grid; gap:14px}
+    label{font-size:13px; color:var(--muted)}
+    input[type="text"], input[type="email"], textarea{
+      width:100%;
+      padding:14px 16px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.02);
+      color:inherit;
+      outline:none;
+      transition: box-shadow .18s, transform .12s;
+      font-size:15px;
+    }
+    input:focus, textarea:focus{box-shadow: 0 6px 18px rgba(110,231,183,0.06); transform:translateY(-1px)}
+    textarea{min-height:140px; resize:vertical}
+    .row{display:flex; gap:14px}
+    .row > *{flex:1}
+    .meta{
+      padding:28px;
+      border-radius:var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,0.018), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.03);
+      color:var(--muted);
+    }
+    .contact-info{display:flex; flex-direction:column; gap:18px}
+    .info-item{display:flex; gap:12px; align-items:flex-start}
+    .icon{width:44px; height:44px; flex:0 0 44px; border-radius:10px; display:grid; place-items:center; background:linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));}
+    .btn{
+      display:inline-flex; gap:10px; align-items:center; justify-content:center;
+      padding:12px 18px; border-radius:12px; border:0; cursor:pointer; background:linear-gradient(90deg,var(--accent),#60a5fa);
+      color:#04202b; font-weight:700; letter-spacing:0.2px; transition:transform .14s, box-shadow .14s;
+      box-shadow: 0 8px 28px rgba(99,102,241,0.09);
+    }
+    .btn:active{transform:translateY(1px)}
+    .muted-small{font-size:13px; color:var(--muted)}
+    footer.note{margin-top:18px; font-size:13px; color:var(--muted)}
+    /* subtle decorative underline */
+    .heading-row{display:flex; align-items:center; gap:18px}
+    .accent-pill{height:6px; width:64px; background:linear-gradient(90deg,var(--accent),#60a5fa); border-radius:999px}
+  </style>
+</head>
+<body>
+  <main class="container">
+    <section class="hero" aria-labelledby="contact-heading" data-aos="fade-up">
+      <div class="heading-row">
+        <div class="accent-pill" aria-hidden="true"></div>
+        <div class="muted-small">Contact</div>
+      </div>
+      <h1 id="contact-heading">Let's build something beautiful together</h1>
+      <p class="lead">Got a project, feedback or just want to say hi? Drop a message — I usually reply within 1-2 business days.</p>
+      <div class="form-card">
+        <form id="contact-form" class="contact-form" novalidate>
+          <div class="row">
+            <div>
+              <label for="name">Your name</label>
+              <input id="name" name="name" type="text" placeholder="Jane Doe" required>
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="jane@company.com" required>
+            </div>
+          </div>
+          <div>
+            <label for="subject">Subject</label>
+            <input id="subject" name="subject" type="text" placeholder="Project inquiry, collaboration, etc.">
+          </div>
+          <div>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell me about your project, timeline, and budget." required></textarea>
+          </div>
+          <div style="display:flex; gap:12px; align-items:center; justify-content:space-between; margin-top:6px;">
+            <div class="muted-small">Prefer email? hello@yourdomain.com</div>
+            <div>
+              <button type="submit" class="btn">Send message</button>
+            </div>
+          </div>
+          <footer class="note">By sending you agree to the friendly  <a href="privacy-policy.html" style="color: #3498db !important; text-decoration: underline;">privacy policy</a> — no spam, ever.</footer>
+        </form>
+      </div>
+    </section>
+
+    <aside class="meta" aria-label="Contact details and hours">
+      <div class="contact-info">
+        <div class="info-item">
+          <div class="icon" aria-hidden="true">
+            <!-- mail icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 8.5L12 13l9-4.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div style="font-weight:600">hello@yourdomain.com</div>
+            <div class="muted-small">Best for project inquiries</div>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="icon" aria-hidden="true">
+            <!-- location icon -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 21s6-4.5 6-10a6 6 0 10-12 0c0 5.5 6 10 6 10z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div style="font-weight:600">Remote / Seattle, WA</div>
+            <div class="muted-small">Working hours: Mon–Fri, 9am–5pm PT</div>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="icon" aria-hidden="true">
+            <!-- phone icon -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.86 19.86 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12 1.05.36 2.08.72 3.05a2 2 0 0 1-.45 2.11L8.09 10.91a16 16 0 0 0 6 6l1.03-1.03a2 2 0 0 1 2.11-.45c.97.36 2 .6 3.05.72A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div style="font-weight:600">+1 (555) 123-4567</div>
+            <div class="muted-small">Available for calls with prior scheduling</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:22px; border-top:1px solid rgba(255,255,255,0.03); padding-top:18px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:12px;">
+          <div>
+            <div style="font-weight:700">Quick links</div>
+            <div class="muted-small">Resume · Projects · Terms</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-weight:700">Let's chat</div>
+            <div class="muted-small">or book a time via calendar</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- AOS & GSAP -> animation libraries -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://unpkg.com/gsap@3.12.2/dist/gsap.min.js"></script>
+  <script>
+    // Initialize AOS (on scroll animations)
+    AOS.init({
+      duration: 700,
+      easing: 'power2.out',
+      once: true,
+    });
+  </script>
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  gsap.set([
+    '.accent-pill',
+    '#contact-heading',
+    '.lead',
+    '.form-card',
+    '.meta'
+  ], {
+    opacity: 0
+  });
+
+  const tl = gsap.timeline({
+    defaults: {
+      ease: 'power3.out'
+    }
+  });
+
+  tl.fromTo(
+    '.accent-pill',
+    { x: -20, opacity: 0 },
+    { x: 0, opacity: 1, duration: 0.3 }
+  )
+  .fromTo(
+    '#contact-heading',
+    { y: 20, opacity: 0 },
+    { y: 0, opacity: 1, duration: 0.5 },
+    '-=0.1'
+  )
+  .fromTo(
+    '.lead',
+    { y: 20, opacity: 0 },
+    { y: 0, opacity: 1, duration: 0.4 },
+    '-=0.2'
+  )
+  .fromTo(
+    '.form-card',
+    { y: 20, opacity: 0 },
+    { y: 0, opacity: 1, duration: 0.5 },
+    '-=0.2'
+  )
+  .fromTo(
+    '.meta',
+    { x: 20, opacity: 0 },
+    { x: 0, opacity: 1, duration: 0.5 },
+    '-=0.5'
+  );
+});
+
+const form = document.getElementById('contact-form');
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const name = form.name.value.trim();
+  const email = form.email.value.trim();
+  const message = form.message.value.trim();
+
+  if (!name || !email || !message) {
+
+    gsap.fromTo(
+      '.form-card',
+      { x: -8 },
+      {
+        x: 0,
+        duration: 0.4,
+        ease: 'elastic.out(1, 0.5)'
+      }
+    );
+
+    alert('Please complete name, email and message.');
+    return;
+  }
+
+  const btn = form.querySelector('.btn');
+
+  gsap.to(btn, {
+    scale: 0.95,
+    duration: 0.1,
+    yoyo: true,
+    repeat: 1
+  });
+
+  btn.textContent = 'Sending...';
+
+  setTimeout(() => {
+    btn.textContent = 'Sent — thanks!';
+    form.reset();
+  }, 900);
+});
+</script>
+  </script>
+</body>
+</html>
