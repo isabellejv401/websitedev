@@ -27,9 +27,29 @@
     .btn-link{display:inline-flex; align-items:center; gap:8px; padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,var(--accent),#60a5fa); color:#04202b; font-weight:700; text-decoration:none}
     .small-note{font-size:13px;color:var(--muted); margin-top:14px}
     footer{margin-top:18px;color:var(--muted); font-size:13px}
+
+    /* Header styles from index.html */
+    .site-header{position:fixed;left:0;right:0;top:0;z-index:60;background:linear-gradient(180deg, rgba(7,10,20,0.6), rgba(7,10,20,0.25));backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.03)}
+    .header-inner{display:flex;align-items:center;gap:20px;height:72px;max-width:1100px;margin:0 auto;padding:0 20px}
+    .logo{font-family:"Playfair Display",serif;font-weight:700;color:#ffd166;text-decoration:none;font-size:20px}
+    .nav{margin-left:8px;display:flex;gap:16px;align-items:center}
+    .nav a{color:var(--muted);text-decoration:none;font-weight:600}
+    .cta{margin-left:auto;background:linear-gradient(90deg,#ffd166,#06b6d4);padding:10px 14px;border-radius:10px;color:#071024;text-decoration:none;font-weight:700}
+    body{padding-top: 72px;} /* Add padding to body to offset fixed header */
   </style>
 </head>
 <body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="logo" href="index.html">BrandName</a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="index.html#features">Features</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <a class="cta" href="contact.html">Get in touch</a>
+    </div>
+  </header>
   <main class="wrap">
     <article class="card">
       <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
@@ -37,9 +57,6 @@
           <div class="muted-small">Privacy</div>
           <h1>Privacy policy</h1>
           <div class="muted">Last updated: June 25, 2026</div>
-        </div>
-        <div>
-          <a class="btn-link" href="contact.html">Contact</a>
         </div>
       </div>
 
@@ -161,10 +178,9 @@
           ease: 'power3.out',
           scrollTrigger: {
             trigger: section,
-            start: 'top 100%',
-            end: 'bottom 65%',
-            toggleActions: 'play reverse play reverse',
-            scrub: true
+            start: 'top 85%', // Start animation when the top of the section is 85% down the viewport
+            toggleActions: 'play none none none',
+            once: true // Animate only once
           }
         });
       });
