@@ -251,6 +251,113 @@ body{
         </article>
       </div>
     </section>
+  
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smooth Scroll-Driven Parallax</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #111;
+            font-family: sans-serif;
+        }
+
+        /* 1. THE TRACK: Defines how long the user scrolls for */
+        .sticky-track {
+            height: 225vh; /* Increase this to make the scroll even slower and longer */
+            position: relative;
+            
+            /* Tells the browser this element tracks the scroll timeline */
+            view-timeline-name: --trackTimeline;
+            view-timeline-axis: block;
+        }
+
+        /* 2. THE BOX: Locks to the screen */
+        .parallax-container {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            
+            background-image: url('images/anh-phan-zxUyEWhcQaE-unsplash.jpg'); 
+            background-repeat: no-repeat;
+            background-size: cover;
+            
+            background-position: center 30%; 
+
+            animation-name: slowImageScroll;
+            animation-fill-mode: both;
+            animation-timeline: --trackTimeline;
+            animation-range: contain 0% contain 100%;
+            animation-timing-function: linear;
+        }
+
+        @keyframes slowImageScroll {
+            from {
+                background-position: center 20%; 
+            }
+            to {
+                background-position: center 80%; 
+            }
+        }
+
+        /* 4. THE TEXT: Optimized to show as much photo as possible */
+.parallax-text-box {
+    background-color: #000000;
+    color: #ffffff;
+    mix-blend-mode: multiply;
+    
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* 1. Use high-impact, thick block fonts */
+    font-family: Arial Black, Impact, sans-serif-transform;
+    
+    /* 2. Massive responsive sizing */
+    font-size: clamp(4rem, 18vw, 13rem); 
+    
+    /* 3. Forces the thickest possible weight */
+    font-weight: 900; 
+    
+    /* 4. Squishes letters together tightly to minimize black gaps */
+    letter-spacing: 5px; 
+    
+    /* 5. Tightly controls row heights if text wraps */
+    line-height: 0.8; 
+    
+    text-transform: uppercase;
+    text-align: center;
+    padding: 20px;
+}
+
+
+        .website-content {
+            height: 100vh;
+            background: #fff;
+            color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sticky-track">
+        <div class="parallax-container">
+            <h1 class="parallax-text-box">BUSINESS STARTS HERE.</h1>
+        </div>
+    </div>
 
     <section id="about" class="section about">
       <div class="container">
