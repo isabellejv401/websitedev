@@ -40,6 +40,17 @@ body{
 .logo{font-family:"Playfair Display",serif;font-weight:700;color:var(--accent);text-decoration:none;font-size:20px}
 .nav{margin-left:8px;display:flex;gap:16px;align-items:center}
 .nav a{color:var(--muted);text-decoration:none;font-weight:600}
+.nav a { 
+      color: var(--muted); 
+      text-decoration: none; 
+      font-weight: 600; 
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+      padding: 4px 0;
+    }
+    .nav a:hover {
+      color: #fff;
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    }
 .cta{margin-left:auto;background:linear-gradient(90deg,var(--accent),var(--accent-2));padding:10px 14px;border-radius:10px;color:#071024;text-decoration:none;font-weight:700}
 
 .hero{position:relative;height:100vh;min-height:620px;display:flex;align-items:flex-end;padding-bottom:120px;overflow:hidden}
