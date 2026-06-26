@@ -90,11 +90,31 @@
     .info-item{display:flex; gap:12px; align-items:flex-start}
     .icon{width:44px; height:44px; flex:0 0 44px; border-radius:10px; display:grid; place-items:center; background:linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));}
     .btn{
-      display:inline-flex; gap:10px; align-items:center; justify-content:center;
-      padding:12px 18px; border-radius:12px; border:0; cursor:pointer; background:linear-gradient(90deg,var(--accent),#60a5fa);
-      color:#04202b; font-weight:700; letter-spacing:0.2px; transition:transform .14s, box-shadow .14s;
-      box-shadow: 0 8px 28px rgba(99,102,241,0.09);
-    }
+  display:inline-flex;
+  gap:10px;
+  align-items:center;
+  justify-content:center;
+  padding:12px 18px;
+  border-radius:12px;
+  border:0;
+  cursor:pointer;
+
+  background:linear-gradient(90deg,var(--accent),#60a5fa);
+  color:#04202b;
+  font-weight:700;
+  letter-spacing:0.2px;
+
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+  box-shadow: 0 8px 28px rgba(99,102,241,0.09);
+}
+.btn:hover{
+  transform: translateY(-2px) scale(1.03);
+  box-shadow:
+    0 0 12px rgba(110,231,183,0.35),
+    0 0 30px rgba(96,165,250,0.25),
+    0 10px 40px rgba(0,0,0,0.4);
+  filter: brightness(1.05);
+}
     .btn:active{transform:translateY(1px)}
     .muted-small{font-size:13px; color:var(--muted)}
     footer.note{margin-top:18px; font-size:13px; color:var(--muted)}
@@ -108,7 +128,36 @@
     .logo{font-family:"Playfair Display",serif;font-weight:700;color:#ffd166;text-decoration:none;font-size:20px}
     .nav{margin-left:8px;display:flex;gap:16px;align-items:center}
     .nav a{color:var(--muted);text-decoration:none;font-weight:600}
-    .cta{margin-left:auto;background:linear-gradient(90deg,#ffd166,#06b6d4);padding:10px 14px;border-radius:10px;color:#071024;text-decoration:none;font-weight:700}
+    .nav a { 
+      color: var(--muted); 
+      text-decoration: none; 
+      font-weight: 600; 
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+      padding: 4px 0;
+    }
+    .nav a:hover {
+      color: #fff;
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    }
+    .cta{
+  margin-left:auto;
+  background:linear-gradient(90deg,#ffd166,#06b6d4);
+  padding:10px 14px;
+  border-radius:10px;
+  color:#071024;
+  text-decoration:none;
+  font-weight:700;
+
+  transition: transform 0.4s ease, box-shadow .2s ease, filter .2s ease;
+}
+.cta:hover{
+  transform: translateY(-2px) scale(1.05);
+  box-shadow:
+    0 0 10px rgba(255, 209, 102, 0.5),
+    0 0 25px rgba(6, 182, 212, 0.35),
+    0 12px 20px rgba(0,0,0,0.4);
+  filter: brightness(1.08);
+}
     body{padding-top: 72px;} /* Add padding to body to offset fixed header */
 
     /* Style for the active navigation link - text gradient */
@@ -165,7 +214,7 @@
         <div class="accent-pill" aria-hidden="true"></div>
         <div class="muted-small">Contact</div>
       </div>
-      <h1 id="contact-heading">Let's build something beautiful together</h1>
+      <h1 id="contact-heading">PAGE WORK IN PROGRESS... Let's build something beautiful together</h1>
       <p class="lead">Got a project, feedback or just want to say hi? Drop a message — I usually reply within 1-2 business days.</p>
       <div class="form-card">
         <form id="contact-form" class="contact-form" novalidate>
@@ -216,8 +265,8 @@
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 21s6-4.5 6-10a6 6 0 10-12 0c0 5.5 6 10 6 10z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
           <div>
-            <div style="font-weight:600">Remote / Seattle, WA</div>
-            <div class="muted-small">Working hours: Mon–Fri, 9am–5pm PT</div>
+            <div style="font-weight:600">Remote / Cambridge, UK</div>
+            <div class="muted-small">Working hours: Mon–Fri, 9am–5pm GMT</div>
           </div>
         </div>
         <div class="info-item">
@@ -250,66 +299,62 @@
   <!-- AOS & GSAP -> animation libraries -->
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script src="https://unpkg.com/gsap@3.12.2/dist/gsap.min.js"></script>
+  <script src="https://unpkg.com/gsap@3.12.2/dist/ScrollTrigger.min.js"></script>
   <script>
     // Initialize AOS (on scroll animations)
     AOS.init({
       duration: 700,
       easing: 'power2.out',
-      once: true,
+      smuth: true
     });
   </script>
   <script>
 document.addEventListener('DOMContentLoaded', () => {
 
-  gsap.set([
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.utils.toArray([
     '.accent-pill',
     '#contact-heading',
     '.lead',
     '.form-card',
     '.meta'
-  ], {
-    opacity: 0
+  ]).forEach((el) => {
+
+    gsap.fromTo(el,
+      {
+        opacity: 0,
+        y: 25
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 85%",
+          end: "bottom 15%",
+          toggleActions: "play reverse play reverse",
+          // markers: true // enable for debugging
+        }
+      }
+    );
+
   });
 
-  const tl = gsap.timeline({
-    defaults: {
-      ease: 'power3.out'
-    }
-  });
+  ScrollTrigger.refresh();
 
-  tl.fromTo(
-    '.accent-pill',
-    { x: -20, opacity: 0 },
-    { x: 0, opacity: 1, duration: 0.3 }
-  )
-  .fromTo(
-    '#contact-heading',
-    { y: 20, opacity: 0 },
-    { y: 0, opacity: 1, duration: 0.3 },
-    '-=0.1'
-  )
-  .fromTo(
-    '.lead',
-    { y: 20, opacity: 0 },
-    { y: 0, opacity: 1, duration: 0.3 },
-    '-=0.2'
-  )
-  .fromTo(
-    '.form-card',
-    { y: 20, opacity: 0 },
-    { y: 0, opacity: 1, duration: 0.3 },
-    '-=0.2'
-  )
-  .fromTo(
-    '.meta',
-    { x: 20, opacity: 0 },
-    { x: 0, opacity: 1, duration: 0.3 },
-    '-=0.5'
-  );
+});
+
+document.addEventListener('swup:contentReplaced', () => {
+  ScrollTrigger.refresh(true);
 });
 
 const form = document.getElementById('contact-form');
-
+document.addEventListener('swup:contentReplaced', () => {
+  ScrollTrigger.refresh(true);
+})
 form.addEventListener('submit', (e) => {
   e.preventDefault();
 
