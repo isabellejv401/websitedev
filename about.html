@@ -8,15 +8,176 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <style>
-    :root {
-      --bg1: #0f172a;
-      --bg2: #0b1220;
-      --accent: #ffd166;
-      --accent-2: #06b6d4;
-      --muted: #94a3b8;
-      --card: rgba(255, 255, 255, 0.04);
-      --radius: 16px;
-    }
+:root {
+  --bg1: #0f172a;
+  --bg2: #0b1220;
+  --accent: #ffd166;
+  --accent-2: #06b6d4;
+  --muted: #94a3b8;
+  --radius: 16px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui;
+  background: linear-gradient(180deg, var(--bg1), var(--bg2));
+  color: #e6eef8;
+  padding-top: 72px;
+}
+
+/* GRID */
+.services-grid-container {
+  margin: 80px auto;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.services-grid {
+  display: flex;
+  gap: 24px;
+  flex-wrap: nowrap;
+  width: max-content
+}
+.services-grid-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.services-grid-container::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.08); /* soft dark track */
+  border-radius: 10px;
+}
+
+.services-grid-container::-webkit-scrollbar-thumb {
+  background: #6b7280; /* nice grey */
+  border-radius: 10px;
+}
+
+.services-grid-container::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+.services-grid::-webkit-scrollbar-track {
+  background: var(--bg2);
+}
+.services-grid::-webkit-scrollbar-thumb {
+  background-color: var(--accent);
+  border-radius: 10px;
+  border: 2px solid var(--bg2);
+}
+
+
+/* CARD BASE */
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-end;
+  flex: 0 0 300px;
+  min-height: 400px;
+}
+
+/* BIG CARD */
+.card-large {
+  grid-row: span 2;
+}
+
+/* OVERLAY */
+.overlay {
+  padding: 32px;
+  width: 100%;
+  background: linear-gradient(transparent, rgba(0,0,0,.7));
+}
+
+.overlay h2 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.overlay p {
+  color: #cbd5e1;
+}
+
+/* BACKGROUNDS */
+.creativity {
+  background: url("https://images.unsplash.com/photo-1549880338-65ddcdfd017b?auto=format&fit=crop&w=1400&q=80") center/cover;
+}
+
+.web-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  padding: 24px;
+}
+
+.web-img {
+  width: 45%;
+  max-width: 320px;
+  height: auto;
+
+  display: block;
+
+  object-fit: contain;
+
+}
+.web .overlay {
+  background: none;
+  width: 55%;
+  padding: 0;
+} 
+
+.social {
+  background: url("https://images.unsplash.com/photo-1611162616475-46b635cb6868?auto=format&fit=crop&w=1400&q=80") center/cover;
+} 
+
+.card{
+    position:relative;
+    overflow:hidden;
+    border-radius:24px;
+    background:#1b2437;
+    cursor:pointer;
+    transition:.4s ease;
+    display:flex;
+    align-items:flex-end;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+}
+
+.card-large{
+    grid-row:span 2;
+}
+
+.overlay{
+    padding:32px;
+    width:100%;
+    background:linear-gradient(
+        transparent,
+        rgba(0,0,0,.7)
+    );
+}
+
+.overlay h2{
+    margin:0;
+    font-size:2rem;
+}
+
+.overlay p{
+    color:#cbd5e1;
+}
+
+.arrow{
+    position:absolute;
+    right:24px;
+    bottom:24px;
+    font-size:2rem;
+}
     * { box-sizing: border-box; }
     body {
       margin: 0;
@@ -119,6 +280,61 @@
     transform: scaleX(1);
   }
 }
+
+    /* Ensure service card background images override the .card default */
+.card.web {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 24px;
+  border-radius: 24px;
+
+  background: rgba(27, 36, 55, 0.6); /* restores the “box” */
+  backdrop-filter: blur(10px);
+
+  position: relative;
+  overflow: hidden;
+  min-height: 320px;
+  background: rgba(27, 36, 55, 0.4);
+  backdrop-filter: blur(12px);
+}
+.card.web::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    135deg,
+    rgba(127, 127, 127, 0.428),
+    rgba(0, 0, 0, 0.045),
+    rgba(101, 101, 101, 0.342)
+  );
+
+  z-index: 1;
+}
+    .card.creativity {
+      background: url(https://images.unsplash.com/photo-1598520106830-8c45c2035460?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D) center/cover;
+      background-size: cover;
+    }
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.card-link:hover {
+  transform: translateY(-8px);
+}
+
+.seo {
+  background: url("https://images.unsplash.com/photo-1559028006-44d5a2b7c38c?auto=format&fit=crop&w=1400&q=80") center/cover;
+}
+
+.branding {
+  background: url("https://images.unsplash.com/photo-1557426272-fc759fdf7a8d?auto=format&fit=crop&w=1400&q=80") center/cover;
+}
   </style>
 </head>
 <body>
@@ -151,18 +367,88 @@
 
     <section class="content-section" data-aos="fade-up" data-aos-delay="300">
       <div>
-        <h2>Our Mission</h2>
-        <p>Our mission is to blend artistry with technology, crafting digital experiences that are not only visually stunning but also intuitive and accessible to everyone. We believe that great design has the power to solve problems and connect people.</p>
+        <h2>WIP... Our Mission</h2>
+        <p> WIP.......... Our mission is to blend artistry with technology, crafting digital experiences that are not only visually stunning but also intuitive and accessible to everyone. We believe that great design has the power to solve problems and connect people.</p>
       </div>
       <div>
-        <h2>Our Vision</h2>
-        <p>We envision a web where every interaction is meaningful and every interface is a joy to use. We strive to be at the forefront of design and technology, constantly pushing boundaries and setting new standards for excellence.</p>
+        <h2>WIP...Our Vision</h2>
+        <p>WIP.... e envision a web where every interaction is meaningful and every interface is a joy to use. We strive to be at the forefront of design and technology, constantly pushing boundaries and setting new standards for excellence.</p>
       </div>
     </section>
   </main>
   <div>
-    <h1>THIS PAGE IS A WORK IN PROGRESS. IT IS TOO SHORT AND MUST BE LONGER. HAVE FUN. GOOD LUCK.</h1>
-  </div></dive>
+    <h1>THIS PAGE IS A WORK IN PROGRESS. IT SHOULD BE LONGER. - JACOB</h1>
+    <div class="services-grid-container">
+      <section class="services-grid">
+
+        <!-- Web Development -->
+        <a href="#" class="card-link" data-aos="fade-up">
+          <article class="card web">
+            <div class="web-content">
+              <img
+                class="web-img"
+                src="images/—Pngtree—sleek modern laptop with high-resolution_20588424.png"
+                alt="Web Development"
+                data-aos="fade-left"
+                data-aos-duration="700"
+                data-aos-delay="500"
+              />
+              <div class="overlay">
+                <h2>Web Development</h2>
+                <p>Fast, responsive websites built for performance.</p>
+                <span class="arrow">↗</span>
+              </div>
+            </div>
+          </article>
+        </a>
+
+        <!-- Creativity -->
+        <a href="#" class="card-link" data-aos="fade-up" data-aos-delay="100">
+          <article class="card creativity">
+            <div class="overlay">
+              <h2>Creativity</h2>
+              <p>Turning ideas into memorable brands.</p>
+              <span class="arrow">↗</span>
+            </div>
+          </article>
+        </a>
+
+        <!-- Social Media -->
+        <a href="#" class="card-link" data-aos="fade-up" data-aos-delay="200">
+          <article class="card social">
+            <div class="overlay">
+              <h2>Social Media<br />Management</h2>
+              <p>Content creation, scheduling, and audience growth.</p>
+              <span class="arrow">↗</span>
+            </div>
+          </article>
+        </a>
+
+        <!-- New Card 1: SEO -->
+        <a href="#" class="card-link" data-aos="fade-up" data-aos-delay="300">
+          <article class="card seo">
+            <div class="overlay">
+              <h2>SEO Optimization</h2>
+              <p>Climb the ranks and get discovered on search engines.</p>
+              <span class="arrow">↗</span>
+            </div>
+          </article>
+        </a>
+
+        <!-- New Card 2: Branding -->
+        <a href="#" class="card-link" data-aos="fade-up" data-aos-delay="400">
+          <article class="card branding">
+            <div class="overlay">
+              <h2>Branding</h2>
+              <p>Crafting a unique identity for your business.</p>
+              <span class="arrow">↗</span>
+            </div>
+          </article>
+        </a>
+
+      </section>
+    </div>
+  </div>
 
   <footer class="footer">
     <p>© 2026 BrandName — All Rights Reserved</p>
@@ -171,34 +457,60 @@
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script src="https://unpkg.com/gsap@3.12.2/dist/gsap.min.js"></script>
   <script>
-    AOS.init({
-      duration: 800,
-      easing: 'power2.out',
-      once: true
+AOS.init({
+  duration: 800,
+  easing: 'power2.out',
+  once: false,
+  mirror: true
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* =========================
+     IMAGE TRACK (kept yours)
+  ========================= */
+  const track = document.querySelector('.image-track');
+  const images = gsap.utils.toArray('.bg-image');
+  const numImages = images.length;
+  const imageWidth = images[0].offsetWidth;
+
+  images.forEach(img => {
+    track.appendChild(img.cloneNode(true));
+  });
+
+  gsap.to(track, {
+    x: () => -(numImages * imageWidth),
+    duration: 30,
+    ease: 'none',
+    repeat: -1,
+    modifiers: {
+      x: gsap.utils.unitize(x =>
+        parseFloat(x) % (numImages * imageWidth)
+      )
+    }
+  });
+
+  /* =========================
+     SERVICES MARQUEE (FIXED)
+  ========================= */
+  const grid = document.querySelector(".services-grid");
+
+  // duplicate for loop
+  grid.innerHTML += grid.innerHTML;
+
+  requestAnimationFrame(() => {
+    const totalWidth = grid.scrollWidth / 2;
+
+    // Simplified animation for a true seamless loop
+    gsap.to(grid, {
+      x: -totalWidth,
+      duration: 40,
+      ease: "none",
+      repeat: -1,
     });
+  });
+});
+</script>
 
-    document.addEventListener('DOMContentLoaded', () => {
-      const track = document.querySelector('.image-track');
-      const images = gsap.utils.toArray('.bg-image');
-      const numImages = images.length;
-      const imageWidth = images[0].offsetWidth;
-
-      // Clone images for a seamless loop
-      images.forEach(img => {
-        track.appendChild(img.cloneNode(true));
-      });
-
-      // Animate the track
-      gsap.to(track, {
-        x: () => -(numImages * imageWidth),
-        duration: 30,
-        ease: 'none',
-        repeat: -1,
-        modifiers: {
-          x: gsap.utils.unitize(x => parseFloat(x) % (numImages * imageWidth))
-        }
-      });
-    });
-  </script>
 </body>
 </html>
