@@ -76,3 +76,14 @@ if (prefersReduced) {
     ScrollTrigger.refresh();
   });
 }
+
+gsap.to(".mountain-bg", {
+    yPercent: 15,
+    ease: "none",
+    scrollTrigger: {
+        trigger: ".website-content",
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true
+    }
+});
