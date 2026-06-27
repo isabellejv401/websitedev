@@ -1,513 +1,542 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>BrandName — Beautiful Interface</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-            body {
-            margin: 0;
-            padding: 0;
-            background-color: #111;
-            font-family: sans-serif;
-        }
+  <!doctype html>
+  <html lang="en">
+  <head>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>BrandName — Beautiful Interface</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+              body {
+              margin: 0;
+              padding: 0;
+              background-color: #111;
+              font-family: sans-serif;
+          }
 
-        .sticky-track {
-    height: 250vh; /* Increase this to make the scroll even slower and longer */
-    position: relative;
-        }
+          .sticky-track {
+      height: 100vh;
+      overflow:hidden
+          }
 
-        /* 2. THE BOX: Locks to the screen */
-        .parallax-container {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-            
-            background-image: url('images/anh-phan-zxUyEWhcQaE-unsplash.jpg'); 
-            background-repeat: no-repeat;
-            background-size: 100%;
-            background-position: center 40%; 
-        }
+          /* 2. THE BOX: Locks to the screen */
+          .parallax-container {
+              position: relative;
+              width: 100%;
+              height: 100vh;
+              overflow: hidden;
+              
+              background-image: url('images/anh-phan-zxUyEWhcQaE-unsplash.jpg'); 
+              background-repeat: no-repeat;
+              background-size: 100%;
+              background-position: center 40%; 
+          }
 
-.parallax-text-box {
-    background: #000000;
-    position:absolute;
-    inset:0;
+  .parallax-text-box {
+      background: #000000;
+      position:absolute;
+      inset:0;
 
-    z-index:1;
+      z-index:1;
 
-    color:white;
+      color:white;
 
-    mix-blend-mode:multiply;
+      mix-blend-mode:multiply;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
 
+      margin:0;
+
+      font-family:Arial Black, Impact, sans-serif;
+
+      font-size:clamp(4rem,18vw,13rem);
+
+      font-weight:900;
+
+      letter-spacing:5px;
+      line-height:.8;
+
+      text-align:center;
+      text-transform:uppercase;
+  }
+
+  .website-content{
+      position:relative;
+      z-index:1;
+      height:100%;
+      width: 100%;
+      overflow:hidden;
+
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+
+      padding:0 10%;
+
+  }
+
+  .mountain-bg{
+      position:absolute;
+      will-change: transform;
+      transform: translate3d(0,0,0);
+
+      top:-10%;
+      left:-5%;
+
+      width:110%;
+      height:120%;
+
+      object-fit:cover;
+
+      z-index:-1;
+  }
+
+  /* 4. KEYFRAMES FIX: Moves the image smoothly from top to bottom */
+
+
+  .right-text-box {
+      background-color: rgba(0, 0, 0, 0.75); 
+      color: #ffffff;
+      
+      /* Generous, even spacing inside the box boundaries */
+      padding: 60px 50px; 
+      
+      /* Controls the structural size of the box explicitly */
+      width: 100%;
+      max-width: 550px; 
+      min-height: 300px; /* Ensures the box is physically taller */
+      
+      border-radius: 12px; /* Smooth elegant corners */
+      backdrop-filter: blur(8px); /* Beautiful premium glass effect */
+      -webkit-backdrop-filter: blur(8px);
+      
+      font-family: Arial, sans-serif;
+      box-sizing: border-box;
+      
+      /* FORCE TEXT WRAPPING: Fixes the text spilling outside the borders */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: left;
+  }
+  .sticky-track, .parallax-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+.slideshow-inner-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+  .slide-one-container::before,
+  .slide-two-container::before,
+  .slide-three-container::before {
+      content:"";
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:120px;
+
+      background:linear-gradient(
+          to bottom,
+          rgba(0,0,0,.65),
+          transparent
+      );
+
+      z-index:5;
+      pointer-events:none;
+  }
+
+  .slide-one-container,
+  .slide-two-container,
+  .slide-three-container {
+      position:absolute;
+      width:100%;
+      height:100vh;
+      transform: translateY(100vh); /* Start all slides off-screen */
+  }
+
+  /* Wrapper for the scroll animation trigger */
+  .scroll-slides-wrapper{
+      position:relative;
+      inset:0;
+      z-index:10;
+      height: 300vh;
+      display: flex;
+      flex-direction:column;
+  }
+
+
+  /* Fixes the spacing and font size of the title */
+  .right-text-box h2 {
+      margin: 0 0 20px 0;
+      font-size: 2.8rem; 
+      font-family: 'Arial Black', Impact, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      line-height: 1.1;
+      margin-top: 0;
+      color: #ffffff;
+  }
+
+  .right-text-box p {
+      margin: 0;
+      font-size: 1.2rem; 
+      line-height: 1.6;
+      color: #dddddd;
+      white-space: normal; 
+  }
+
+  :root{
+    --bg:#0f1724;
+    --card:#0f1724;
+    --muted:#94a3b8;
+    --accent:#ffd166;
+    --accent-2:#06b6d4;
+    --glass: rgba(255,255,255,0.04);
+    --radius:14px;
+    --max-width:1200px;
+    --container-padding:24px;
+  }
+
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
     margin:0;
+    font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+    background:linear-gradient(180deg,#071024 0%, #081026 100%);
+    color:#e6eef8;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
+  .container{max-width:var(--max-width);margin:0 auto;padding:0 var(--container-padding)}
 
-    font-family:Arial Black, Impact, sans-serif;
+  .site-header{position:fixed;left:0;right:0;top:0;z-index:60;background:linear-gradient(180deg, rgba(7,10,20,0.6), rgba(7,10,20,0.25));backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.03)}
+  .header-inner{display:flex;align-items:center;gap:20px;height:72px}
+  .logo{font-family:"Playfair Display",serif;font-weight:700;color:var(--accent);text-decoration:none;font-size:20px}
+  .nav{margin-left:8px;display:flex;gap:16px;align-items:center}
+  .nav a { 
+        color: var(--muted); 
+        text-decoration: none; 
+        font-weight: 600; 
+        transition: color 0.3s ease, text-shadow 0.3s ease;
+        padding: 4px 0;
+      }
+      .nav a:hover {
+        color: #fff;
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+      }
+  .cta{
+    margin-left:auto;
+    background:linear-gradient(90deg,#ffd166,#06b6d4);
+    padding:10px 14px;
+    border-radius:10px;
+    color:#071024;
+    text-decoration:none;
+    font-weight:700;
 
-    font-size:clamp(4rem,18vw,13rem);
+    transition: transform 0.4s ease, box-shadow .2s ease, filter .2s ease;
+  }
+  .cta:hover{
+    transform: translateY(-2px) scale(1.05);
+    box-shadow:
+      0 0 10px rgba(255, 209, 102, 0.5),
+      0 0 25px rgba(6, 182, 212, 0.35),
+      0 12px 20px rgba(0,0,0,0.4);
+    filter: brightness(1.08);
+  }
+  .hero{position:relative;height:100vh;min-height:620px;display:flex;align-items:flex-end;padding-bottom:120px;overflow:hidden}
+  .hero-inner{position:relative;z-index:30;padding-top:100px}
+  .intro{max-width:640px}
+  .intro h1{font-family:"Playfair Display",serif;font-size:clamp(28px,6vw,56px);line-height:1.02;margin:0 0 12px;color:#fff}
+  .lead{color:var(--muted);margin:0 0 18px}
+  .hero-cta{display:flex;gap:12px}
+  .btn{display:inline-block;padding:10px 16px;border-radius:12px;text-decoration:none;font-weight:700;
+    transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+    will-change: transform;
+  }
 
-    font-weight:900;
+  /* Hover lift effect */
+  .btn:hover{
+    transform: translateY(-4px);
+  }
 
-    letter-spacing:5px;
-    line-height:.8;
+  /* Primary button (Explore) hover glow */
+  .btn.primary:hover{
+    box-shadow: 0 12px 30px rgba(255, 209, 102, 0.25);
+    filter: brightness(1.05);
+  }
 
-    text-align:center;
-    text-transform:uppercase;
-}
+  /* Ghost button (Learn more) hover effect */
+  .btn.ghost{
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, color .25s ease;
+  }
 
-.website-content{
-    position:relative;
-    z-index:1;
-    min-height:100vh;
+  .btn.ghost:hover{
+    transform: translateY(-4px);
+    border-color: rgba(255,255,255,0.25);
+    color:#ffffff;
+    box-shadow: 0 12px 30px rgba(6, 182, 212, 0.10);
+  }
+  .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#071024}
+  .btn.ghost{border:1px solid rgba(255,255,255,0.08);color:var(--muted);background:transparent}
 
-    overflow:hidden;
+  .image-track{position:absolute;inset:0;display:flex; /* pointer-events:none; */}
+  .bg-image{flex:0 0 auto;width:100vw;height:100vh;object-fit:cover;filter:contrast(110%) saturate(110%);transform-origin:center center}
 
-    display:flex;
-    align-items:center;
-    justify-content:flex-start;
-
-    padding:0 10%;
-
-}
-
-.mountain-bg{
-    position:absolute;
-
-    top:-10%;
-    left:-5%;
-
-    width:110%;
-    height:120%;
-
-    object-fit:cover;
-
-    z-index:-1;
-}
-
-/* 4. KEYFRAMES FIX: Moves the image smoothly from top to bottom */
-
-
-.right-text-box {
-    background-color: rgba(0, 0, 0, 0.75); 
-    color: #ffffff;
-    
-    /* Generous, even spacing inside the box boundaries */
-    padding: 60px 50px; 
-    
-    /* Controls the structural size of the box explicitly */
-    width: 100%;
-    max-width: 550px; 
-    min-height: 300px; /* Ensures the box is physically taller */
-    
-    border-radius: 12px; /* Smooth elegant corners */
-    backdrop-filter: blur(8px); /* Beautiful premium glass effect */
-    -webkit-backdrop-filter: blur(8px);
-    
-    font-family: Arial, sans-serif;
-    box-sizing: border-box;
-    
-    /* FORCE TEXT WRAPPING: Fixes the text spilling outside the borders */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: left;
-}
-
-.slide-one-container::before,
-.slide-two-container::before,
-.slide-three-container::before {
-    content:"";
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:120px;
-
-    background:linear-gradient(
-        to bottom,
-        rgba(0,0,0,.65),
-        transparent
+  .section{padding:80px 0}
+  .features h2,.about h2{font-family:"Playfair Display",serif;font-size:28px;margin-bottom:18px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+  .card {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.06),
+      rgba(255, 255, 255, 0.02)
     );
 
-    z-index:5;
-    pointer-events:none;
-}
+    border: 1px solid rgba(255, 255, 255, 0.10);
 
-.slide-one-container,
-.slide-two-container,
-.slide-three-container {
-    position:absolute;
-    width:100%;
-    height:100vh;
-    inset:0;
-    transform: translateY(100vh); /* Start all slides off-screen */
-}
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.55);
 
-/* Wrapper for the scroll animation trigger */
-.scroll-slides-wrapper{
-    position:absolute;
-    inset:0;
-    z-index:10;
-}
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(10px);
 
+    padding: 22px;
+    border-radius: 12px;
 
-/* Fixes the spacing and font size of the title */
-.right-text-box h2 {
-    margin: 0 0 20px 0;
-    font-size: 2.8rem; 
-    font-family: 'Arial Black', Impact, sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    line-height: 1.1;
-    margin-top: 0;
-    color: #ffffff;
-}
+    /* smooth lift on hover/focus */
+    transition: transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s cubic-bezier(.2,.8,.2,1);
+    will-change: transform, box-shadow;
+  }
 
-.right-text-box p {
-    margin: 0;
-    font-size: 1.2rem; 
-    line-height: 1.6;
-    color: #dddddd;
-    white-space: normal; 
-}
-
-:root{
-  --bg:#0f1724;
-  --card:#0f1724;
-  --muted:#94a3b8;
-  --accent:#ffd166;
-  --accent-2:#06b6d4;
-  --glass: rgba(255,255,255,0.04);
-  --radius:14px;
-  --max-width:1200px;
-  --container-padding:24px;
-}
-
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
-  background:linear-gradient(180deg,#071024 0%, #081026 100%);
-  color:#e6eef8;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-}
-.container{max-width:var(--max-width);margin:0 auto;padding:0 var(--container-padding)}
-
-.site-header{position:fixed;left:0;right:0;top:0;z-index:60;background:linear-gradient(180deg, rgba(7,10,20,0.6), rgba(7,10,20,0.25));backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.03)}
-.header-inner{display:flex;align-items:center;gap:20px;height:72px}
-.logo{font-family:"Playfair Display",serif;font-weight:700;color:var(--accent);text-decoration:none;font-size:20px}
-.nav{margin-left:8px;display:flex;gap:16px;align-items:center}
-.nav a { 
-      color: var(--muted); 
-      text-decoration: none; 
-      font-weight: 600; 
-      transition: color 0.3s ease, text-shadow 0.3s ease;
-      padding: 4px 0;
-    }
-    .nav a:hover {
-      color: #fff;
-      text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
-    }
-.cta{
-  margin-left:auto;
-  background:linear-gradient(90deg,#ffd166,#06b6d4);
-  padding:10px 14px;
-  border-radius:10px;
-  color:#071024;
-  text-decoration:none;
-  font-weight:700;
-
-  transition: transform 0.4s ease, box-shadow .2s ease, filter .2s ease;
-}
-.cta:hover{
-  transform: translateY(-2px) scale(1.05);
-  box-shadow:
-    0 0 10px rgba(255, 209, 102, 0.5),
-    0 0 25px rgba(6, 182, 212, 0.35),
-    0 12px 20px rgba(0,0,0,0.4);
-  filter: brightness(1.08);
-}
-.hero{position:relative;height:100vh;min-height:620px;display:flex;align-items:flex-end;padding-bottom:120px;overflow:hidden}
-.hero-inner{position:relative;z-index:30;padding-top:100px}
-.intro{max-width:640px}
-.intro h1{font-family:"Playfair Display",serif;font-size:clamp(28px,6vw,56px);line-height:1.02;margin:0 0 12px;color:#fff}
-.lead{color:var(--muted);margin:0 0 18px}
-.hero-cta{display:flex;gap:12px}
-.btn{display:inline-block;padding:10px 16px;border-radius:12px;text-decoration:none;font-weight:700;
-  transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
-  will-change: transform;
-}
-
-/* Hover lift effect */
-.btn:hover{
-  transform: translateY(-4px);
-}
-
-/* Primary button (Explore) hover glow */
-.btn.primary:hover{
-  box-shadow: 0 12px 30px rgba(255, 209, 102, 0.25);
-  filter: brightness(1.05);
-}
-
-/* Ghost button (Learn more) hover effect */
-.btn.ghost{
-  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, color .25s ease;
-}
-
-.btn.ghost:hover{
-  transform: translateY(-4px);
-  border-color: rgba(255,255,255,0.25);
-  color:#ffffff;
-  box-shadow: 0 12px 30px rgba(6, 182, 212, 0.10);
-}
-.btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#071024}
-.btn.ghost{border:1px solid rgba(255,255,255,0.08);color:var(--muted);background:transparent}
-
-.image-track{position:absolute;inset:0;display:flex; /* pointer-events:none; */}
-.bg-image{flex:0 0 auto;width:100vw;height:100vh;object-fit:cover;filter:contrast(110%) saturate(110%);transform-origin:center center}
-
-.section{padding:80px 0}
-.features h2,.about h2{font-family:"Playfair Display",serif;font-size:28px;margin-bottom:18px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
-.card {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.06),
-    rgba(255, 255, 255, 0.02)
-  );
-
-  border: 1px solid rgba(255, 255, 255, 0.10);
-
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.55);
-
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(10px);
-
-  padding: 22px;
-  border-radius: 12px;
-
-  /* smooth lift on hover/focus */
-  transition: transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s cubic-bezier(.2,.8,.2,1);
-  will-change: transform, box-shadow;
-}
-
-/* Hover / keyboard focus lift */
-.card:hover,
-.card:focus-within {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.65);
-}
-
-/* Disable hover lift on touch devices where hover isn't available */
-@media (hover: none) {
+  /* Hover / keyboard focus lift */
   .card:hover,
   .card:focus-within {
-    transform: none;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.55);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.65);
   }
-}
 
-/* Respect reduced motion preference */
-@media (prefers-reduced-motion: reduce) {
-  .card {
-    transition: none;
-    transform: none !important;
+  /* Disable hover lift on touch devices where hover isn't available */
+  @media (hover: none) {
+    .card:hover,
+    .card:focus-within {
+      transform: none;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.55);
+    }
   }
-}
 
-.about{background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)}
-.footer{padding:30px 0;color:var(--muted)}
-.footer-inner{display:flex;align-items:center;gap:12px}
-.social a{color:var(--muted);text-decoration:none;margin-left:12px}
+  /* Respect reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .card {
+      transition: none;
+      transform: none !important;
+    }
+  }
 
-@media (max-width:800px){
-  .header-inner{height:64px}
-  .hero{padding-bottom:80px;min-height:640px}
-  .bg-image{height:calc(100vh - 64px)}
-  .container{padding:0 16px}
-}
+  .about{background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)}
+  .footer{padding:30px 0;color:var(--muted)}
+  .footer-inner{display:flex;align-items:center;gap:12px}
+  .social a{color:var(--muted);text-decoration:none;margin-left:12px}
 
-@media (prefers-reduced-motion:reduce){
-  .bg-image{transition:none!important}
-  *{animation-duration:0.001ms!important}
-}
-  </style>
-  <script defer src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
-  <script defer src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
-</head>
-<body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="logo" href="#">BrandName</a>
-      <nav class="nav" aria-label="Main navigation">
-        <a href="#features">Features</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-      <a class="cta" href="contact.html">Get in touch</a>
-    </div>
-  </header>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-  AOS.init({
-  duration: 800, 
-  once: false,
-  easing: "ease-out-cubic"
-});
-</script>
+  @media (max-width:800px){
+    .header-inner{height:64px}
+    .hero{padding-bottom:80px;min-height:640px}
+    .bg-image{height:calc(100vh - 64px)}
+    .container{padding:0 16px}
+  }
 
-  <main>
-    <section class="hero" aria-label="Hero">
-      <div class="hero-inner container">
-        <div class="intro">
-          <h1>WIP</h1>
-          <p class="lead">WIP</p>
-          <div class="hero-cta">
-            <a class="btn primary" href="#features">Explore</a>
-            <a class="btn ghost" href="#about">Learn more</a>
+  @media (prefers-reduced-motion:reduce){
+    .bg-image{transition:none!important}
+    *{animation-duration:0.001ms!important}
+  }
+    </style>
+    <script defer src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+    <script defer src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="logo" href="#">BrandName</a>
+        <nav class="nav" aria-label="Main navigation">
+          <a href="#features">Features</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <a class="cta" href="contact.html">Get in touch</a>
+      </div>
+    </header>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+    AOS.init({
+    duration: 800, 
+    once: false,
+    easing: "ease-out-cubic"
+  });
+  </script>
+
+    <main>
+      <section class="hero" aria-label="Hero">
+        <div class="hero-inner container">
+          <div class="intro">
+            <h1>WIP</h1>
+            <p class="lead">WIP</p>
+            <div class="hero-cta">
+              <a class="btn primary" href="#features">Explore</a>
+              <a class="btn ghost" href="#about">Learn more</a>
+            </div>
           </div>
         </div>
+
+        <div class="image-track" aria-hidden="true">
+          <img class="bg-image" src="https://images.unsplash.com/photo-1549880338-65ddcdfd017b?auto=format&fit=crop&w=1400&q=80" alt="Landscape 1" loading="lazy">
+          <img class="bg-image" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1400&q=80" alt="Landscape 2" loading="lazy">
+          <img class="bg-image" src="https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1400&q=80" alt="Landscape 3" loading="lazy">
+          <img class="bg-image" src="images/anh-phan-zxUyEWhcQaE-unsplash.jpg" alt="Landscape 4" loading="lazy">
+        </div>
+      </section>
+
+      <section id="features" class="section features container">
+        <h2>Features</h2>
+        <div class="grid">
+          <article class="card" data-aos="flip-down" data-aos-delay="0">
+            <h3>WIP</h3>
+            <p>WIP.</p>
+          </article>
+          <article class="card" data-aos="flip-down" data-aos-delay="150">
+            <h3>WIP</h3>
+            <p>WIP</p>
+          </article>
+          <article class="card" data-aos="flip-down" data-aos-delay="300">
+            <h3>WIP</h3>
+            <p>WIP</p>
+          </article>
+        </div>
+      </section>
+
+
+    <div class="parallax-3d-viewport"></div>
+
+        <div class="sticky-track">
+
+      <div class="parallax-container">
+
+          <h1 class="parallax-text-box">
+              BUSINESS STARTS HERE.
+          </h1>
+
+
+          <div class="scroll-slides-wrapper">
+
+              <div class="slide-one-container">
+
+                  <div class="website-content">
+
+                      <img
+                      class="mountain-bg"
+                      src="images/anh-phan-zxUyEWhcQaE-unsplash.jpg">
+
+                      <div class="right-text-box">
+                          <h2>Increase Clientele</h2>
+                          <p>
+                          Increase your clientele, number of customers, and overall revenue with our expert solutions.
+                          </p>
+                      </div>
+
+                  </div>
+
+              </div>
+
+
+              <div class="slide-two-container">
+
+                  <div class="website-content">
+
+      <img
+      class="mountain-bg"
+      src="images/mountain.jpg">
+
+
+                      <div class="right-text-box">
+                          <h2>SEO Optimisation</h2>
+                          <p>
+                          Rank higher on Google and generate more organic traffic for your business.
+                          </p>
+                      </div>
+
+                  </div>
+
+              </div>
+
+              <div class="slide-three-container">
+
+      <div class="website-content">
+
+          <img
+          class="mountain-bg"
+          src="images/river.jpg">
+
+          <div class="right-text-box">
+              <h2>Grow Your Brand</h2>
+              <p>
+              Build a stronger online presence and turn visitors into loyal customers.
+              </p>
+          </div>
+
       </div>
 
-      <div class="image-track" aria-hidden="true">
-        <img class="bg-image" src="https://images.unsplash.com/photo-1549880338-65ddcdfd017b?auto=format&fit=crop&w=1400&q=80" alt="Landscape 1" loading="lazy">
-        <img class="bg-image" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1400&q=80" alt="Landscape 2" loading="lazy">
-        <img class="bg-image" src="https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1400&q=80" alt="Landscape 3" loading="lazy">
-        <img class="bg-image" src="images/anh-phan-zxUyEWhcQaE-unsplash.jpg" alt="Landscape 4" loading="lazy">
-      </div>
-    </section>
+  </div>
 
-    <section id="features" class="section features container">
-      <h2>Features</h2>
-      <div class="grid">
-        <article class="card" data-aos="flip-down" data-aos-delay="0">
-          <h3>WIP</h3>
+          </div>
+
+
+      </div>
+
+  </div>
+
+  <section id="contact" class="section contact-section container" data-aos="fade-up">
+        <div class="contact-grid">
+          <div class="contact-info">
+            <h2>Ready to Elevate Your Business?</h2>
+            <p>Get in touch with us today to discuss your next big project.</p>
+          </div>
+          <form class="contact-form" action="#" method="POST">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit" class="btn primary">Send Message</button>
+          </form>
+        </div>
+      </section>
+      
+
+      <section id="about" class="section about">
+        <div class="container">
+          <h2>About</h2>
           <p>WIP.</p>
-        </article>
-        <article class="card" data-aos="flip-down" data-aos-delay="150">
-          <h3>WIP</h3>
-          <p>WIP</p>
-        </article>
-        <article class="card" data-aos="flip-down" data-aos-delay="300">
-          <h3>WIP</h3>
-          <p>WIP</p>
-        </article>
-      </div>
-    </section>
-
-
-  <div class="parallax-3d-viewport"></div>
-
-      <div class="sticky-track">
-
-    <div class="parallax-container">
-
-        <h1 class="parallax-text-box">
-            BUSINESS STARTS HERE.
-        </h1>
-
-
-        <div class="scroll-slides-wrapper">
-
-            <div class="slide-one-container">
-
-                <div class="website-content">
-
-                    <img
-                    class="mountain-bg"
-                    src="images/anh-phan-zxUyEWhcQaE-unsplash.jpg">
-
-                    <div class="right-text-box">
-                        <h2>Increase Clientele</h2>
-                        <p>
-                        Increase your clientele, number of customers, and overall revenue with our expert solutions.
-                        </p>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="slide-two-container">
-
-                <div class="website-content">
-
-                    <div class="mountain-bg-wrapper">
-    <img
-    class="mountain-bg"
-    src="images/mountain.jpg">
-</div>
-
-                    <div class="right-text-box">
-                        <h2>SEO Optimisation</h2>
-                        <p>
-                        Rank higher on Google and generate more organic traffic for your business.
-                        </p>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="slide-three-container">
-
-    <div class="website-content">
-
-        <img
-        class="mountain-bg"
-        src="images/river.jpg">
-
-        <div class="right-text-box">
-            <h2>Grow Your Brand</h2>
-            <p>
-            Build a stronger online presence and turn visitors into loyal customers.
-            </p>
         </div>
+      </section>
 
-    </div>
-
-</div>
-
+      <footer id="contact" class="footer">
+        <div class="container footer-inner">
+          <p>© 2026 BrandName — WIP</p>
+          <nav class="social" aria-label="Social links">
+            <a href="#">Twitter</a>
+            <a href="#">Dribbble</a>
+            <a href="privacy-policy.html" style="color: #3498db !important; text-decoration: underline;">Privacy Policy</a>
+          </nav>
         </div>
+      </footer>
+    </main>
 
-
-    </div>
-
-</div>
+    <script src="script.js" defer></script>
     
-
-    <section id="about" class="section about">
-      <div class="container">
-        <h2>About</h2>
-        <p>WIP.</p>
-      </div>
-    </section>
-
-    <footer id="contact" class="footer">
-      <div class="container footer-inner">
-        <p>© 2026 BrandName — WIP</p>
-        <nav class="social" aria-label="Social links">
-          <a href="#">Twitter</a>
-          <a href="#">Dribbble</a>
-          <a href="privacy-policy.html" style="color: #3498db !important; text-decoration: underline;">Privacy Policy</a>
-        </nav>
-      </div>
-    </footer>
-  </main>
-
-  <script src="script.js" defer></script>
-  
-</body>
-</html>
+  </body>
+  </html>
