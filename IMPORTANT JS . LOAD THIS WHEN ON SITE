@@ -4,6 +4,32 @@ const track = document.querySelector('.image-track');
 const images = gsap.utils.toArray('.bg-image');
 const introTitle = document.querySelector('.intro h1');
 
+// Create a top-shadow overlay for each image so the shadow moves exactly with the image
+const imageShadows = images.map(img => {
+  // Ensure the image container is positioned so the absolute shadow can sit on top
+  const container = img; // assume .bg-image is the container element (div with background-image)
+  if (getComputedStyle(container).position === 'static') {
+    container.style.position = 'relative';
+  }
+
+  const shadow = document.createElement('div');
+  shadow.className = 'bg-top-shadow';
+  Object.assign(shadow.style, {
+    position: 'absolute',
+    top: '0',
+    left: '0',
+    right: '0',
+    height: '26%', // tweak to taste
+    pointerEvents: 'none',
+    background: 'linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0))',
+    zIndex: 5,
+    transform: 'translateZ(0)'
+  });
+
+  container.appendChild(shadow);
+  return shadow;
+});
+
 function getDistance() {
   return Math.max(0, track.scrollWidth - window.innerWidth);
 }
@@ -38,6 +64,7 @@ if (prefersReduced) {
     // Per-image subtle parallax layers
     images.forEach((img, i) => {
       const depth = (i + 1) * 6; // adjust parallax strength
+      const shadow = imageShadows[i];
       ScrollTrigger.create({
         trigger: '.hero',
         start: 'top top',
@@ -45,7 +72,8 @@ if (prefersReduced) {
         scrub: 1.2,
         onUpdate: (self) => {
           const offset = gsap.utils.mapRange(0, 1, 0, depth, self.progress);
-          gsap.set(img, { xPercent: -offset });
+          // Apply the same horizontal offset to both the image and its top shadow so they stay aligned
+          gsap.set([img, shadow], { xPercent: -offset });
         }
       });
     });
@@ -77,13 +105,74 @@ if (prefersReduced) {
   });
 }
 
-gsap.to(".mountain-bg", {
-    yPercent: 15,
+document.addEventListener("fullscreenchange", () => {
+  setTimeout(() => {
+    ScrollTrigger.refresh(true);
+  }, 50);
+});
+
+gsap.utils.toArray(".website-content").forEach((section) => {
+  const img = section.querySelector(".mountain-bg");
+
+  gsap.to(img, {
+    y: 80,
     ease: "none",
     scrollTrigger: {
-        trigger: ".website-content",
-        start: "top bottom",
+      trigger: section,
+      start: "top bottom",
+      end: "bottom top",
+      scrub: true
+    }
+  });
+});
+
+window.addEventListener("resize", () => {
+  ScrollTrigger.refresh();
+});
+
+// Parallax background scroll
+gsap.to(".parallax-container", {
+    backgroundSize: "190%",
+    backgroundPosition: "center 40%",
+    ease: "none",
+    scrollTrigger: {
+        trigger: ".sticky-track",
+        start: "top top",
         end: "bottom top",
-        scrub: true
+        scrub: 1.5
     }
 });
+
+// Overlapping slides animation
+const slides = gsap.utils.toArray('.slide-one-container, .slide-two-container, .slide-three-container');
+const slideWrapper = document.querySelector('.scroll-slides-wrapper');
+const parallaxTextBox = document.querySelector('.parallax-text-box');
+
+const tl = gsap.timeline({
+  scrollTrigger:{
+    trigger: ".sticky-track",
+    pin: true,
+    scrub: 1,
+    start: "top top",
+    end: () => "+=" + (slides.length * 1000),
+    invalidateOnRefresh: true
+  }
+});
+tl.to(parallaxTextBox, {
+    opacity: 0,
+    yPercent: -100,
+    ease: "power2.in"
+});
+
+slides.forEach((slide, i) => {
+    tl.to(slide, {
+        y: 0,
+        ease: "none"
+    }, i * 0.5); // Stagger the slide animations
+});
+
+tl.to(".parallax-container", {
+    backgroundSize: "220%",
+    opacity: 0,
+    duration: 1
+}, "-=0.03");
