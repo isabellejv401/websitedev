@@ -1,4 +1,4 @@
-  <!doctype html>
+<!doctype html>
   <html lang="en">
   <head>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -25,7 +25,7 @@
               position: relative;
               width: 100%;
               height: 100vh;
-              overflow: hidden;
+              overflow: visible;
               
               background-image: url('images/anh-phan-zxUyEWhcQaE-unsplash.jpg'); 
               background-repeat: no-repeat;
@@ -94,29 +94,23 @@
       z-index:-1;
   }
 
-  /* 4. KEYFRAMES FIX: Moves the image smoothly from top to bottom */
-
-
   .right-text-box {
       background-color: rgba(0, 0, 0, 0.75); 
       color: #ffffff;
       
-      /* Generous, even spacing inside the box boundaries */
       padding: 60px 50px; 
       
-      /* Controls the structural size of the box explicitly */
       width: 100%;
       max-width: 550px; 
-      min-height: 300px; /* Ensures the box is physically taller */
+      min-height: 300px;
       
-      border-radius: 12px; /* Smooth elegant corners */
-      backdrop-filter: blur(8px); /* Beautiful premium glass effect */
+      border-radius: 12px;
+      backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       
       font-family: Arial, sans-serif;
       box-sizing: border-box;
       
-      /* FORCE TEXT WRAPPING: Fixes the text spilling outside the borders */
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -125,7 +119,7 @@
   .sticky-track, .parallax-container {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 100dvh;
   overflow: hidden;
 }
 .slideshow-inner-container {
@@ -160,7 +154,7 @@
       position:absolute;
       width:100%;
       height:100vh;
-      transform: translateY(100vh); /* Start all slides off-screen */
+      transform: translateY(100%); /* Start all slides off-screen */
   }
 
   /* Wrapper for the scroll animation trigger */
@@ -285,10 +279,10 @@
     color:#ffffff;
     box-shadow: 0 12px 30px rgba(6, 182, 212, 0.10);
   }
-  .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#071024}
+  .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#071024} 
   .btn.ghost{border:1px solid rgba(255,255,255,0.08);color:var(--muted);background:transparent}
 
-  .image-track{position:absolute;inset:0;display:flex; /* pointer-events:none; */}
+  .image-track{position:absolute;inset:0;display:flex;}
   .bg-image{flex:0 0 auto;width:100vw;height:100vh;object-fit:cover;filter:contrast(110%) saturate(110%);transform-origin:center center}
 
   .section{padding:80px 0}
@@ -340,22 +334,380 @@
     }
   }
 
-  .about{background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)}
-  .footer{padding:30px 0;color:var(--muted)}
-  .footer-inner{display:flex;align-items:center;gap:12px}
-  .social a{color:var(--muted);text-decoration:none;margin-left:12px}
-
-  @media (max-width:800px){
-    .header-inner{height:64px}
-    .hero{padding-bottom:80px;min-height:640px}
-    .bg-image{height:calc(100vh - 64px)}
-    .container{padding:0 16px}
+  /* Our Process Section */
+  .process-section {
+      padding: 120px 0;
+      position: relative;
+      background: linear-gradient(180deg, #081026 0%, #071024 100%);
+      overflow: hidden;
   }
 
-  @media (prefers-reduced-motion:reduce){
-    .bg-image{transition:none!important}
-    *{animation-duration:0.001ms!important}
+  .process-section h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 36px;
+      text-align: center;
+      margin-bottom: 16px;
+      color: #fff;
   }
+
+  .process-lead {
+      max-width: 600px;
+      margin: 0 auto 60px auto;
+      text-align: center;
+      color: var(--muted);
+      font-size: 1.1rem;
+      line-height: 1.6;
+  }
+
+  .process-scroller {
+      overflow-x: auto;
+      overflow-y: hidden;
+      width: 100%;
+      position: relative;
+      scrollbar-width: none; /* Firefox */
+  }
+  
+  .process-scroller::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.scroll-hint {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 18px;
+  pointer-events: none;
+}
+
+.scroll-indicator {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  width: 100%;
+  align-items:center;
+}
+
+.scroll-line {
+  width: 140px;
+  height: 2px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 999px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* this is the "progress" */
+.scroll-fill {
+  height: 100%;
+  width: 0%;
+  background: rgba(255,255,255,0.5);
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.scroll-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.8);
+
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  left: 0;
+}
+
+.process-track {
+    display: flex;
+    gap: 40px;
+    padding: 40px 10vw; /* Increased padding for side clearance */
+    width: max-content;
+  }
+
+  .process-card {
+      flex: 0 0 auto;
+      width: 400px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 40px 32px; /* Increased top/bottom padding */
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+      will-change: transform;
+  }
+
+  .process-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+  }
+
+  .card-content .card-step {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 12px;
+  }
+
+  .card-content h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.75rem;
+      color: #fff;
+      margin: 0 0 12px 0;
+  }
+
+  .card-content p {
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0;
+  }
+
+  /* Contact Section Upgrade */
+  .contact-section {
+        background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0.04),
+        rgba(255,255,255,0.015)
+      );
+
+      border: 1px solid rgba(255,255,255,0.08);
+
+      border-radius: 22px;
+
+      /* increase vertical spacing while preserving container horizontal padding */
+      padding: 80px var(--container-padding);
+
+      /* ensure extra separation from the next section */
+      margin-bottom: 48px;
+
+      box-shadow:
+        0 20px 60px rgba(0,0,0,0.55),
+        inset 0 1px 0 rgba(255,255,255,0.05);
+
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+
+      position: relative;
+
+      }
+
+
+
+  .contact-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+      opacity: 0.03;
+      pointer-events: none;
+  }
+
+  .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 100px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+  }
+
+  .contact-info h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      line-height: 1.1;
+      margin-bottom: 24px;
+      background: linear-gradient(90deg, #fff, var(--muted));
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+  }
+
+  .contact-info p {
+      font-size: 1.4rem;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 500px;
+  }
+
+  .contact-form {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+      padding: 60px;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      box-shadow: -3px 30px 60px rgba(0, 0, 0, 0.925);
+      backdrop-filter: blur(20px);
+  }
+
+  .contact-form input, 
+  .contact-form textarea {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 16px;
+      border-radius: 10px;
+      color: #fff;
+      font-family: inherit;
+      font-size: 1rem;
+      transition: border-color 0.3s ease, background 0.3s ease;
+  }
+
+  .contact-form input:focus, 
+  .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: rgba(255, 255, 255, 0.05);
+  }
+
+  .contact-form button {
+      margin-top: 10px;
+      padding: 18px;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+  }
+
+  /* Core Values / Why Us Section */
+  .values-section {
+      padding: 120px 0;
+      background: #071024;
+  }
+
+  .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+  }
+
+  .value-item {
+      padding: 40px;
+      border-left: 1px solid rgba(255, 255, 255, 0.1);
+      transition: border-color 0.4s ease;
+  }
+
+  .value-item:hover {
+      border-color: var(--accent);
+  }
+
+  .value-item h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+      color: var(--accent);
+  }
+
+  .value-item p {
+      color: var(--muted);
+      line-height: 1.7;
+  }
+
+  /* Final About Section */
+  .final-about-section {
+      padding: 14px 0;
+      background: url("https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1400&q=80") center/cover;
+      position: relative;
+      text-align: center;
+  }
+
+  .final-about-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(7, 16, 36, 0.8), rgba(7, 16, 36, 0.95));
+  }
+
+  .final-about-content {
+      position: relative;
+      z-index: 1;
+  }
+
+  .final-about-content h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      color: #fff;
+      margin-bottom: 16px;
+  }
+
+  .final-about-content p {
+      font-size: 1.25rem;
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto 32px auto;
+      line-height: 1.6;
+  }
+
+  /* Footer Redesign */
+  .footer {
+      background: #071024;
+      padding-top: 70px;
+      padding-bottom: 110px;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+  }
+
+  .footer-inner .logo {
+      font-size: 52px;
+  }
+
+  .footer-links {
+      display: flex;
+      gap: 60px;
+  }
+
+  .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 800;
+      transition: color 0.3s ease;
+      font-size: 20px;
+  }
+
+  .footer-links a:hover {
+      color: #fff;
+  }
+
+  .footer-social {
+      display: flex;
+      gap: 16px;
+  }
+
+  .footer-social a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: color 0.3s ease, transform 0.3s ease;
+  }
+
+  .footer-social a:hover {
+      color: var(--accent);
+      transform: scale(1.1);
+  }
+
+  .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+  }
+.hero {
+  contain: layout paint;
+}
     </style>
     <script defer src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
     <script defer src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
@@ -373,23 +725,17 @@
       </div>
     </header>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-    AOS.init({
-    duration: 800, 
-    once: false,
-    easing: "ease-out-cubic"
-  });
-  </script>
+    <!-- AOS will be initialized from script.js on window load so it runs after the DOM is ready -->
 
     <main>
       <section class="hero" aria-label="Hero">
         <div class="hero-inner container">
           <div class="intro">
-            <h1>WIP</h1>
-            <p class="lead">WIP</p>
+            <h1>PAGE/SITE WORK IN PROGRESS</h1>
+            <p class="lead">We build beautiful, high-performance websites and digital experiences that connect with your audience and elevate your brand.</p>
             <div class="hero-cta">
-              <a class="btn primary" href="#features">Explore</a>
-              <a class="btn ghost" href="#about">Learn more</a>
+              <a class="btn primary" href="#features">Our Work</a>
+              <a class="btn ghost" href="contact.html">Get in Touch</a>
             </div>
           </div>
         </div>
@@ -403,19 +749,19 @@
       </section>
 
       <section id="features" class="section features container">
-        <h2>Features</h2>
+        <h2>What We Do</h2>
         <div class="grid">
           <article class="card" data-aos="flip-down" data-aos-delay="0">
-            <h3>WIP</h3>
-            <p>WIP.</p>
+            <h3>Web Design & Development</h3>
+            <p>Creating stunning, responsive websites that are as functional as they are beautiful.</p>
           </article>
           <article class="card" data-aos="flip-down" data-aos-delay="150">
-            <h3>WIP</h3>
-            <p>WIP</p>
+            <h3>Brand Identity</h3>
+            <p>Shaping unique brand identities that resonate with your target audience and stand the test of time.</p>
           </article>
           <article class="card" data-aos="flip-down" data-aos-delay="300">
-            <h3>WIP</h3>
-            <p>WIP</p>
+            <h3>Digital Strategy</h3>
+            <p>Providing data-driven insights to help you navigate the digital landscape and achieve your goals.</p>
           </article>
         </div>
       </section>
@@ -500,37 +846,120 @@
 
   </div>
 
+  <section id="process" class="section process-section" data-aos="fade-up">
+    <div class="container">
+        <h2>Our Process</h2>
+        <p class="process-lead">We follow a proven, collaborative process to ensure we deliver exceptional results every time. From initial discovery to final deployment, we're with you every step of the way.</p>
+    </div>
+    <div class="process-scroller">
+        <div class="scroll-indicator-dot"></div>
+        <div class="process-track">
+            <div class="process-card">
+                <div class="card-content">
+                    <span class="card-step">01</span>
+                    <h3>Discovery & Strategy</h3>
+                    <p>We start by understanding your business, goals, and audience. This phase is all about research, analysis, and creating a strategic plan for success.</p>
+                </div>
+            </div>
+            <div class="process-card">
+                <div class="card-content">
+                    <span class="card-step">02</span>
+                    <h3>Design & Prototyping</h3>
+                    <p>Next, we create wireframes and high-fidelity designs. We focus on user experience (UX) and creating a beautiful, intuitive interface (UI) that your users will love.</p>
+                </div>
+            </div>
+            <div class="process-card">
+                <div class="card-content">
+                    <span class="card-step">03</span>
+                    <h3>Development & Testing</h3>
+                    <p>Our developers bring the designs to life using clean, efficient code. We rigorously test across devices and browsers to ensure a flawless experience.</p>
+                </div>
+            </div>
+            <div class="process-card">
+                <div class="card-content">
+                    <span class="card-step">04</span>
+                    <h3>Launch & Review</h3>
+                    <p>We perform a thorough final check before pushing live. Every detail is polished to ensure your website performs perfectly from day one.</p>
+                </div>
+            </div>
+            <div class="process-card">
+                <div class="card-content">
+                    <span class="card-step">05</span>
+                    <h3>Optimization & Growth</h3>
+                    <p>After launch, we monitor performance and offer ongoing support and analytics to help you scale and reach your long-term business goals.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-indicator">
+        <div class="scroll-line">
+            <div class="scroll-fill"></div>
+            <div class="scroll-dot"></div>
+        </div>
+    </div>
+  </section>
+
+  <section class="section values-section">
+    <div class="container">
+        <div class="values-grid">
+            <div class="value-item" data-aos="fade-up">
+                <h3>Uncompromising Quality</h3>
+                <p>We believe that every pixel and every line of code matters. Our commitment to excellence ensures that your digital presence is flawless, performant, and built to last.</p>
+            </div>
+            <div class="value-item" data-aos="fade-up" data-aos-delay="100">
+                <h3>Strategic Innovation</h3>
+                <p>By looking for unique opportunities in every project, our goal is to give you a competitive edge through creative problem-solving and modern tech.</p>
+            </div>
+            <div class="value-item" data-aos="fade-up" data-aos-delay="200">
+                <h3>Partnership First</h3>
+                <p>As a collaborator, we share your passion for your business and work tirelessly to ensure our digital solutions drive real, measurable growth.</p>
+            </div>
+        </div>
+    </div>
+  </section>
+
   <section id="contact" class="section contact-section container" data-aos="fade-up">
         <div class="contact-grid">
           <div class="contact-info">
-            <h2>Ready to Elevate Your Business?</h2>
-            <p>Get in touch with us today to discuss your next big project.</p>
+            <h2>Let's Build the Future.</h2>
+            <p>Your vision, our expertise. Let's start the conversation about your next project.</p>
           </div>
           <form class="contact-form" action="#" method="POST">
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
-            <textarea placeholder="Your Message" rows="5" required></textarea>
+            <label for="name" class="sr-only">Your Name</label>
+            <input type="text" id="name" placeholder="Your Name" required>
+            <label for="email" class="sr-only">Your Email</label>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <label for="message" class="sr-only">Your Message</label>
+            <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
             <button type="submit" class="btn primary">Send Message</button>
           </form>
         </div>
       </section>
       
 
-      <section id="about" class="section about">
-        <div class="container">
-          <h2>About</h2>
-          <p>WIP.</p>
+      <section id="about" class="section final-about-section">
+        <div class="container final-about-content">
+          <h2 data-aos="fade-up">Driven by Passion, Defined by Results.</h2>
+          <p data-aos="fade-up" data-aos-delay="100">We are a boutique digital agency with a relentless focus on quality. We believe that the best digital experiences are born from a deep understanding of your brand and your audience. Let's create something exceptional together.</p>
+          <div data-aos="fade-up" data-aos-delay="200">
+            <a href="about.html" class="btn primary">More About Us</a>
+          </div>
         </div>
       </section>
 
-      <footer id="contact" class="footer">
+      <footer class="footer">
         <div class="container footer-inner">
-          <p>© 2026 BrandName — WIP</p>
-          <nav class="social" aria-label="Social links">
-            <a href="#">Twitter</a>
-            <a href="#">Dribbble</a>
-            <a href="privacy-policy.html" style="color: #3498db !important; text-decoration: underline;">Privacy Policy</a>
-          </nav>
+          <a href="#" class="logo">BrandName</a>
+          <div class="footer-links">
+            <a href="#features">Features</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+          </div>
+          <div class="footer-social">
+            <a href="#" aria-label="Twitter">Tw</a>
+            <a href="#" aria-label="Dribbble">Dr</a>
+          </div>
         </div>
       </footer>
     </main>
