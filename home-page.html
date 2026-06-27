@@ -5,12 +5,166 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>BrandName — Beautiful Interface</title>
-  <script src="https://jquery.com"></script>
-  <script src="https://cloudflare.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
   <style>
+            body {
+            margin: 0;
+            padding: 0;
+            background-color: #111;
+            font-family: sans-serif;
+        }
+
+        .sticky-track {
+            height: 225vh; /* Increase this to make the scroll even slower and longer */
+            position: relative;
+            
+            /* Tells the browser this element tracks the scroll timeline */
+            view-timeline-name: --trackTimeline;
+            view-timeline-axis: block;
+        }
+
+        /* 2. THE BOX: Locks to the screen */
+        .parallax-container {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            
+            background-image: url('images/anh-phan-zxUyEWhcQaE-unsplash.jpg'); 
+            background-repeat: no-repeat;
+            background-size: 110%;
+            
+            background-position: center 30%; 
+
+            animation-name: slowImageScroll;
+            animation-fill-mode: both;
+            animation-timeline: --trackTimeline;
+            animation-range: contain 0% contain 100%;
+            animation-timing-function: linear;
+        }
+
+        @keyframes slowImageScroll {
+            from {
+                background-position: center 20%; 
+            }
+            to {
+                background-position: center 80%; 
+            }
+        }
+.parallax-text-box {
+    background: #000000;
+    color: var(--text);
+    mix-blend-mode: multiply;
+    
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: Arial Black, Impact, sans-serif;
+
+    font-size: clamp(4rem, 18vw, 13rem);
+
+    font-weight: 900;
+
+    /* letter spacing */
+    letter-spacing: 5px; 
+    
+    line-height: 0.8; 
+    
+    text-transform: uppercase;
+    text-align: center;
+    padding: 20px;
+}
+
+.website-content{
+    position:relative;
+    z-index:1;
+    margin-top:-100vh;
+    min-height:100vh;
+
+    overflow:hidden;
+
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+
+    padding:0 10%;
+
+    box-shadow:0 -15px 30px rgba(0,0,0,.6);
+}
+
+.mountain-bg{
+    position:absolute;
+
+    top:-10%;
+    left:-5%;
+
+    width:110%;
+    height:120%;
+
+    object-fit:cover;
+
+    z-index:-1;
+}
+
+/* 4. KEYFRAMES FIX: Moves the image smoothly from top to bottom */
+
+
+.right-text-box {
+    background-color: rgba(0, 0, 0, 0.75); 
+    color: #ffffff;
+    
+    /* Generous, even spacing inside the box boundaries */
+    padding: 60px 50px; 
+    
+    /* Controls the structural size of the box explicitly */
+    width: 100%;
+    max-width: 550px; 
+    min-height: 300px; /* Ensures the box is physically taller */
+    
+    border-radius: 12px; /* Smooth elegant corners */
+    backdrop-filter: blur(8px); /* Beautiful premium glass effect */
+    -webkit-backdrop-filter: blur(8px);
+    
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+    
+    /* FORCE TEXT WRAPPING: Fixes the text spilling outside the borders */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+
+/* Fixes the spacing and font size of the title */
+.right-text-box h2 {
+    margin: 0 0 20px 0;
+    font-size: 2.8rem; 
+    font-family: 'Arial Black', Impact, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1.1;
+    margin-top: 0;
+    color: #ffffff;
+}
+
+.right-text-box p {
+    margin: 0;
+    font-size: 1.2rem; 
+    line-height: 1.6;
+    color: #dddddd;
+    white-space: normal; 
+}
+
 :root{
   --bg:#0f1724;
   --card:#0f1724;
@@ -39,7 +193,6 @@ body{
 .header-inner{display:flex;align-items:center;gap:20px;height:72px}
 .logo{font-family:"Playfair Display",serif;font-weight:700;color:var(--accent);text-decoration:none;font-size:20px}
 .nav{margin-left:8px;display:flex;gap:16px;align-items:center}
-.nav a{color:var(--muted);text-decoration:none;font-weight:600}
 .nav a { 
       color: var(--muted); 
       text-decoration: none; 
@@ -76,14 +229,7 @@ body{
 .intro h1{font-family:"Playfair Display",serif;font-size:clamp(28px,6vw,56px);line-height:1.02;margin:0 0 12px;color:#fff}
 .lead{color:var(--muted);margin:0 0 18px}
 .hero-cta{display:flex;gap:12px}
-.btn{display:inline-block;padding:10px 16px;border-radius:12px;text-decoration:none;font-weight:700}
-/* Button base transition */
-.btn{
-  display:inline-block;
-  padding:10px 16px;
-  border-radius:12px;
-  text-decoration:none;
-  font-weight:700;
+.btn{display:inline-block;padding:10px 16px;border-radius:12px;text-decoration:none;font-weight:700;
   transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
   will-change: transform;
 }
@@ -139,8 +285,6 @@ body{
   /* smooth lift on hover/focus */
   transition: transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s cubic-bezier(.2,.8,.2,1);
   will-change: transform, box-shadow;
-}
-.card{
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.09),
@@ -251,113 +395,30 @@ body{
         </article>
       </div>
     </section>
-  
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smooth Scroll-Driven Parallax</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #111;
-            font-family: sans-serif;
-        }
-
-        /* 1. THE TRACK: Defines how long the user scrolls for */
-        .sticky-track {
-            height: 225vh; /* Increase this to make the scroll even slower and longer */
-            position: relative;
-            
-            /* Tells the browser this element tracks the scroll timeline */
-            view-timeline-name: --trackTimeline;
-            view-timeline-axis: block;
-        }
-
-        /* 2. THE BOX: Locks to the screen */
-        .parallax-container {
-            position: -webkit-sticky;
-            position: sticky;
-            top: 0;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-            
-            background-image: url('images/anh-phan-zxUyEWhcQaE-unsplash.jpg'); 
-            background-repeat: no-repeat;
-            background-size: cover;
-            
-            background-position: center 30%; 
-
-            animation-name: slowImageScroll;
-            animation-fill-mode: both;
-            animation-timeline: --trackTimeline;
-            animation-range: contain 0% contain 100%;
-            animation-timing-function: linear;
-        }
-
-        @keyframes slowImageScroll {
-            from {
-                background-position: center 20%; 
-            }
-            to {
-                background-position: center 80%; 
-            }
-        }
-
-        /* 4. THE TEXT: Optimized to show as much photo as possible */
-.parallax-text-box {
-    background-color: #000000;
-    color: #ffffff;
-    mix-blend-mode: multiply;
-    
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    box-sizing: border-box;
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    /* 1. Use high-impact, thick block fonts */
-    font-family: Arial Black, Impact, sans-serif-transform;
-    
-    /* 2. Massive responsive sizing */
-    font-size: clamp(4rem, 18vw, 13rem); 
-    
-    /* 3. Forces the thickest possible weight */
-    font-weight: 900; 
-    
-    /* 4. Squishes letters together tightly to minimize black gaps */
-    letter-spacing: 5px; 
-    
-    /* 5. Tightly controls row heights if text wraps */
-    line-height: 0.8; 
-    
-    text-transform: uppercase;
-    text-align: center;
-    padding: 20px;
-}
 
 
-        .website-content {
-            height: 100vh;
-            background: #fff;
-            color: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-        }
-    </style>
-</head>
-<body>
+  <div class="parallax-3d-viewport"></div>
 
-    <div class="sticky-track">
+      <div class="sticky-track">
         <div class="parallax-container">
             <h1 class="parallax-text-box">BUSINESS STARTS HERE.</h1>
         </div>
     </div>
+
+    <div class="website-content">
+
+    <img
+    
+        class="mountain-bg"
+        src="images/anh-phan-zxUyEWhcQaE-unsplash.jpg"
+        alt="Mountain">
+
+    <div class="right-text-box">
+        <h2>Increase Clientele</h2>
+        <p>Increase your clientele, number of customers, and overall revenue with our expert solutions.</p>
+    </div>
+
+</div>
 
     <section id="about" class="section about">
       <div class="container">
@@ -379,5 +440,6 @@ body{
   </main>
 
   <script src="script.js" defer></script>
+  
 </body>
 </html>
