@@ -1,118 +1,148 @@
+history.scrollRestoration = "manual";
 gsap.registerPlugin(ScrollTrigger);
 
-const track = document.querySelector('.image-track');
-const images = gsap.utils.toArray('.bg-image');
-const introTitle = document.querySelector('.intro h1');
+/* --------------------------------------------------
+   FULLSCREEN → HARD RESET (handled by single handler later)
+-------------------------------------------------- */
 
-// Create a top-shadow overlay for each image so the shadow moves exactly with the image
-const imageShadows = images.map(img => {
-  // Ensure the image container is positioned so the absolute shadow can sit on top
-  const container = img; // assume .bg-image is the container element (div with background-image)
-  if (getComputedStyle(container).position === 'static') {
-    container.style.position = 'relative';
-  }
+let fullscreenReloadTimer = null;
 
-  const shadow = document.createElement('div');
-  shadow.className = 'bg-top-shadow';
-  Object.assign(shadow.style, {
-    position: 'absolute',
-    top: '0',
-    left: '0',
-    right: '0',
-    height: '26%', // tweak to taste
-    pointerEvents: 'none',
-    background: 'linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0))',
-    zIndex: 5,
-    transform: 'translateZ(0)'
-  });
+/* restore scroll after reload */
+window.addEventListener("load", () => {
+  const savedScroll = sessionStorage.getItem("fullscreen_scroll_pos");
 
-  container.appendChild(shadow);
-  return shadow;
-});
+  if (savedScroll !== null) {
 
-function getDistance() {
-  return Math.max(0, track.scrollWidth - window.innerWidth);
-}
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        window.scrollTo(0, parseInt(savedScroll, 10));
 
-// Respect prefers-reduced-motion
-const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        sessionStorage.removeItem("fullscreen_scroll_pos");
 
-if (prefersReduced) {
-  // Minimal motion: don't pin; keep images centered
-  track.style.transform = 'translateX(0)';
-} else {
-  // Main horizontal pan timeline
-  let mainTrigger;
+        // IMPORTANT: re-sync GSAP after scroll restore
+        ScrollTrigger.refresh();
 
-  function setupScroller() {
-    const distance = getDistance();
-
-    if (mainTrigger) mainTrigger.kill();
-
-    mainTrigger = ScrollTrigger.create({
-      trigger: '.hero',
-      start: 'top top',
-      end: () => '+=' + distance,
-      pin: true,
-      scrub: 1.2,
-      invalidateOnRefresh: true,
-      onUpdate: (self) => {
-        gsap.set(track, { x: -distance * self.progress, overwrite: true });
-      }
-    });
-
-    // Per-image subtle parallax layers
-    images.forEach((img, i) => {
-      const depth = (i + 1) * 6; // adjust parallax strength
-      const shadow = imageShadows[i];
-      ScrollTrigger.create({
-        trigger: '.hero',
-        start: 'top top',
-        end: () => '+=' + distance,
-        scrub: 1.2,
-        onUpdate: (self) => {
-          const offset = gsap.utils.mapRange(0, 1, 0, depth, self.progress);
-          // Apply the same horizontal offset to both the image and its top shadow so they stay aligned
-          gsap.set([img, shadow], { xPercent: -offset });
+        // Initialize AOS after GSAP has been refreshed so animations align with layout
+        if (typeof AOS !== 'undefined') {
+          AOS.init({
+            duration: 800,
+            once: false,
+            easing: 'ease-out-cubic'
+          });
+          AOS.refresh();
         }
       });
     });
 
-    // Entrance animation for the intro copy (only once)
-    gsap.from('.intro h1', {
-      y: 30,
-      opacity: 0,
-      duration: 1,
-      ease: 'power3.out',
-      delay: 0.15
-    });
-
-    gsap.from('.intro .lead, .hero-cta', {
-      y: 14,
-      opacity: 0,
-      duration: 0.8,
-      ease: 'power3.out',
-      stagger: 0.08,
-      delay: 0.35
-    });
+  } else {
+    // If nothing to restore still initialize AOS after full load
+    if (typeof AOS !== 'undefined') {
+      AOS.init({
+        duration: 800,
+        once: false,
+        easing: 'ease-out-cubic'
+      });
+      AOS.refresh();
+    }
   }
+});
 
-  setupScroller();
+ScrollTrigger.config({
+  ignoreMobileResize: true
+});
 
-  // Re-setup on resize to recalc distance
-  window.addEventListener('resize', () => {
-    ScrollTrigger.refresh();
+/* --------------------------------------------------
+   HERO SLIDER (SIMPLIFIED + STABLE)
+-------------------------------------------------- */
+
+const track = document.querySelector(".image-track");
+const images = gsap.utils.toArray(".bg-image");
+
+let heroTrigger;
+
+function getDistance() {
+  if (!track) return 0;
+  return Math.max(0, track.scrollWidth - window.innerWidth);
+}
+
+function setupHero() {
+  if (!track) return;
+
+  if (heroTrigger) heroTrigger.kill();
+
+  gsap.set(track, { x: 0 });
+
+  heroTrigger = ScrollTrigger.create({
+    trigger: ".hero",
+    start: "top top",
+    end: () => "+=" + getDistance(),
+    pin: true,
+    scrub: 1.2,
+    invalidateOnRefresh: true,
+
+    onUpdate: (self) => {
+      gsap.set(track, {
+        x: -getDistance() * self.progress
+      });
+    }
+  });
+
+  images.forEach((img, i) => {
+    const depth = (i + 1) * 6;
+
+    ScrollTrigger.create({
+      trigger: ".hero",
+      start: "top top",
+      end: () => "+=" + getDistance(),
+      scrub: 1.2,
+
+      onUpdate: (self) => {
+        const offset = gsap.utils.mapRange(
+          0,
+          1,
+          0,
+          depth,
+          self.progress
+        );
+
+        gsap.set(img, {
+          xPercent: -offset
+        });
+      }
+    });
   });
 }
 
-document.addEventListener("fullscreenchange", () => {
-  setTimeout(() => {
-    ScrollTrigger.refresh(true);
-  }, 50);
+setupHero();
+
+/* --------------------------------------------------
+   HERO INTRO ANIMATIONS
+-------------------------------------------------- */
+
+gsap.from(".intro h1", {
+  y: 30,
+  opacity: 0,
+  duration: 1,
+  ease: "power3.out",
+  delay: 0.15
 });
+
+gsap.from(".intro .lead, .hero-cta", {
+  y: 14,
+  opacity: 0,
+  duration: 0.8,
+  ease: "power3.out",
+  stagger: 0.08,
+  delay: 0.35
+});
+
+/* --------------------------------------------------
+   WEBSITE PARALLAX
+-------------------------------------------------- */
 
 gsap.utils.toArray(".website-content").forEach((section) => {
   const img = section.querySelector(".mountain-bg");
+  if (!img) return;
 
   gsap.to(img, {
     y: 80,
@@ -126,30 +156,34 @@ gsap.utils.toArray(".website-content").forEach((section) => {
   });
 });
 
-window.addEventListener("resize", () => {
-  ScrollTrigger.refresh();
-});
+/* --------------------------------------------------
+   BACKGROUND PARALLAX
+-------------------------------------------------- */
 
-// Parallax background scroll
 gsap.to(".parallax-container", {
-    backgroundSize: "190%",
-    backgroundPosition: "center 40%",
-    ease: "none",
-    scrollTrigger: {
-        trigger: ".sticky-track",
-        start: "top top",
-        end: "bottom top",
-        scrub: 1.5
-    }
+  backgroundSize: "190%",
+  backgroundPosition: "center 40%",
+  ease: "none",
+  scrollTrigger: {
+    trigger: ".sticky-track",
+    start: "top top",
+    end: "bottom top",
+    scrub: 1.5
+  }
 });
 
-// Overlapping slides animation
-const slides = gsap.utils.toArray('.slide-one-container, .slide-two-container, .slide-three-container');
-const slideWrapper = document.querySelector('.scroll-slides-wrapper');
-const parallaxTextBox = document.querySelector('.parallax-text-box');
+/* --------------------------------------------------
+   SLIDES TIMELINE
+-------------------------------------------------- */
+
+const slides = gsap.utils.toArray(
+  ".slide-one-container, .slide-two-container, .slide-three-container"
+);
+
+const parallaxTextBox = document.querySelector(".parallax-text-box");
 
 const tl = gsap.timeline({
-  scrollTrigger:{
+  scrollTrigger: {
     trigger: ".sticky-track",
     pin: true,
     scrub: 1,
@@ -158,21 +192,113 @@ const tl = gsap.timeline({
     invalidateOnRefresh: true
   }
 });
-tl.to(parallaxTextBox, {
+
+if (parallaxTextBox) {
+  tl.to(parallaxTextBox, {
     opacity: 0,
     yPercent: -100,
     ease: "power2.in"
-});
+  });
+}
 
 slides.forEach((slide, i) => {
-    tl.to(slide, {
-        y: 0,
-        ease: "none"
-    }, i * 0.5); // Stagger the slide animations
+  tl.to(slide, {
+    y: 0,
+    ease: "none"
+  }, i * 0.5);
 });
 
 tl.to(".parallax-container", {
-    backgroundSize: "220%",
-    opacity: 0,
-    duration: 1
+  backgroundSize: "220%",
+  opacity: 0,
+  duration: 1
 }, "-=0.03");
+
+/* --------------------------------------------------
+   PROCESS SCROLLER
+-------------------------------------------------- */
+
+const processScroller = document.querySelector(".process-scroller");
+const fill = document.querySelector(".scroll-fill");
+const dot = document.querySelector(".scroll-dot");
+
+let target = 0;
+let current = 0;
+
+if (processScroller && fill && dot) {
+
+  processScroller.addEventListener("scroll", () => {
+    const max = processScroller.scrollWidth - processScroller.clientWidth;
+    if (max > 0) {
+      target = processScroller.scrollLeft / max;
+    }
+  });
+
+  function animate() {
+    const max = processScroller.scrollWidth - processScroller.clientWidth;
+
+    if (max > 0) {
+      current += (target - current) * 0.08;
+
+      gsap.set(fill, { width: `${current * 100}%` });
+      gsap.set(dot, { x: current * 140 });
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+
+  processScroller.addEventListener(
+    "wheel",
+    (e) => {
+      const max =
+        processScroller.scrollWidth - processScroller.clientWidth;
+
+      if (max <= 0) return;
+
+      const atStart = processScroller.scrollLeft <= 0;
+      const atEnd = processScroller.scrollLeft >= max;
+
+      if ((atStart && e.deltaY < 0) || (atEnd && e.deltaY > 0)) {
+        e.preventDefault();
+
+        gsap.to(processScroller, {
+          scrollLeft:
+            processScroller.scrollLeft + e.deltaY * 0.25,
+          duration: 0.6,
+          ease: "power3.out"
+        });
+      }
+    },
+    { passive: false }
+  );
+}
+let reloadTimer = null;
+
+function hardReload() {
+  sessionStorage.setItem("fullscreen_scroll_pos", window.scrollY);
+
+
+  window.location.reload();
+}
+
+document.addEventListener("fullscreenchange", () => {
+  clearTimeout(reloadTimer);
+
+  reloadTimer = setTimeout(() => {
+    hardReload();
+  }, 500);
+});
+
+/* F11 FALLBACK (some browsers don't reliably trigger fullscreenchange timing) */
+document.addEventListener("keydown", (e) => {
+  if (e.key === "F11") {
+    clearTimeout(reloadTimer);
+
+    reloadTimer = setTimeout(() => {
+      hardReload();
+    }, 100);
+  }
+});
+
