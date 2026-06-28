@@ -1,6 +1,31 @@
 history.scrollRestoration = "manual";
 gsap.registerPlugin(ScrollTrigger);
 
+/* Fix viewport unit inconsistencies across browsers (Firefox, mobile address bar) by
+   exposing a --vh CSS variable. We refresh ScrollTrigger after updates so pinned
+   timelines recalc correctly. */
+function setVh() {
+  try {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  } catch (e) {
+    // ignore in very old browsers
+  }
+
+  if (typeof ScrollTrigger !== 'undefined') {
+    // give the browser a tick to settle then refresh ScrollTrigger
+    requestAnimationFrame(() => ScrollTrigger.refresh());
+  }
+}
+
+setVh();
+let _vhResizeTimer = null;
+window.addEventListener('resize', () => {
+  clearTimeout(_vhResizeTimer);
+  _vhResizeTimer = setTimeout(setVh, 120);
+});
+window.addEventListener('orientationchange', () => setTimeout(setVh, 160));
+
 /* --------------------------------------------------
    FULLSCREEN → HARD RESET (handled by single handler later)
 -------------------------------------------------- */
@@ -65,6 +90,7 @@ function getDistance() {
   return Math.max(0, track.scrollWidth - window.innerWidth);
 }
 
+
 function setupHero() {
   if (!track) return;
 
@@ -85,6 +111,7 @@ function setupHero() {
         x: -getDistance() * self.progress
       });
     }
+    
   });
 
   images.forEach((img, i) => {
@@ -118,6 +145,11 @@ setupHero();
 /* --------------------------------------------------
    HERO INTRO ANIMATIONS
 -------------------------------------------------- */
+requestAnimationFrame(() => {
+  ScrollTrigger.refresh();
+});requestAnimationFrame(() => {
+  ScrollTrigger.refresh();
+});
 
 gsap.from(".intro h1", {
   y: 30,
@@ -145,8 +177,9 @@ gsap.utils.toArray(".website-content").forEach((section) => {
   if (!img) return;
 
   gsap.to(img, {
-    y: 80,
+    yPercent:8,
     ease: "none",
+    force3D: false,
     scrollTrigger: {
       trigger: section,
       start: "top bottom",
@@ -161,7 +194,7 @@ gsap.utils.toArray(".website-content").forEach((section) => {
 -------------------------------------------------- */
 
 gsap.to(".parallax-container", {
-  backgroundSize: "190%",
+  backgroundSize: "190% auto",
   backgroundPosition: "center 40%",
   ease: "none",
   scrollTrigger: {
@@ -188,7 +221,7 @@ const tl = gsap.timeline({
     pin: true,
     scrub: 1,
     start: "top top",
-    end: () => "+=" + (slides.length * 1000),
+    end: () => "+=" + (window.innerHeight * slides.length * 1.1),
     invalidateOnRefresh: true
   }
 });
@@ -209,7 +242,7 @@ slides.forEach((slide, i) => {
 });
 
 tl.to(".parallax-container", {
-  backgroundSize: "220%",
+  backgroundSize: "220% auto",
   opacity: 0,
   duration: 1
 }, "-=0.03");
@@ -274,31 +307,29 @@ if (processScroller && fill && dot) {
     { passive: false }
   );
 }
-let reloadTimer = null;
+let resizeTimer;
+let lastWidth = window.innerWidth;
+let lastHeight = window.innerHeight;
 
-function hardReload() {
-  sessionStorage.setItem("fullscreen_scroll_pos", window.scrollY);
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimer);
 
+  resizeTimer = setTimeout(() => {
 
-  window.location.reload();
-}
+    const widthChanged = Math.abs(window.innerWidth - lastWidth);
+    const heightChanged = Math.abs(window.innerHeight - lastHeight);
 
-document.addEventListener("fullscreenchange", () => {
-  clearTimeout(reloadTimer);
+    lastWidth = window.innerWidth;
+    lastHeight = window.innerHeight;
 
-  reloadTimer = setTimeout(() => {
-    hardReload();
-  }, 500);
+    // Ignore tiny resizes
+    if (widthChanged < 80 && heightChanged < 80) return;
+
+    // Save scroll position
+    sessionStorage.setItem("fullscreen_scroll_pos", window.scrollY);
+
+    // Hard reload
+    location.reload();
+
+  }, 350);
 });
-
-/* F11 FALLBACK (some browsers don't reliably trigger fullscreenchange timing) */
-document.addEventListener("keydown", (e) => {
-  if (e.key === "F11") {
-    clearTimeout(reloadTimer);
-
-    reloadTimer = setTimeout(() => {
-      hardReload();
-    }, 100);
-  }
-});
-
