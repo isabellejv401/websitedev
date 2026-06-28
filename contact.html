@@ -30,9 +30,6 @@
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
       padding:48px 24px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
       min-height:100vh;
     }
     .container{
@@ -193,6 +190,51 @@
     transform: scaleX(1);
   }
 }
+
+@media (max-width: 768px){
+
+  body{
+    padding-top: 140px;
+  }
+
+  .container{
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 16px;
+  }
+
+  .hero, .meta{
+    padding: 20px;
+  }
+
+  /* header becomes stacked */
+  .header-inner{
+    flex-direction: column;
+    gap: 10px;
+    height: auto;
+    padding: 12px;
+  }
+
+  .nav{
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .cta{
+    width: 100%;
+    text-align: center;
+    margin: 0;
+  }
+
+  /* form row stacks */
+  .row{
+    flex-direction: column;
+  }
+
+  input, textarea{
+    font-size: 16px; /* prevents iOS zoom */
+  }
+}
   </style>
 </head>
 <body>
@@ -200,7 +242,7 @@
     <div class="header-inner">
       <a class="logo" href="home-page.html">BrandName</a>
       <nav class="nav" aria-label="Main navigation">
-        <a href="home-page.html#features">Features</a>
+        <a href="features.html">Features</a>
         <a href="about.html">About</a>
         <a href="contact.html" class="active">Contact</a>
       </nav>
