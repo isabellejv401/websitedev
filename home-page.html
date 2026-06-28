@@ -98,6 +98,8 @@
       z-index: -1;
   }
 
+  
+
   .right-text-box {
       background-color: rgba(0, 0, 0, 0.75); 
       color: #ffffff;
@@ -119,6 +121,9 @@
       flex-direction: column;
       justify-content: center;
       text-align: left;
+      font-size: clamp(2rem, 5vw, 2.8rem);
+    line-height: 1.1;
+    overflow-wrap: break-word;
   }
   /* Use calc(var(--vh) * 100) for consistent full-height behaviour across browsers (incl. Firefox)
      and fall back to 100vh for older browsers. Also add 3D/painting hints to avoid flicker. */
@@ -261,12 +266,83 @@
       0 12px 20px rgba(0,0,0,0.4);
     filter: brightness(1.08);
   }
-  .hero{position:relative;height:100vh;min-height:620px;display:flex;align-items:flex-end;padding-bottom:120px;overflow:hidden}
+  @media (max-width: 768px) {
+    .nav{
+    display:flex;
+    gap:12px;
+    margin-left:0;
+  }
+  .nav a{
+    font-size:0.9rem;
+  }
+
+  .logo{
+    font-size:1.8rem;
+  }
+
+  .cta{
+    padding:10px 14px;
+    font-size:0.9rem;
+  }
+
+  .header-inner{
+    height:64px;
+  }
+
+
+    .header-inner {
+      justify-content: space-between;
+    }
+  }
+
+  @media (max-width: 768px) {
+
+  .website-content{
+      justify-content:center;
+      padding:0;
+  }
+
+  .right-text-box{
+      max-width:100%;
+      width:100%;
+      padding:32px 24px;
+      min-height:auto;
+  }
+  .right-text-box h2{
+      font-size:2rem;
+      line-height:1;
+      letter-spacing:0;
+  }
+
+  .right-text-box p{
+      font-size:1rem;
+  }
+
+}
+
+@media (max-width:768px){
+
+.hero{
+    min-height:100svh;
+    padding-top:90px;
+    padding-bottom:40px;
+}
+}
   .hero-inner{position:relative;z-index:30;padding-top:100px}
   .intro{max-width:640px}
-  .intro h1{font-family:"Playfair Display",serif;font-size:clamp(28px,6vw,56px);line-height:1.02;margin:0 0 12px;color:#fff}
-  .lead{color:var(--muted);margin:0 0 18px}
+  .intro h1{font-family:"Playfair Display",serif;font-size:clamp(28px,6vw,56px);line-height:1.02;margin:0 0 12px;color:#fff; font-size:2.5rem; line-height:1.05;}
+  .lead{color:var(--muted);margin:0 0 18px;font-size:1.1rem;line-height:1.6;overflow-wrap: break-word;}
   .hero-cta{display:flex;gap:12px}
+  @media (max-width: 480px) {
+    .hero-cta {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .btn {
+      width: 100%;
+      text-align: center;
+    }
+  }
   .btn{display:inline-block;padding:10px 16px;border-radius:12px;text-decoration:none;font-weight:700;
     transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
     will-change: transform;
@@ -297,7 +373,7 @@
   .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#071024} 
   .btn.ghost{border:1px solid rgba(255,255,255,0.08);color:var(--muted);background:transparent}
 
-  .image-track{position:absolute;inset:0;display:flex;}
+  .image-track{position:absolute;inset:0;display:flex;z-index:0;}
   .bg-image{flex:0 0 auto;width:100vw;height:100vh;object-fit:cover;filter:contrast(110%) saturate(110%);transform-origin:center center}
 
   .section{padding:80px 0}
@@ -530,6 +606,22 @@
       z-index: 1;
   }
 
+  @media (max-width: 920px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 60px;
+    }
+    .contact-info h2 {
+      font-size: clamp(2rem, 8vw, 2.5rem);
+    }
+    .contact-info p {
+      font-size: 1.2rem;
+    }
+    .contact-form {
+      padding: 40px;
+    }
+  }
+
   .contact-info h2 {
       font-family: "Playfair Display", serif;
       font-size: clamp(2.5rem, 5vw, 4rem);
@@ -597,6 +689,16 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 40px;
+  }
+
+  @media (max-width: 920px) {
+    .values-grid {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    .value-item {
+      padding: 30px 20px;
+    }
   }
 
   .value-item {
@@ -672,6 +774,22 @@
       gap: 20px;
   }
 
+  @media (max-width: 920px) {
+    .footer-inner {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 40px;
+    }
+    .footer-links {
+      flex-direction: column;
+      gap: 20px;
+    }
+    .footer-inner .logo {
+      font-size: 40px;
+    }
+  }
+
   .footer-inner .logo {
       font-size: 52px;
   }
@@ -687,6 +805,12 @@
       font-weight: 800;
       transition: color 0.3s ease;
       font-size: 20px;
+  }
+
+  @media (max-width: 920px) {
+    .footer-links a {
+      font-size: 16px;
+    }
   }
 
   .footer-links a:hover {
@@ -721,7 +845,12 @@
       border: 0;
   }
 .hero {
-  contain: layout paint;
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;   /* Vertical center */
 }
     </style>
     <script defer src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
@@ -730,7 +859,7 @@
   <body>
     <header class="site-header">
       <div class="container header-inner">
-        <a class="logo" href="#">BrandName</a>
+        <a class="logo" href="home-page.html">BrandName</a>
         <nav class="nav" aria-label="Main navigation">
           <a href="#features">Features</a>
           <a href="about.html">About</a>
