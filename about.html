@@ -6,6 +6,8 @@
   <title>About — My Website</title>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="compat.css">
+
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <style>
 :root {
@@ -163,9 +165,16 @@ body {
       backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(255,255,255,0.03);
     }
-    .header-inner {
-      display: flex; align-items: center; gap: 20px; height: 72px;
-      max-width: 1100px; margin: 0 auto; padding: 0 24px;
+    .header-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px;
+    min-height:72px;
+    max-width:1100px;
+    margin:auto;
+    padding:12px 20px;
     }
     .logo {
       font-family: "Playfair Display", serif; font-weight: 700;
@@ -348,6 +357,159 @@ body {
 .branding {
   background: url("https://images.unsplash.com/photo-1557426272-fc759fdf7a8d?auto=format&fit=crop&w=1400&q=80") center/cover;
 }
+@media (max-width:768px){
+
+body{
+    padding-top:170px;
+}
+.services-grid-container{
+    overflow-x:auto;
+    overflow-y:hidden;
+    -webkit-overflow-scrolling:touch;
+}
+
+.services-grid{
+    width:max-content;
+}
+
+
+.container{
+    padding:28px 18px;
+}
+
+/* ---------- Header ---------- */
+
+.site-header{
+    padding:0;
+}
+
+.header-inner{
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:14px;
+    padding:16px;
+    min-height:auto;
+}
+
+.logo{
+    font-size:1.4rem;
+}
+
+.nav{
+    width:100%;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:18px;
+    margin:0;
+}
+
+.nav a{
+    padding:10px 6px;
+}
+
+.cta{
+    width:100%;
+    margin:0;
+    text-align:center;
+}
+
+/* ---------- Hero ---------- */
+
+.about-hero{
+    padding:20px 0 40px;
+}
+
+.about-hero h1{
+    font-size:2rem;
+}
+
+.about-hero .lead{
+    font-size:.95rem;
+}
+
+/* ---------- Image Gallery ---------- */
+
+.image-gallery{
+    height:260px;
+}
+
+/* ---------- Mission / Vision ---------- */
+
+.content-section{
+    grid-template-columns:1fr;
+    gap:28px;
+    margin-top:40px;
+}
+
+.content-section h2{
+    font-size:1.6rem;
+}
+
+/* ---------- Services ---------- */
+
+.specialties-title{
+    font-size:2rem;
+    margin:30px 0;
+    text-align:center;
+}
+
+.services-grid-container{
+    overflow-x:auto;
+    padding:20px 0;
+    -webkit-overflow-scrolling:touch;
+}
+
+.services-grid{
+    gap:18px;
+}
+
+.card{
+    flex:0 0 270px;
+    min-height:340px;
+}
+
+.overlay{
+    padding:22px;
+}
+
+.overlay h2{
+    font-size:1.5rem;
+}
+
+.overlay p{
+    font-size:.95rem;
+}
+
+/* ---------- Web card ---------- */
+
+.card.web{
+    min-height:340px;
+}
+
+.web-content{
+    flex-direction:column;
+    justify-content:flex-end;
+    text-align:center;
+    gap:18px;
+}
+
+.web-img{
+    width:70%;
+    max-width:180px;
+}
+
+.web .overlay{
+    width:100%;
+}
+
+/* ---------- Footer ---------- */
+
+.footer{
+    padding:24px 16px;
+}
+
+}
   </style>
 </head>
 <body>
@@ -356,7 +518,7 @@ body {
     <div class="header-inner">
       <a class="logo" href="home-page.html">BrandName</a>
       <nav class="nav" aria-label="Main navigation">
-        <a href="home-page.html#features">Features</a>
+        <a href="features.html">Features</a>
         <a href="#about" class="active">About</a>
         <a href="contact.html">Contact</a>
       </nav>
@@ -492,48 +654,90 @@ AOS.init({
 document.addEventListener('DOMContentLoaded', () => {
 
   /* =========================
-     IMAGE TRACK (kept yours)
+     IMAGE TRACK (SAFE)
   ========================= */
+
   const track = document.querySelector('.image-track');
-  const images = gsap.utils.toArray('.bg-image');
-  const numImages = images.length;
-  const imageWidth = images[0].offsetWidth;
 
-  images.forEach(img => {
-    track.appendChild(img.cloneNode(true));
-  });
+  if (track) {
 
-  gsap.to(track, {
-    x: () => -(numImages * imageWidth),
-    duration: 30,
-    ease: 'none',
-    repeat: -1,
-    modifiers: {
-      x: gsap.utils.unitize(x =>
-        parseFloat(x) % (numImages * imageWidth)
-      )
+    const images = gsap.utils.toArray('.bg-image');
+
+    if (images.length > 0) {
+
+      const numImages = images.length;
+
+      // wait for at least one image to load before measuring width
+      const firstImg = images[0];
+
+      const initImageTrack = () => {
+
+        const imageWidth = firstImg.offsetWidth;
+
+        images.forEach(img => {
+          track.appendChild(img.cloneNode(true));
+        });
+
+        gsap.to(track, {
+          x: () => -(numImages * imageWidth),
+          duration: 30,
+          ease: 'none',
+          repeat: -1,
+          modifiers: {
+            x: gsap.utils.unitize(x =>
+              parseFloat(x) % (numImages * imageWidth)
+            )
+          }
+        });
+
+      };
+
+      if (firstImg.complete) {
+        initImageTrack();
+      } else {
+        firstImg.addEventListener('load', initImageTrack);
+      }
+
     }
-  });
+  }
 
   /* =========================
-     SERVICES MARQUEE (FIXED)
+     SERVICES MARQUEE (SAFE)
   ========================= */
+
   const grid = document.querySelector(".services-grid");
 
-  // duplicate for loop
-  grid.innerHTML += grid.innerHTML;
+  if (grid) {
 
-  requestAnimationFrame(() => {
-    const totalWidth = grid.scrollWidth / 2;
+    if (!grid.dataset.cloned) {
+      grid.innerHTML += grid.innerHTML;
+      grid.dataset.cloned = "true";
+    }
 
-    // Simplified animation for a true seamless loop
-    gsap.to(grid, {
-      x: -totalWidth,
-      duration: 40,
-      ease: "none",
-      repeat: -1,
+    requestAnimationFrame(() => {
+
+      const totalWidth = grid.scrollWidth / 2;
+
+      gsap.killTweensOf(grid); // prevents duplicate animation bugs
+
+      if (window.innerWidth > 768) {
+
+        gsap.to(grid, {
+          x: -totalWidth,
+          duration: 40,
+          ease: "none",
+          repeat: -1
+        });
+
+      } else {
+
+        gsap.set(grid, { x: 0 });
+      }
+
     });
-  });
+
+  }
+
 });
 </script>
 
