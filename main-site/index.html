@@ -1,0 +1,751 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>nuvisco — Digital Craft Studio</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://unpkg.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formspree.io;">
+    <meta
+      name="description"
+      content="nuvisco is a digital craft studio building visually unreal websites, immersive 3D experiences, and SEO-driven growth for ambitious brands."
+    />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="home-page-css.css" />
+  </head>
+  <body>
+    <!-- ===== Preloader ===== -->
+    <div class="preloader" id="preloader">
+      <div class="preloader__inner">
+        <div class="preloader__logo">nuvisco</div>
+        <div class="preloader__bar"><span></span></div>
+        <div class="preloader__count" id="preCount">0</div>
+      </div>
+    </div>
+
+    <!-- ===== Custom Cursor ===== -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
+
+    <!-- ===== 3D Background Canvas ===== -->
+    <canvas id="bg3d"></canvas>
+
+    <!-- ===== Scroll Progress ===== -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- ===== Navigation ===== -->
+    <header class="nav" id="nav">
+      <div class="nav__inner">
+        <a href="#hero" class="nav__logo" data-magnetic>
+          <span class="nav__logo-mark"></span>
+          nuvisco
+        </a>
+        <nav class="nav__links">
+          <a href="#work" data-magnetic>Work</a>
+          <a href="#services" data-magnetic>Services</a>
+          <a href="#process" data-magnetic>Process</a>
+          <a href="#about" data-magnetic>Studio</a>
+        </nav>
+        <a href="#contact" class="nav__cta" data-magnetic>Start a project</a>
+        <button class="nav__burger" id="burger" aria-label="Menu">
+          <span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ===== Hero ===== -->
+    <section class="hero" id="hero">
+      <div class="hero__grid"></div>
+      <div class="hero__content">
+        <div class="hero__eyebrow" data-aos="fade-up">
+          Digital Craft Studio · Est. 2026
+        </div>
+        <h1 class="hero__title">
+          <span class="line"><span class="line__inner">We build</span></span>
+          <span class="line"
+            ><span class="line__inner">websites that</span></span
+          >
+          <span class="line"
+            ><span class="line__inner"><em>feel alive.</em></span></span
+          >
+        </h1>
+        <p class="hero__sub" data-aos="fade-up" data-aos-delay="300">
+          A studio crafting visually unreal web experiences — blending 3D
+          motion, artful design, and SEO engineering into work that performs.
+        </p>
+        <div class="hero__actions" data-aos="fade-up" data-aos-delay="500">
+          <a href="#work" class="btn btn--primary" data-magnetic>
+            <span>View our work</span>
+          </a>
+          <a href="#contact" class="btn btn--ghost" data-magnetic>
+            <span>Book a call</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero__scroll">
+        <span>Scroll</span>
+        <div class="hero__scroll-line"></div>
+      </div>
+
+      <div class="hero__marquee">
+        <div class="marquee__track">
+          <span>Web Design</span><i>✦</i> <span>3D Development</span><i>✦</i>
+          <span>SEO Engineering</span><i>✦</i> <span>Brand Identity</span
+          ><i>✦</i> <span>Motion Design</span><i>✦</i> <span>Web Design</span
+          ><i>✦</i> <span>3D Development</span><i>✦</i>
+          <span>SEO Engineering</span><i>✦</i> <span>Brand Identity</span
+          ><i>✦</i> <span>Motion Design</span><i>✦</i>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Stats ===== -->
+    <section class="stats" id="stats">
+      <div class="container">
+        <div class="stats__grid">
+          <div class="stat" data-aos="fade-up">
+            <div class="stat__num" data-count="WIP">0</div>
+            <div class="stat__label">Projects shipped</div>
+          </div>
+          <div class="stat" data-aos="fade-up" data-aos-delay="100">
+            <div class="stat__num" data-count="WIP">0</div>
+            <div class="stat__label">Industry awards</div>
+          </div>
+          <div class="stat" data-aos="fade-up" data-aos-delay="200">
+            <div class="stat__num" data-count="WIP" data-suffix="">0</div>
+            <div class="stat__label">Client retention</div>
+          </div>
+          <div class="stat" data-aos="fade-up" data-aos-delay="300">
+            <div
+              class="stat__num"
+              data-count="WIP"
+              data-suffix=""
+              data-decimals="1"
+            >
+              0
+            </div>
+            <div class="stat__label">Avg. monthly visits driven</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Services ===== -->
+    <section class="services" id="services">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-head__tag" data-aos="fade-up">What we do</span>
+          <h2
+            class="section-head__title"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            Craft that moves<br />the needle.
+          </h2>
+        </div>
+
+        <div class="services__list">
+          <article class="service" data-aos="fade-up" data-magnetic>
+            <div class="service__num">01</div>
+            <div class="service__body">
+              <h3>Immersive Web Design</h3>
+              <p>
+                Pixel-perfect, art-directed websites with bespoke layouts, fluid
+                motion, and a soul you can feel.
+              </p>
+            </div>
+            <div class="service__icon">
+              <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" /></svg>
+            </div>
+          </article>
+
+          <article
+            class="service"
+            data-aos="fade-up"
+            data-aos-delay="80"
+            data-magnetic
+          >
+            <div class="service__num">02</div>
+            <div class="service__body">
+              <h3>3D & WebGL Development</h3>
+              <p>
+                Real-time 3D scenes, scroll-driven worlds, and shader art built
+                on Three.js and GSAP.
+              </p>
+            </div>
+            <div class="service__icon">
+              <svg viewBox="0 0 40 40">
+                <polygon points="20,4 36,30 4,30" />
+              </svg>
+            </div>
+          </article>
+
+          <article
+            class="service"
+            data-aos="fade-up"
+            data-aos-delay="160"
+            data-magnetic
+          >
+            <div class="service__num">03</div>
+            <div class="service__body">
+              <h3>SEO Engineering</h3>
+              <p>
+                Technical SEO, Core Web Vitals, and structured data baked into
+                every build for compounding growth.
+              </p>
+            </div>
+            <div class="service__icon">
+              <svg viewBox="0 0 40 40">
+                <rect x="6" y="6" width="28" height="28" rx="6" />
+              </svg>
+            </div>
+          </article>
+
+          <article
+            class="service"
+            data-aos="fade-up"
+            data-aos-delay="240"
+            data-magnetic
+          >
+            <div class="service__num">04</div>
+            <div class="service__body">
+              <h3>Brand & Art Direction</h3>
+              <p>
+                Identity systems, type, and motion language that make brands
+                impossible to ignore.
+              </p>
+            </div>
+            <div class="service__icon">
+              <svg viewBox="0 0 40 40">
+                <circle cx="20" cy="20" r="14" />
+                <circle cx="20" cy="20" r="6" />
+              </svg>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Craft Lab — interactive 3D models ===== -->
+    <section class="work" id="work">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-head__tag" data-aos="fade-up"
+            >The craft lab</span
+          >
+          <h2
+            class="section-head__title"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            Reach in and<br />turn the <em>form.</em>
+          </h2>
+          <p class="section-head__lede" data-aos="fade-up" data-aos-delay="200">
+            Just pure craft. Hover any box to take hold of the
+            model: drag to orbit, scroll to zoom. Four forms, four moods.
+          </p>
+        </div>
+
+        <div class="work__grid">
+          <article class="craft" data-aos="fade-up">
+            <div class="craft__stage">
+              <canvas class="craft__canvas" data-craft="0"></canvas>
+              <div class="craft__hint">Drag to orbit</div>
+            </div>
+            <div class="craft__meta">
+              <span class="craft__index">01</span>
+              <h3>The Helix</h3>
+              <p>
+                A double-twist knot — the shape of an idea that won't sit still.
+              </p>
+            </div>
+          </article>
+
+          <article
+            class="craft"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="craft__stage">
+              <canvas class="craft__canvas" data-craft="1"></canvas>
+              <div class="craft__hint">Drag to orbit</div>
+            </div>
+            <div class="craft__meta">
+              <span class="craft__index">02</span>
+              <h3>The Cluster</h3>
+              <p>
+                Crystals grown in code — facets catching light from every angle.
+              </p>
+            </div>
+          </article>
+
+          <article class="craft" data-aos="fade-up">
+            <div class="craft__stage">
+              <canvas class="craft__canvas" data-craft="2"></canvas>
+              <div class="craft__hint">Drag to orbit</div>
+            </div>
+            <div class="craft__meta">
+              <span class="craft__index">03</span>
+              <h3>The Bloom</h3>
+              <p>A flower of geometry — petals unfurling in real time.</p>
+            </div>
+          </article>
+
+          <article
+            class="craft"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="craft__stage">
+              <canvas class="craft__canvas" data-craft="3"></canvas>
+              <div class="craft__hint">Drag to orbit</div>
+            </div>
+            <div class="craft__meta">
+              <span class="craft__index">04</span>
+              <h3>The Lattice</h3>
+              <p>A wireframe world — structure you can see right through.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 3D Scroll Showcase ===== -->
+    <section class="showcase" id="showcase">
+      <div class="showcase__sticky">
+        <canvas id="showcase3d"></canvas>
+        <div class="showcase__overlay">
+          <div class="showcase__panel" data-panel="0">
+            <span class="showcase__index">01 / 03</span>
+            <h3>Design</h3>
+            <p>
+              Every project begins with art direction — mood, type, color, and
+              rhythm.
+            </p>
+          </div>
+          <div class="showcase__panel" data-panel="1">
+            <span class="showcase__index">02 / 03</span>
+            <h3>Build</h3>
+            <p>
+              We engineer performant front-ends with 3D, motion, and
+              accessibility at the core.
+            </p>
+          </div>
+          <div class="showcase__panel" data-panel="2">
+            <span class="showcase__index">03 / 03</span>
+            <h3>Grow</h3>
+            <p>
+              SEO and analytics compound the work into measurable, lasting
+              growth.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  <!-- ===== Flip Cards — reveal the studio ===== -->
+  <section class="flipcards" id="flipcards">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-head__tag" data-aos="fade-up">Turn us over</span>
+        <h2 class="section-head__title" data-aos="fade-up" data-aos-delay="100">
+          Five cards.<br />Click to <em>see inside.</em>
+        </h2>
+        <p class="section-head__lede" data-aos="fade-up" data-aos-delay="200">
+          Each card wears a different face. Turn it over to find what's behind
+          the craft — our promise, our edge, our obsession.
+        </p>
+      </div>
+
+      <div class="flipcards__grid">
+        <button class="flipcard flipcard--hex" data-aos="fade-up" data-flip>
+          <div class="flipcard__inner">
+            <div class="flipcard__front">
+              <span class="flipcard__glyph">✦</span>
+              <span class="flipcard__label">The Promise</span>
+            </div>
+            <div class="flipcard__back">
+              <h3>No templates, ever.</h3>
+              <p>Every build is one-of-one — designed and engineered from a blank canvas for your brand alone.</p>
+            </div>
+          </div>
+        </button>
+
+        <button class="flipcard flipcard--circle" data-aos="fade-up" data-aos-delay="80" data-flip>
+          <div class="flipcard__inner">
+            <div class="flipcard__front">
+              <span class="flipcard__glyph">◐</span>
+              <span class="flipcard__label">The Edge</span>
+            </div>
+            <div class="flipcard__back">
+              <h3>3D is native.</h3>
+              <p>We don't bolt WebGL on as an afterthought — real-time 3D is woven into the bones of every site.</p>
+            </div>
+          </div>
+        </button>
+
+        <button class="flipcard flipcard--diamond" data-aos="fade-up" data-aos-delay="160" data-flip>
+          <div class="flipcard__inner">
+            <div class="flipcard__front">
+              <span class="flipcard__glyph">◆</span>
+              <span class="flipcard__label">The Speed</span>
+            </div>
+            <div class="flipcard__back">
+              <h3>Fast, then faster.</h3>
+              <p>Core Web Vitals in the green, sub-second loads, and motion that never blocks the thread.</p>
+            </div>
+          </div>
+        </button>
+
+        <button class="flipcard flipcard--blob" data-aos="fade-up" data-aos-delay="240" data-flip>
+          <div class="flipcard__inner">
+            <div class="flipcard__front">
+              <span class="flipcard__glyph">❋</span>
+              <span class="flipcard__label">The Growth</span>
+            </div>
+            <div class="flipcard__back">
+              <h3>SEO that compounds.</h3>
+              <p>Structured data, clean semantics, and technical depth that turns traffic into a flywheel.</p>
+            </div>
+          </div>
+        </button>
+
+        <button class="flipcard flipcard--leaf" data-aos="fade-up" data-aos-delay="320" data-flip>
+          <div class="flipcard__inner">
+            <div class="flipcard__front">
+              <span class="flipcard__glyph">✺</span>
+              <span class="flipcard__label">The Obsession</span>
+            </div>
+            <div class="flipcard__back">
+              <h3>Every pixel matters.</h3>
+              <p>We treat type, rhythm, and easing like instruments — tuned until the page feels alive.</p>
+            </div>
+          </div>
+        </button>
+      </div>
+    </div>
+  </section>
+
+    <!-- ===== Process ===== -->
+    <section class="process" id="process">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-head__tag" data-aos="fade-up">How we work</span>
+          <h2
+            class="section-head__title"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            A process built<br />for brilliance.
+          </h2>
+        </div>
+
+        <div class="process__steps">
+          <div class="step" data-aos="fade-up">
+            <div class="step__line"></div>
+            <div class="step__dot"></div>
+            <div class="step__content">
+              <span class="step__num">01</span>
+              <h3>Discover</h3>
+              <p>
+                Deep-dive workshops to uncover brand, audience, and ambition.
+              </p>
+            </div>
+          </div>
+          <div class="step" data-aos="fade-up" data-aos-delay="100">
+            <div class="step__line"></div>
+            <div class="step__dot"></div>
+            <div class="step__content">
+              <span class="step__num">02</span>
+              <h3>Design</h3>
+              <p>Art-directed concepts, prototypes, and motion studies.</p>
+            </div>
+          </div>
+          <div class="step" data-aos="fade-up" data-aos-delay="200">
+            <div class="step__line"></div>
+            <div class="step__dot"></div>
+            <div class="step__content">
+              <span class="step__num">03</span>
+              <h3>Develop</h3>
+              <p>Pixel-true engineering with 3D, GSAP, and SEO baked in.</p>
+            </div>
+          </div>
+          <div class="step" data-aos="fade-up" data-aos-delay="300">
+            <div class="step__line"></div>
+            <div class="step__dot"></div>
+            <div class="step__content">
+              <span class="step__num">04</span>
+              <h3>Deploy</h3>
+              <p>Launch, measure, and iterate toward compounding growth.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== About ===== -->
+    <section class="about" id="about">
+      <div class="container about__inner">
+        <div class="about__text">
+          <span class="section-head__tag" data-aos="fade-up">The studio</span>
+          <h2 class="about__title" data-aos="fade-up" data-aos-delay="100">
+            We're a small team<br />obsessed with the<br /><em
+              >craft of the web.</em
+            >
+          </h2>
+          <p data-aos="fade-up" data-aos-delay="200">
+            nuvisco is a collective of designers, engineers, and motion artists
+            who treat every pixel like it matters. We don't do templates — we
+            build one-of-one digital experiences that move people and rank.
+          </p>
+          <a
+            href="#contact"
+            class="btn btn--primary"
+            data-aos="fade-up"
+            data-aos-delay="300"
+            data-magnetic
+          >
+            <span>Work with us</span>
+          </a>
+        </div>
+        <div class="about__visual" data-aos="fade-left" data-aos-delay="200">
+          <div class="orb orb--1"></div>
+          <div class="orb orb--2"></div>
+          <div class="orb orb--3"></div>
+          <div class="about__card">
+            <div class="about__card-num">Experts</div>
+            <div class="about__card-label">in crafting<br />the web.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Testimonials ===== -->
+    <section class="testimonials" id="testimonials">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-head__tag" data-aos="fade-up">Our team</span>
+          <h2
+            class="section-head__title"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            Behind the<br />scenes.
+          </h2>
+        </div>
+
+        <div class="testimonials__grid">
+          <blockquote class="quote" data-aos="fade-up">
+            <p>
+              Artists help bring our clients visions' to life by drafting out
+              sites and planning how to turn each interaction into eye-candy for
+              customers
+            </p>
+            <footer>
+              <strong>Artists</strong>
+              <span>For next level creativity</span>
+            </footer>
+          </blockquote>
+          <blockquote class="quote" data-aos="fade-up" data-aos-delay="100">
+            <p>
+              Utilising advanced 3D animation and mastering libraries like GSAP,
+              we're able to bring ideas and words into a tangible site, built
+              for success.
+            </p>
+            <footer>
+              <strong>Web designers</strong>
+              <span>To bring concepts into reality</span>
+            </footer>
+          </blockquote>
+          <blockquote class="quote" data-aos="fade-up" data-aos-delay="200">
+            <p>
+              Using next-level coding skills, we're able to optimise our work
+              into efficient, clean systems. We transform bad SEO results and
+              slow sites into next-level works of art.
+            </p>
+            <footer>
+              <strong>Computer scientists</strong>
+              <span>To optimise everything</span>
+            </footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Capabilities — what we can build for you ===== -->
+    <section class="capabilities" id="capabilities">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-head__tag" data-aos="fade-up"
+            >What we can build</span
+          >
+          <h2
+            class="section-head__title"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            From a spark<br />to a <em>living site.</em>
+          </h2>
+          <p
+            class="section-head__lede"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            We're a startup — no case studies yet, just capability. Here's the
+            range of what we'll craft for the first brands brave enough to call
+            us.
+          </p>
+        </div>
+
+        <div class="capabilities__grid">
+          <article class="cap" data-aos="fade-up" data-magnetic>
+            <div class="cap__visual cap__visual--1">
+              <div class="cap__pulse"></div>
+              <div class="cap__pulse cap__pulse--2"></div>
+            </div>
+            <h3>Immersive Landing Pages</h3>
+            <p>
+              Hero scenes with 3D, shader motion, and scroll choreography that
+              stop the scroll.
+            </p>
+          </article>
+
+          <article class="cap" data-aos="fade-up" data-aos-delay="100" data-magnetic>
+            <div class="cap__visual cap__visual--2">
+              <div class="cap__bars"><span></span><span></span><span></span><span></span></div>
+            </div>
+            <h3>Full Marketing Sites</h3>
+            <p>
+              Multi-page, SEO-ready, content-managed sites engineered to rank
+              and convert.
+            </p>
+          </article>
+
+          <article class="cap" data-aos="fade-up" data-aos-delay="200" data-magnetic>
+            <div class="cap__visual cap__visual--3">
+              <div class="cap__orbit"><span class="cap__moon"></span></div>
+            </div>
+            <h3>3D Product Showcases</h3>
+            <p>
+              Real-time WebGL product viewers — rotate, configure, and explore
+              in the browser.
+            </p>
+          </article>
+
+          <article class="cap" data-aos="fade-up" data-aos-delay="300" data-magnetic>
+            <div class="cap__visual cap__visual--4">
+              <div class="cap__wave"></div>
+            </div>
+            <h3>Brand & Art Direction</h3>
+            <p>
+              Identity systems, type, and motion language that make a brand
+              impossible to ignore.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Contact / CTA ===== -->
+    <section class="contact" id="contact">
+      <div class="container contact__inner">
+        <h2 class="contact__title" data-aos="fade-up">
+          Let's make<br />something <em>unreal.</em>
+        </h2>
+        <p class="contact__sub" data-aos="fade-up" data-aos-delay="100">
+          Tell us about your brand and ambition. We reply within one business
+          day.
+        </p>
+        <form
+          class="contact__form"
+          id="contactForm"
+          action="https://formspree.io/f/YOUR_FORM_ID"
+          method="POST"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          <div class="field">
+            <input type="text" id="name" name="name" required />
+            <label for="name">Your name</label>
+          </div>
+          <div class="field">
+            <input type="email" id="email" name="email" required />
+            <label for="email">Email</label>
+          </div>
+          <div class="field field--full">
+            <textarea id="message" name="message" rows="3" required></textarea>
+            <label for="message">Tell us about your project</label>
+          </div>
+          <button type="submit" class="btn btn--primary btn--lg" data-magnetic>
+            <span>Send message</span>
+          </button>
+        </form>
+
+        <div class="contact__details" data-aos="fade-up" data-aos-delay="300">
+          <a href="tel:+441234567890" class="contact__detail" data-magnetic>
+            <span class="contact__detail-label">Phone</span>
+            <span class="contact__detail-value">+44 1234 567 890</span>
+          </a>
+          <a href="mailto:hello@nuvisco.studio" class="contact__detail" data-magnetic>
+            <span class="contact__detail-label">Email</span>
+            <span class="contact__detail-value">hello@nuvisco.studio</span>
+          </a>
+          <div class="contact__detail">
+            <span class="contact__detail-label">Hours</span>
+            <span class="contact__detail-value">Mon–Fri · 9:00–18:00 GMT</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Footer ===== -->
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div class="footer__brand">
+          <span class="nav__logo-mark"></span>
+          <span>nuvisco</span>
+        </div>
+        <nav class="footer__links">
+          <a href="#work" data-magnetic>Work</a>
+          <a href="#services" data-magnetic>Services</a>
+          <a href="#about" data-magnetic>Studio</a>
+          <a href="#contact" data-magnetic>Contact</a>
+        </nav>
+        <div class="footer__social">
+          <a href="#" data-magnetic>Instagram</a>
+          <a href="#" data-magnetic>Dribbble</a>
+          <a href="#" data-magnetic>LinkedIn</a>
+        </div>
+        <div class="footer__legal">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms-and-conditions.html">Terms & Conditions</a>
+          <a href="accessibility-statement.html">Accessibility</a>
+        </div>
+        <p class="footer__copy">
+          © 2026 nuvisco Digital Craft Studio. Crafted with obsession.
+        </p>
+      </div>
+    </footer>
+
+    <!-- ===== Libraries ===== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" crossorigin="anonymous"></script>
+
+    <!-- App -->
+    <script src="home-page-js.js"></script>
+  </body>
+</html>
