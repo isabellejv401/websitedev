@@ -23,6 +23,14 @@
     const count = document.getElementById("preCount");
     let val = 0;
 
+    // Safety timeout: force-hide preloader after 8 seconds
+    const safetyTimer = setTimeout(() => {
+      if (pre && !pre.classList.contains("is-done")) {
+        pre.classList.add("is-done");
+        revealHero();
+      }
+    }, 8000);
+
     const tick = () => {
       val += Math.random() * 12 + 4;
       if (val >= 100) val = 100;
@@ -31,6 +39,7 @@
       if (val < 100) {
         setTimeout(tick, 120);
       } else {
+        clearTimeout(safetyTimer);
         setTimeout(() => {
           pre.classList.add("is-done");
           revealHero();
@@ -142,32 +151,42 @@
   /* ---------------------------------------------------------
      Count-up stats
   --------------------------------------------------------- */
-  function initCounters() {
-    if (prefersReduced) return;
-    const nums = document.querySelectorAll(".stat__num");
-    nums.forEach((el) => {
-      const target = parseFloat(el.dataset.count);
-      const decimals = parseInt(el.dataset.decimals || "0", 10);
-      const suffix = el.dataset.suffix || "";
+function initCounters() {
+  if (prefersReduced) return;
 
-      ScrollTrigger.create({
-        trigger: el,
-        start: "top 85%",
-        once: true,
-        onEnter: () => {
-          const obj = { val: 0 };
-          gsap.to(obj, {
-            val: target,
-            duration: 2,
-            ease: "power2.out",
-            onUpdate: () => {
-              el.textContent = obj.val.toFixed(decimals) + suffix;
-            },
-          });
-        },
-      });
+  const nums = document.querySelectorAll(".stat__num");
+
+  nums.forEach((el) => {
+    const rawCount = el.dataset.count || "0";
+    const target = Number(String(rawCount).replace(/,/g, ""));
+    const decimals = Number.parseInt(el.dataset.decimals || "0", 10);
+    const suffix = el.dataset.suffix || "";
+
+    if (!Number.isFinite(target)) {
+      console.warn("Invalid data-count on stat:", el, rawCount);
+      return;
+    }
+
+    ScrollTrigger.create({
+      trigger: el,
+      start: "top 85%",
+      once: true,
+      onEnter: () => {
+        const obj = { val: 0 };
+
+        gsap.to(obj, {
+          val: target,
+          duration: 2,
+          ease: "power2.out",
+          onUpdate: () => {
+            const current = Number(obj.val) || 0;
+            el.textContent = current.toFixed(decimals) + suffix;
+          },
+        });
+      },
     });
-  }
+  });
+}
 
   /* ---------------------------------------------------------
      Section reveal animations (GSAP)
@@ -438,38 +457,6 @@
     // Panels
     const panels = document.querySelectorAll(".showcase__panel");
     const colors = [0xff5b2e, 0x7c5cff, 0x2ee6c4];
-
-    // Mobile sticky positioning fix
-    const showcaseSection = document.querySelector(".showcase");
-    const showcaseSticky = document.querySelector(".showcase__sticky");
-    const isMobile = () => window.innerWidth <= 560;
-
-    if (showcaseSection && showcaseSticky && isMobile()) {
-      const onScroll = () => {
-        const rect = showcaseSection.getBoundingClientRect();
-        const sectionTop = rect.top;
-        const sectionHeight = showcaseSection.offsetHeight;
-        const viewportHeight = window.innerHeight;
-
-        // When section top reaches viewport top, make it fixed
-        if (sectionTop <= 0 && sectionTop > -sectionHeight + viewportHeight) {
-          showcaseSticky.style.position = "fixed";
-          showcaseSticky.style.top = "0";
-          showcaseSticky.style.left = "0";
-          showcaseSticky.style.width = "100%";
-          showcaseSticky.style.height = "100vh";
-        } else {
-          showcaseSticky.style.position = "sticky";
-          showcaseSticky.style.top = "0";
-          showcaseSticky.style.left = "auto";
-          showcaseSticky.style.width = "auto";
-          showcaseSticky.style.height = "100vh";
-        }
-      };
-
-      window.addEventListener("scroll", onScroll, { passive: true });
-      onScroll(); // Initial check
-    }
 
     // ScrollTrigger driving the scene
     const state = { progress: 0 };
@@ -782,44 +769,123 @@
   }
 
   /* ---------------------------------------------------------
-      Flip Cards — click to reveal the back
+      Flip Cards — click to reveal the back, with a little
+      particle burst to reward the flip.
    --------------------------------------------------------- */
+  function spawnBurst(container) {
+    if (!container || prefersReduced) return;
+    const colors = ["#ff5b2e", "#7c5cff", "#2ee6c4", "#f4f1ea"];
+    const count = 14;
+    for (let i = 0; i < count; i++) {
+      const bit = document.createElement("span");
+      bit.className = "flipcard__burst-bit";
+      const angle = (i / count) * Math.PI * 2 + Math.random() * 0.4;
+      const dist = 60 + Math.random() * 70;
+      const bx = Math.cos(angle) * dist;
+      const by = Math.sin(angle) * dist;
+      bit.style.setProperty("--bx", bx + "px");
+      bit.style.setProperty("--by", by + "px");
+      bit.style.background = colors[i % colors.length];
+      bit.style.animationDelay = Math.random() * 0.08 + "s";
+      container.appendChild(bit);
+      bit.addEventListener("animationend", () => bit.remove());
+    }
+  }
+
   function initFlipCards() {
     document.querySelectorAll("[data-flip]").forEach((card) => {
+      const burstEl = card.querySelector(".flipcard__burst");
+      const inner = card.querySelector(".flipcard__inner");
+      let flipped = false;
+      let tween = null;
+
       card.addEventListener("click", () => {
-        card.classList.toggle("is-flipped");
+        flipped = !flipped;
+        card.classList.toggle("is-flipped", flipped);
+
+        // Capture the live rotation (including the idle "begging" animation)
+        // so the flip starts from exactly where the card currently sits —
+        // no snap, no jank.
+        const fromRot = gsap.getProperty(inner, "rotateY") || 0;
+
+        // Stop the idle CSS animation so it can't fight GSAP for the transform.
+        inner.style.animation = "none";
+
+        if (tween) tween.kill();
+
+        if (prefersReduced) {
+          gsap.set(inner, { rotateY: flipped ? 180 : 0 });
+        } else {
+          tween = gsap.fromTo(
+            inner,
+            { rotateY: fromRot },
+            {
+              rotateY: flipped ? 180 : 0,
+              duration: 0.8,
+              ease: "power3.inOut",
+              onComplete: () => {
+                // Only bring the idle "begging" animation back once we've
+                // returned to the front — never while the back is showing.
+                if (!flipped) inner.style.animation = "";
+              },
+            }
+          );
+        }
+
+        if (flipped) spawnBurst(burstEl);
       });
     });
   }
 
   /* ---------------------------------------------------------
-      Mobile burger (simple toggle)
-   --------------------------------------------------------- */
-  function initBurger() {
-    const burger = document.getElementById("burger");
-    const links = document.querySelector(".nav__links");
-    if (!burger || !links) return;
-    burger.addEventListener("click", () => {
-      links.classList.toggle("is-open");
-    });
-  }
-
-  /* ---------------------------------------------------------
-     Contact form (demo)
-  --------------------------------------------------------- */
+      Contact form — sends data to Formspree via fetch
+    --------------------------------------------------------- */
   function initForm() {
     const form = document.getElementById("contactForm");
     if (!form) return;
-    form.addEventListener("submit", (e) => {
+
+    // Contact form rate limiting
+    let formBlockedUntil = 0;
+    const FORM_COOLDOWN = 3000; // 3 seconds between submissions
+
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      const btn = form.querySelector("button span");
-      const original = btn.textContent;
-      btn.textContent = "Sending…";
+
+      // Rate limit check
+      const now = Date.now();
+      if (now < formBlockedUntil) {
+        return;
+      }
+      formBlockedUntil = now + FORM_COOLDOWN;
+
+      const btn = form.querySelector("button");
+      const btnSpan = btn ? btn.querySelector("span") : null;
+      const original = btnSpan ? btnSpan.textContent : "";
+      if (btn) btn.disabled = true;
+      if (btnSpan) btnSpan.textContent = "Sending…";
+
+      try {
+        const data = new FormData(form);
+        const response = await fetch(form.action, {
+          method: form.method,
+          body: data,
+          headers: { Accept: "application/json" },
+        });
+
+        if (response.ok) {
+          if (btnSpan) btnSpan.textContent = "Sent! ✓";
+          form.reset();
+        } else {
+          if (btnSpan) btnSpan.textContent = "Oops — try again";
+        }
+      } catch {
+        if (btnSpan) btnSpan.textContent = "Oops — try again";
+      }
+
       setTimeout(() => {
-        btn.textContent = "Sent! ✓";
-        form.reset();
-        setTimeout(() => (btn.textContent = original), 2200);
-      }, 1200);
+        if (btn) btn.disabled = false;
+        if (btnSpan) btnSpan.textContent = original;
+      }, 3000);
     });
   }
 
@@ -842,7 +908,6 @@
     initShowcase3D();
     initCraft3D();
     initFlipCards();
-    initBurger();
     initForm();
 
     // Refresh ScrollTrigger after everything loads

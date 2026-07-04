@@ -6,9 +6,34 @@
     <title>Privacy Policy — nuvisco</title>
     <meta
       name="description"
-      content="Privacy Policy for nuvisco Digital Craft Studio. Learn how we collect, use, and protect your personal data."
+      content="Privacy Policy for Nuvisco. Learn how we collect, use, and protect your personal data."
     />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://unpkg.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self';">
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://formspree.io; base-uri 'self'; form-action 'self' https://formspree.io;"
+    >
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="nuvisco" />
+    <meta property="og:title" content="Privacy Policy — nuvisco" />
+    <meta property="og:description" content="Privacy Policy for Nuvisco. Learn how we collect, use, and protect your personal data." />
+    <meta property="og:url" content="https://nuvisco.com/privacy-policy.html" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:image" content="https://nuvisco.com/images/logo.png" />
+    <meta property="og:image:type" content="image/png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://nuvisco.com/images/logo.png" />
+    <meta name="twitter:title" content="Privacy Policy — nuvisco" />
+    <meta name="twitter:description" content="Privacy Policy for Nuvisco. Learn how we collect, use, and protect your personal data." />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/logo.png?v=2" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://nuvisco.com/privacy-policy.html" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -18,24 +43,37 @@
       rel="stylesheet"
     />
 
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
     <!-- Styles -->
     <link rel="stylesheet" href="home-page-css.css" />
   </head>
   <body>
+    <!-- ===== Custom Cursor ===== -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
+
     <!-- ===== Navigation ===== -->
-    <header class="nav is-scrolled">
+    <header class="nav is-scrolled" id="nav">
       <div class="nav__inner">
-        <a href="home-page.html" class="nav__logo">
+        <a href="index.html" class="nav__logo" data-magnetic>
           <span class="nav__logo-mark"></span>
-          nuvisco
+          <span class="nav__logo-text">nuvisco</span>
         </a>
         <nav class="nav__links">
-          <a href="home-page.html#work">Work</a>
-          <a href="home-page.html#services">Services</a>
-          <a href="home-page.html#process">Process</a>
-          <a href="home-page.html#about">Studio</a>
+          <a href="index.html#work" data-magnetic>Work</a>
+          <a href="index.html#services" data-magnetic>Services</a>
+          <a href="index.html#process" data-magnetic>Process</a>
+          <a href="index.html#about" data-magnetic>Studio</a>
         </nav>
-        <a href="home-page.html#contact" class="nav__cta">Start a project</a>
+        <div class="nav__actions">
+          <a href="login.html" class="nav__portal" data-magnetic>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+            Client Portal
+          </a>
+          <a href="index.html#contact" class="nav__cta" data-magnetic>Start a project</a>
+        </div>
       </div>
     </header>
 
@@ -44,26 +82,26 @@
       <div class="container legal__inner">
         <span class="section-head__tag">Legal</span>
         <h1 class="legal__title">Privacy Policy</h1>
-        <p class="legal__updated">Last updated: 29 June 2026</p>
+        <p class="legal__updated">Last updated: 3 July 2026</p>
 
         <div class="legal__body">
           <p>
-            nuvisco Digital Craft Studio ("we", "us", "our") is committed to
+            Nuvisco ("we", "us", "our") is committed to
             protecting your privacy. This Privacy Policy explains how we
             collect, use, and safeguard your personal data when you visit our
             website or contact us about a project.
           </p>
           <p>
-            nuvisco Digital Craft Studio is the data controller responsible for your personal data. This
+            Nuvisco is the data controller responsible for your personal data. This
             policy complies with the UK General Data Protection Regulation (UK
             GDPR) and the Data Protection Act 2018.
           </p>
 
           <h2>1. Who we are</h2>
           <p>
-            nuvisco Digital Craft Studio is a digital design and development
+            Nuvisco is a digital design and development
             studio based in the United Kingdom. You can contact us at
-            <a href="mailto:hello@nuvisco.studio">hello@nuvisco.studio</a>
+            <a href="mailto:hello@nuvisco.com">hello@nuvisco.com</a>
           </p>
 
           <h2>2. Data we collect</h2>
@@ -71,6 +109,7 @@
           <ul>
             <li><strong>Contact form submissions</strong> — your name, email address, and project details when you use our contact form.</li>
             <li><strong>Email correspondence</strong> — the content of any emails you send us directly.</li>
+            <li><strong>Client dashboard data</strong> — if you are a client with access to our client portal, we collect and store project-related information you provide, including branding text, company bio, scheduling links, social media URLs, domain provider details, payment provider preferences, special requests, and uploaded files such as logos, team photos, and policy documents.</li>
           </ul>
           <p>
             We do <strong>not</strong> collect data through cookies for analytics, advertising, or user tracking. If this changes, we will
@@ -103,6 +142,12 @@
             after project completion for tax and legal record-keeping purposes,
             after which they are securely deleted.
           </p>
+          <p>
+            Client dashboard data (project assets, branding materials, and uploaded files)
+            is retained for the duration of the project and for up to <strong>6 years</strong>
+            after project completion. You may request deletion of specific dashboard data
+            at any time by contacting us.
+          </p>
 
           <h2>6. Who we share your data with</h2>
           <p>
@@ -111,6 +156,7 @@
           </p>
           <ul>
             <li><strong>Formspree</strong> — our contact form handler, based in the United States and compliant with the EU-US Data Privacy Framework.</li>
+            <li><strong>Supabase</strong> — our backend platform for client dashboard authentication, database storage, and file storage. Supabase processes and stores client project data (branding assets, uploaded files, integration details) on secure cloud infrastructure.</li>
             <li><strong>Google Fonts</strong> — font delivery service. Google Fonts is loaded from Google servers, which process your IP address when fonts are requested.</li>
             <li><strong>Cloudflare (cdnjs) and unpkg</strong> — content delivery networks serving our JavaScript libraries. These services may receive visitors' IP addresses and browser information as part of delivering website assets.</li>
           </ul>
@@ -139,7 +185,7 @@
           </ul>
           <p>
             To exercise any of these rights, email us at
-            <a href="mailto:hello@nuvisco.studio">hello@nuvisco.studio</a>.
+            <a href="mailto:hello@nuvisco.com">hello@nuvisco.com</a>.
             We will respond within one month.
             We may request proof of identity before fulfilling data access requests.
           </p>
@@ -181,7 +227,7 @@
           <h2>13. How to complain</h2>
           <p>
             If you have a concern about how we handle your data, we encourage you to contact us first so we can try to resolve it. Please contact us at
-            <a href="mailto:hello@nuvisco.studio">hello@nuvisco.studio</a>. You also have the right to complain to the Information Commissioner's Office (ICO):
+            <a href="mailto:hello@nuvisco.com">hello@nuvisco.com</a>. You also have the right to complain to the Information Commissioner's Office (ICO):
           </p>
           <ul>
             <li>Website: <a href="https://ico.org.uk" target="_blank" rel="noopener noreferrer">ico.org.uk</a></li>
@@ -195,8 +241,8 @@
             practices, please contact us:
           </p>
           <ul>
-            <li>Email: <a href="mailto:hello@nuvisco.studio">hello@nuvisco.studio</a></li>
-            <li>Phone: +44 1234 567 890</li>
+            <li>Email: <a href="mailto:hello@nuvisco.com">hello@nuvisco.com</a></li>
+            <li>Phone: +44 7504 541615</li>
           </ul>
         </div>
 
@@ -214,20 +260,37 @@
           <span>nuvisco</span>
         </div>
         <nav class="footer__links">
-          <a href="home-page.html#work">Work</a>
-          <a href="home-page.html#services">Services</a>
-          <a href="home-page.html#about">Studio</a>
-          <a href="home-page.html#contact">Contact</a>
+          <a href="index.html#work" data-magnetic>Work</a>
+          <a href="index.html#services" data-magnetic>Services</a>
+          <a href="index.html#about" data-magnetic>Studio</a>
+          <a href="index.html#contact" data-magnetic>Contact</a>
         </nav>
+        <div class="footer__social">
+          <a href="#" data-magnetic>Instagram</a>
+          <a href="#" data-magnetic>Dribbble</a>
+          <a href="#" data-magnetic>LinkedIn</a>
+        </div>
         <div class="footer__legal">
           <a href="privacy-policy.html">Privacy Policy</a>
           <a href="terms-and-conditions.html">Terms & Conditions</a>
           <a href="accessibility-statement.html">Accessibility</a>
         </div>
         <p class="footer__copy">
-          © 2026 nuvisco Digital Craft Studio. Crafted with obsession.
+          © 2026 Nuvisco. Crafted with obsession.
         </p>
       </div>
     </footer>
+
+    <!-- ===== Libraries ===== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" crossorigin="anonymous"></script>
+
+    <!-- Custom Cursor -->
+    <script src="cursor.js"></script>
+
+    <!-- App -->
+    <script src="home-page-js.js"></script>
   </body>
 </html>

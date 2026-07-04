@@ -6,9 +6,34 @@
     <title>Terms & Conditions — nuvisco</title>
     <meta
       name="description"
-      content="Terms and Conditions for nuvisco Digital Craft Studio. The terms governing use of our website and services."
+      content="Terms and Conditions for Nuvisco. The terms governing use of our website and services."
     />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://unpkg.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self';">
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://formspree.io; base-uri 'self'; form-action 'self' https://formspree.io;"
+    >
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="nuvisco" />
+    <meta property="og:title" content="Terms &amp; Conditions — nuvisco" />
+    <meta property="og:description" content="Terms and Conditions for Nuvisco. The terms governing use of our website and services." />
+    <meta property="og:url" content="https://nuvisco.com/terms-and-conditions.html" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:image" content="https://nuvisco.com/images/logo.png" />
+    <meta property="og:image:type" content="image/png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://nuvisco.com/images/logo.png" />
+    <meta name="twitter:title" content="Terms &amp; Conditions — nuvisco" />
+    <meta name="twitter:description" content="Terms and Conditions for Nuvisco. The terms governing use of our website and services." />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/logo.png?v=2" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://nuvisco.com/terms-and-conditions.html" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -18,24 +43,37 @@
       rel="stylesheet"
     />
 
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
     <!-- Styles -->
     <link rel="stylesheet" href="home-page-css.css" />
   </head>
   <body>
+    <!-- ===== Custom Cursor ===== -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
+
     <!-- ===== Navigation ===== -->
-    <header class="nav is-scrolled">
+    <header class="nav is-scrolled" id="nav">
       <div class="nav__inner">
-        <a href="home-page.html" class="nav__logo">
+        <a href="index.html" class="nav__logo" data-magnetic>
           <span class="nav__logo-mark"></span>
-          nuvisco
+          <span class="nav__logo-text">nuvisco</span>
         </a>
         <nav class="nav__links">
-          <a href="home-page.html#work">Work</a>
-          <a href="home-page.html#services">Services</a>
-          <a href="home-page.html#process">Process</a>
-          <a href="home-page.html#about">Studio</a>
+          <a href="index.html#work" data-magnetic>Work</a>
+          <a href="index.html#services" data-magnetic>Services</a>
+          <a href="index.html#process" data-magnetic>Process</a>
+          <a href="index.html#about" data-magnetic>Studio</a>
         </nav>
-        <a href="home-page.html#contact" class="nav__cta">Start a project</a>
+        <div class="nav__actions">
+          <a href="login.html" class="nav__portal" data-magnetic>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+            Client Portal
+          </a>
+          <a href="index.html#contact" class="nav__cta" data-magnetic>Start a project</a>
+        </div>
       </div>
     </header>
 
@@ -44,11 +82,11 @@
       <div class="container legal__inner">
         <span class="section-head__tag">Legal</span>
         <h1 class="legal__title">Terms & Conditions</h1>
-        <p class="legal__updated">Last updated: 29 June 2026</p>
+        <p class="legal__updated">Last updated: 3 July 2026</p>
 
         <div class="legal__body">
           <p>
-            These Terms and Conditions ("Terms") govern your use of the nuvisco
+            These Terms and Conditions ("Terms") govern your use of the Nuvisco
             Digital Craft Studio website ("our website") and the services we
             provide. By accessing our website or engaging our services, you
             agree to be bound by these Terms.
@@ -56,7 +94,7 @@
 
           <h2>1. About us</h2>
           <p>
-            nuvisco Digital Craft Studio is a trading name operated by Jacob Williams, Josh Geo, and Isabelle Giles, based in England. Throughout these Terms, "we", "us" and "our" refer to nuvisco Digital Craft Studio. We provide web design, 3D development, SEO engineering and brand art direction services.
+            Nuvisco is a trading name operated by Jacob Williams, Josh Geo, and Isabelle Viles, based in England. Throughout these Terms, "we", "us" and "our" refer to Nuvisco. We provide web design, 3D development, SEO engineering and brand art direction services.
           </p>
 
           <h2>2. Use of our website</h2>
@@ -71,10 +109,23 @@
             <li>Use our contact form to send spam, abusive, or defamatory content.</li>
           </ul>
 
-          <h2>3. Business days</h2>
+          <h2>3. Client portal</h2>
+          <p>
+            Clients with an active project may be given access to our client portal
+            ("Dashboard"). Use of the Dashboard is subject to the following additional terms:
+          </p>
+          <ul>
+            <li>Access to the Dashboard is personal and non-transferable. You must keep your login credentials confidential.</li>
+            <li>You are responsible for all activity that occurs under your account. Notify us immediately of any unauthorised access.</li>
+            <li>Files and data uploaded to the Dashboard (including logos, team photos, branding materials, and policy documents) are stored securely via Supabase. We recommend that sensitive documents are uploaded in .txt format only.</li>
+            <li>We reserve the right to suspend or revoke Dashboard access if we suspect any breach of these Terms or unauthorised use.</li>
+            <li>Data entered into the Dashboard is processed and stored in accordance with our Privacy Policy.</li>
+          </ul>
+
+          <h2>4. Business days</h2>
           <p>Business Day means Monday to Friday excluding public holidays in England.</p>
 
-          <h2>4. Our services</h2>
+          <h2>5. Our services</h2>
           <p>
             The details of any project we undertake will be set out in a
             separate written proposal or contract ("Project Agreement"). The
@@ -84,14 +135,14 @@
             project.
           </p>
 
-          <h2>5. Copyright</h2>
+          <h2>6. Copyright</h2>
           <p>Unless otherwise stated, all content on this website including text, graphics, branding, designs, source code, photographs, videos, illustrations, and other content is owned by us or licensed to us and is protected by copyright laws.
           </p>
 
-          <h2>6. Partnership</h2>
+          <h2>7. Partnership</h2>
           <p>Nothing in these Terms creates a partnership, agency or employment relationship between us and the client.</p>
 
-          <h2>7. Quotes and pricing</h2>
+          <h2>8. Quotes and pricing</h2>
           <p>
             All quotes provided are valid for <strong>30 days</strong> from the
             date of issue unless stated otherwise. Prices are quoted in
@@ -100,7 +151,7 @@
             change significantly after the quote is issued.
           </p>
 
-          <h2>8. Payment terms</h2>
+          <h2>9. Payment terms</h2>
           <p>
             Unless otherwise agreed in writing, our standard payment terms are:
           </p>
@@ -116,7 +167,7 @@
             (Interest) Act 1998.
           </p>
 
-          <h2>9. Client responsibilities</h2>
+          <h2>10. Client responsibilities</h2>
           <p>
             To enable us to deliver your project efficiently, you agree to:
           </p>
@@ -133,7 +184,7 @@
             The client warrants that supplied materials do not infringe intellectual property rights, are not defamatory, unlawful or otherwise illegal.
           </p>
 
-          <h2>10. Intellectual property</h2>
+          <h2>11. Intellectual property</h2>
           <p>
            Title and intellectual property rights in the deliverables remain with us until all outstanding invoices have been paid in full, except where otherwise stated in the Project Agreement, with the following exceptions:
           </p>
@@ -145,17 +196,17 @@
 
           <p>The client agrees to indemnify us against claims arising from materials supplied by the client which infringe intellectual property rights or are unlawful.</p>
           
-          <h2>11. SEO disclaimer</h2>
+          <h2>12. SEO disclaimer</h2>
           <p>We cannot guarantee specific rankings, traffic levels or search engine positions because these depend on factors outside our control.</p>
 
-          <h2>12. Supported browsers</h2>
+          <h2>13. Supported browsers</h2>
           <p>We support the current major versions of modern browsers. Compatibility with obsolete browsers is not guaranteed unless expressly agreed.</p>
 
-          <h2>13. Accessibility</h2>
+          <h2>14. Accessibility</h2>
 
           <p>Unless expressly agreed in the Project Agreement, accessibility auditing or certification against WCAG or other recognised accessibility standards is not included within our standard services.</p>
 
-          <h2>14. Revisions and changes</h2>
+          <h2>15. Revisions and changes</h2>
           <p>
             Each project includes up to <strong>two rounds of revisions</strong>
             per deliverable, as specified in the Project Agreement. Additional
@@ -163,7 +214,7 @@
             and may incur additional fees.
           </p>
 
-          <h2>15. Cancellation</h2>
+          <h2>16. Cancellation</h2>
           <p>
             Either party may cancel a project by giving written notice. If a
             project is cancelled by the client after work has commenced, the
@@ -173,16 +224,16 @@
             We may terminate or suspend services immediately if a client engages in abusive, unlawful or threatening behaviour, or materially breaches these Terms.
           </p>
 
-          <h2>16. Acceptance of quotations</h2>
+          <h2>17. Acceptance of quotations</h2>
           <p>
             A project is deemed accepted once the client confirms the quotation in writing or pays the required deposit.
         
           </p>
 
-          <h2>17. Project suspension</h2>
+          <h2>18. Project suspension</h2>
           <p>If the client fails to provide required information, approvals or materials for more than 30 consecutive days, we may suspend the project. Project timelines may be extended and additional costs may apply where work must be rescheduled or restarted following prolonged inactivity.</p>
 
-          <h2>18. Limitation of liability</h2>
+          <h2>19. Limitation of liability</h2>
           <p>
             To the maximum extent permitted by law, our total liability for
             any claim arising from our services or use of this website shall
@@ -195,26 +246,26 @@
             <li>Downtime or issues caused by third-party hosting providers, CDNs, or external services.</li>
           </ul>
 
-          <h2>19. Website disclaimer</h2>
+          <h2>20. Website disclaimer</h2>
           <p>
             Our website is provided "as is" without warranties of any kind,
             express or implied. While we take reasonable measures to secure our website, we cannot guarantee uninterrupted availability or that the website will be free from all security vulnerabilities. We reserve the right to modify, suspend or discontinue any part of the website without notice.
           </p>
 
-          <h2>20. Acceptance testing</h2>
+          <h2>21. Acceptance testing</h2>
           <p>The client shall notify us of any material defects that cause the deliverables to fail to operate substantially in accordance with the agreed specification within 14 days of delivery, material defects meaning issues that prevent core agreed functionality from operating as specified in the Project Agreement. If no such notification is received, the deliverables shall be deemed accepted.</p>
 
-          <h2>21. Confidentiality</h2>
+          <h2>22. Confidentiality</h2>
           <p>We will treat confidential information provided during a project as confidential and will not disclose it except where necessary to perform the services or where required by law.</p>
 
-          <h2>22. Third-party links</h2>
+          <h2>23. Third-party links</h2>
           <p>
             Our website may contain links to third-party websites. We are not
             responsible for the content, privacy practices, or terms of any
             third-party site. You access them at your own risk.
           </p>
 
-          <h2>23. Non-excludable liability</h2>
+          <h2>24. Non-excludable liability</h2>
           <p>
             Nothing in these Terms shall exclude or limit our liability for
             death or personal injury caused by our negligence, fraud or
@@ -223,11 +274,11 @@
 
           </p>
 
-          <h2>24. Force majeure</h2>
+          <h2>25. Force majeure</h2>
           <p>Neither party shall be liable for delays or failures caused by events beyond their reasonable control, including natural disasters, internet outages, power failures, industrial disputes or governmental action.
 </p>
 
-<h2>25. Maintenance plan</h2>
+<h2>26. Maintenance plan</h2>
           <p>
             We offer ongoing website updates and revisions under a separate
             optional maintenance plan charged at <strong>£200 per month</strong>.
@@ -254,17 +305,17 @@
             Maintenance requests are typically responded to within 2–5 business days depending on complexity.
           </p>
 
-<h2>26. Assignment</h2>
+<h2>27. Assignment</h2>
 <p>The client may not transfer their rights under these Terms without our written consent.</p>
 
-          <h2>27. Governing law</h2>
+          <h2>28. Governing law</h2>
           <p>
             These Terms are governed by the laws of England and Wales. Any
             disputes arising from these Terms or our services shall be subject
             to the exclusive jurisdiction of the courts of England and Wales.
           </p>
 
-          <h2>28. Changes to these Terms</h2>
+          <h2>29. Changes to these Terms</h2>
           <p>
             We may update these Terms at any time. The "last updated" date at
             the top of this page indicates when the Terms were last revised.
@@ -272,26 +323,28 @@
             constitutes acceptance of the updated Terms.
           </p>
 
-          <h2>29. Severability</h2>
+          <h2>30. Severability</h2>
 
           <p>If any provision of these Terms is held to be unenforceable, the remaining provisions remain in effect.</p>
 
-          <h2>30. Entire agreement</h2>
+          <h2>31. Entire agreement</h2>
 
           <p>These Terms together with any Project Agreement constitute the entire agreement between the parties.
           </p>
 
-          <h2>31. Contact us</h2>
+          <h2>32. Contact us</h2>
           <p>
             If you have any questions about these Terms and Conditions, please
             contact us:
           </p>
           <ul>
-            <li>Email: <a href="mailto:hello@nuvisco.studio">hello@nuvisco.studio</a></li>
-            <li>Phone: +44 1234 567 890</li>
+            <li>Email: <a href="mailto:hello@nuvisco.com">hello@nuvisco.com</a></li>
+            <li>Phone: +44 7504 541615</li>
           </ul>
+
+          <p>We process personal data in accordance with our Privacy Policy.</p>
         </div>
-<p>We process personal data in accordance with our Privacy Policy.</p>
+
         <a href="index.html" class="btn btn--ghost legal__back">
           <span>← Back to home</span>
         </a>
@@ -306,20 +359,37 @@
           <span>nuvisco</span>
         </div>
         <nav class="footer__links">
-          <a href="home-page.html#work">Work</a>
-          <a href="home-page.html#services">Services</a>
-          <a href="home-page.html#about">Studio</a>
-          <a href="home-page.html#contact">Contact</a>
+          <a href="index.html#work" data-magnetic>Work</a>
+          <a href="index.html#services" data-magnetic>Services</a>
+          <a href="index.html#about" data-magnetic>Studio</a>
+          <a href="index.html#contact" data-magnetic>Contact</a>
         </nav>
+        <div class="footer__social">
+          <a href="#" data-magnetic>Instagram</a>
+          <a href="#" data-magnetic>Dribbble</a>
+          <a href="#" data-magnetic>LinkedIn</a>
+        </div>
         <div class="footer__legal">
           <a href="privacy-policy.html">Privacy Policy</a>
           <a href="terms-and-conditions.html">Terms & Conditions</a>
           <a href="accessibility-statement.html">Accessibility</a>
         </div>
         <p class="footer__copy">
-          © 2026 nuvisco Digital Craft Studio. Crafted with obsession.
+          © 2026 Nuvisco. Crafted with obsession.
         </p>
       </div>
     </footer>
+
+    <!-- ===== Libraries ===== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" crossorigin="anonymous"></script>
+
+    <!-- Custom Cursor -->
+    <script src="cursor.js"></script>
+
+    <!-- App -->
+    <script src="home-page-js.js"></script>
   </body>
 </html>

@@ -3,12 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nuvisco — Digital Craft Studio</title>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://unpkg.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formspree.io;">
+    <title>nuvisco — Digital Craft Studio | Web Design, 3D &amp; SEO</title>
+    <meta
+    http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://formspree.io; base-uri 'self'; form-action 'self' https://formspree.io;"
+  >
     <meta
       name="description"
       content="nuvisco is a digital craft studio building visually unreal websites, immersive 3D experiences, and SEO-driven growth for ambitious brands."
     />
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="nuvisco" />
+    <meta property="og:title" content="nuvisco — Digital Craft Studio | Web Design, 3D &amp; SEO" />
+    <meta property="og:description" content="nuvisco is a digital craft studio building visually unreal websites, immersive 3D experiences, and SEO-driven growth for ambitious brands." />
+    <meta property="og:url" content="https://nuvisco.com" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:image" content="https://nuvisco.com/images/logo.png" />
+    <meta property="og:image:type" content="image/png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://nuvisco.com/images/logo.png" />
+    <meta name="twitter:title" content="nuvisco — Digital Craft Studio | Web Design, 3D &amp; SEO" />
+    <meta name="twitter:description" content="nuvisco is a digital craft studio building visually unreal websites, immersive 3D experiences, and SEO-driven growth for ambitious brands." />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://nuvisco.com" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/logo.png?v=2" />
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -23,6 +51,43 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="home-page-css.css" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Nuvisco",
+      "url": "https://nuvisco.com",
+      "description": "nuvisco is a digital craft studio building visually unreal websites, immersive 3D experiences, and SEO-driven growth for ambitious brands.",
+      "email": "hello@nuvisco.com",
+      "telephone": "+44 7504 541615",
+      "foundingDate": "2026",
+      "founders": [
+        { "@type": "Person", "name": "Jacob Williams" },
+        { "@type": "Person", "name": "Josh Geo" },
+        { "@type": "Person", "name": "Isabelle Viles" }
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "GB"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "nuvisco",
+      "url": "https://nuvisco.com",
+      "description": "Digital craft studio — web design, 3D development, SEO engineering and brand art direction.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://nuvisco.com/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
   </head>
   <body>
     <!-- ===== Preloader ===== -->
@@ -49,7 +114,7 @@
       <div class="nav__inner">
         <a href="#hero" class="nav__logo" data-magnetic>
           <span class="nav__logo-mark"></span>
-          nuvisco
+          <span class="nav__logo-text">nuvisco</span>
         </a>
         <nav class="nav__links">
           <a href="#work" data-magnetic>Work</a>
@@ -57,16 +122,21 @@
           <a href="#process" data-magnetic>Process</a>
           <a href="#about" data-magnetic>Studio</a>
         </nav>
-        <a href="#contact" class="nav__cta" data-magnetic>Start a project</a>
-        <button class="nav__burger" id="burger" aria-label="Menu">
-          <span></span><span></span>
-        </button>
+        <div class="nav__actions">
+          <a href="login.html" class="nav__portal" data-magnetic>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+            Client Portal
+          </a>
+          <a href="#contact" class="nav__cta" data-magnetic>Start a project</a>
+        </div>
       </div>
     </header>
 
     <!-- ===== Hero ===== -->
     <section class="hero" id="hero">
       <div class="hero__grid"></div>
+      <div class="slide-curve slide-curve--left" aria-hidden="true"></div>
+      <div class="slide-curve slide-curve--right" aria-hidden="true"></div>
       <div class="hero__content">
         <div class="hero__eyebrow" data-aos="fade-up">
           Digital Craft Studio · Est. 2026
@@ -81,8 +151,10 @@
           >
         </h1>
         <p class="hero__sub" data-aos="fade-up" data-aos-delay="300">
-          A studio crafting visually unreal web experiences — blending 3D
+          A studio crafting visually unreal web experiences, blending 3D
           motion, artful design, and SEO engineering into work that performs.
+          We help clients increase sales by optimising and designing high-end
+          luxury sites for conversions. We're excited to work with you.
         </p>
         <div class="hero__actions" data-aos="fade-up" data-aos-delay="500">
           <a href="#work" class="btn btn--primary" data-magnetic>
@@ -101,42 +173,43 @@
 
       <div class="hero__marquee">
         <div class="marquee__track">
-          <span>Web Design</span><i>✦</i> <span>3D Development</span><i>✦</i>
-          <span>SEO Engineering</span><i>✦</i> <span>Brand Identity</span
-          ><i>✦</i> <span>Motion Design</span><i>✦</i> <span>Web Design</span
-          ><i>✦</i> <span>3D Development</span><i>✦</i>
-          <span>SEO Engineering</span><i>✦</i> <span>Brand Identity</span
-          ><i>✦</i> <span>Motion Design</span><i>✦</i>
+          <span>Web Design</span><i>✺</i> <span>3D Development</span><i>✺</i>
+          <span>SEO Engineering</span><i>✺</i> <span>Brand Identity</span
+          ><i>✺</i> <span>Motion Design</span><i>✺</i> <span>Web Design</span
+          ><i>✺</i> <span>3D Development</span><i>✺</i>
+          <span>SEO Engineering</span><i>✺</i> <span>Brand Identity</span
+          ><i>✺</i> <span>Motion Design</span><i>✺</i>
         </div>
       </div>
     </section>
 
     <!-- ===== Stats ===== -->
     <section class="stats" id="stats">
+      <div class="section-deco section-deco--left" aria-hidden="true">
+        <span class="deco-circle"></span>
+        <span class="deco-curve"></span>
+      </div>
+      <div class="section-deco section-deco--right" aria-hidden="true">
+        <span class="deco-circle deco-circle--alt"></span>
+        <span class="deco-curve deco-curve--alt"></span>
+      </div>
       <div class="container">
         <div class="stats__grid">
           <div class="stat" data-aos="fade-up">
-            <div class="stat__num" data-count="WIP">0</div>
-            <div class="stat__label">Projects shipped</div>
+            <div class="stat__num" data-count="100" data-suffix="%">100%</div>
+            <div class="stat__label">Bespoke builds</div>
           </div>
           <div class="stat" data-aos="fade-up" data-aos-delay="100">
-            <div class="stat__num" data-count="WIP">0</div>
-            <div class="stat__label">Industry awards</div>
+            <div class="stat__num" data-count="24" data-suffix="h">24h</div>
+            <div class="stat__label">Avg. response time</div>
           </div>
           <div class="stat" data-aos="fade-up" data-aos-delay="200">
-            <div class="stat__num" data-count="WIP" data-suffix="">0</div>
-            <div class="stat__label">Client retention</div>
+            <div class="stat__num" data-count="5">5</div>
+            <div class="stat__label">Craft disciplines</div>
           </div>
           <div class="stat" data-aos="fade-up" data-aos-delay="300">
-            <div
-              class="stat__num"
-              data-count="WIP"
-              data-suffix=""
-              data-decimals="1"
-            >
-              0
-            </div>
-            <div class="stat__label">Avg. monthly visits driven</div>
+            <div class="stat__num" data-count="3">3</div>
+            <div class="stat__label">Founders behind the craft</div>
           </div>
         </div>
       </div>
@@ -144,6 +217,14 @@
 
     <!-- ===== Services ===== -->
     <section class="services" id="services">
+      <div class="section-deco section-deco--left" aria-hidden="true">
+        <span class="deco-circle"></span>
+        <span class="deco-curve"></span>
+      </div>
+      <div class="section-deco section-deco--right" aria-hidden="true">
+        <span class="deco-circle deco-circle--alt"></span>
+        <span class="deco-curve deco-curve--alt"></span>
+      </div>
       <div class="container">
         <div class="section-head">
           <span class="section-head__tag" data-aos="fade-up">What we do</span>
@@ -238,7 +319,7 @@
       </div>
     </section>
 
-    <!-- ===== Craft Lab — interactive 3D models ===== -->
+    <!-- ===== Craft Lab interactive 3D models ===== -->
     <section class="work" id="work">
       <div class="container">
         <div class="section-head">
@@ -268,7 +349,7 @@
               <span class="craft__index">01</span>
               <h3>The Helix</h3>
               <p>
-                A double-twist knot — the shape of an idea that won't sit still.
+                A double-twist knot the shape of an idea that won't sit still.
               </p>
             </div>
           </article>
@@ -286,7 +367,7 @@
               <span class="craft__index">02</span>
               <h3>The Cluster</h3>
               <p>
-                Crystals grown in code — facets catching light from every angle.
+                Crystals grown in code facets catching light from every angle.
               </p>
             </div>
           </article>
@@ -299,7 +380,7 @@
             <div class="craft__meta">
               <span class="craft__index">03</span>
               <h3>The Bloom</h3>
-              <p>A flower of geometry — petals unfurling in real time.</p>
+              <p>A flower of geometry petals unfurling in real time.</p>
             </div>
           </article>
 
@@ -315,7 +396,7 @@
             <div class="craft__meta">
               <span class="craft__index">04</span>
               <h3>The Lattice</h3>
-              <p>A wireframe world — structure you can see right through.</p>
+              <p>A wireframe world structure you can see right through.</p>
             </div>
           </article>
         </div>
@@ -331,7 +412,7 @@
             <span class="showcase__index">01 / 03</span>
             <h3>Design</h3>
             <p>
-              Every project begins with art direction — mood, type, color, and
+              Every project begins with art direction mood, type, color, and
               rhythm.
             </p>
           </div>
@@ -355,7 +436,7 @@
       </div>
     </section>
 
-  <!-- ===== Flip Cards — reveal the studio ===== -->
+  <!-- ===== Flip Cards reveal the studio ===== -->
   <section class="flipcards" id="flipcards">
     <div class="container">
       <div class="section-head">
@@ -365,7 +446,7 @@
         </h2>
         <p class="section-head__lede" data-aos="fade-up" data-aos-delay="200">
           Each card wears a different face. Turn it over to find what's behind
-          the craft — our promise, our edge, our obsession.
+          the craft our promise, our edge, our obsession.
         </p>
       </div>
 
@@ -375,24 +456,34 @@
             <div class="flipcard__front">
               <span class="flipcard__glyph">✦</span>
               <span class="flipcard__label">The Promise</span>
+              <span class="flipcard__flip-hint" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 14.5-4.6M20 12a8 8 0 0 1-14.5 4.6" /><path d="M17.5 3.5v4h-4M6.5 20.5v-4h4" /></svg>
+                <em>Flip</em>
+              </span>
             </div>
             <div class="flipcard__back">
               <h3>No templates, ever.</h3>
-              <p>Every build is one-of-one — designed and engineered from a blank canvas for your brand alone.</p>
+              <p>Every build is one-of-one designed and engineered from a blank canvas for your brand alone.</p>
             </div>
+            <div class="flipcard__burst" aria-hidden="true"></div>
           </div>
         </button>
 
         <button class="flipcard flipcard--circle" data-aos="fade-up" data-aos-delay="80" data-flip>
           <div class="flipcard__inner">
             <div class="flipcard__front">
-              <span class="flipcard__glyph">◐</span>
+              <span class="flipcard__glyph">●</span>
               <span class="flipcard__label">The Edge</span>
+              <span class="flipcard__flip-hint" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 14.5-4.6M20 12a8 8 0 0 1-14.5 4.6" /><path d="M17.5 3.5v4h-4M6.5 20.5v-4h4" /></svg>
+                <em>Flip</em>
+              </span>
             </div>
             <div class="flipcard__back">
               <h3>3D is native.</h3>
-              <p>We don't bolt WebGL on as an afterthought — real-time 3D is woven into the bones of every site.</p>
+              <p>We don't bolt WebGL on as an afterthought real-time 3D is woven into the bones of every site.</p>
             </div>
+            <div class="flipcard__burst" aria-hidden="true"></div>
           </div>
         </button>
 
@@ -401,11 +492,16 @@
             <div class="flipcard__front">
               <span class="flipcard__glyph">◆</span>
               <span class="flipcard__label">The Speed</span>
+              <span class="flipcard__flip-hint" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 14.5-4.6M20 12a8 8 0 0 1-14.5 4.6" /><path d="M17.5 3.5v4h-4M6.5 20.5v-4h4" /></svg>
+                <em>Flip</em>
+              </span>
             </div>
             <div class="flipcard__back">
               <h3>Fast, then faster.</h3>
               <p>Core Web Vitals in the green, sub-second loads, and motion that never blocks the thread.</p>
             </div>
+            <div class="flipcard__burst" aria-hidden="true"></div>
           </div>
         </button>
 
@@ -414,11 +510,16 @@
             <div class="flipcard__front">
               <span class="flipcard__glyph">❋</span>
               <span class="flipcard__label">The Growth</span>
+              <span class="flipcard__flip-hint" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 14.5-4.6M20 12a8 8 0 0 1-14.5 4.6" /><path d="M17.5 3.5v4h-4M6.5 20.5v-4h4" /></svg>
+                <em>Flip</em>
+              </span>
             </div>
             <div class="flipcard__back">
               <h3>SEO that compounds.</h3>
               <p>Structured data, clean semantics, and technical depth that turns traffic into a flywheel.</p>
             </div>
+            <div class="flipcard__burst" aria-hidden="true"></div>
           </div>
         </button>
 
@@ -427,11 +528,16 @@
             <div class="flipcard__front">
               <span class="flipcard__glyph">✺</span>
               <span class="flipcard__label">The Obsession</span>
+              <span class="flipcard__flip-hint" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 14.5-4.6M20 12a8 8 0 0 1-14.5 4.6" /><path d="M17.5 3.5v4h-4M6.5 20.5v-4h4" /></svg>
+                <em>Flip</em>
+              </span>
             </div>
             <div class="flipcard__back">
               <h3>Every pixel matters.</h3>
-              <p>We treat type, rhythm, and easing like instruments — tuned until the page feels alive.</p>
+              <p>We treat type, rhythm, and easing like instruments tuned until the page feels alive.</p>
             </div>
+            <div class="flipcard__burst" aria-hidden="true"></div>
           </div>
         </button>
       </div>
@@ -440,6 +546,14 @@
 
     <!-- ===== Process ===== -->
     <section class="process" id="process">
+      <div class="section-deco section-deco--left" aria-hidden="true">
+        <span class="deco-circle"></span>
+        <span class="deco-curve"></span>
+      </div>
+      <div class="section-deco section-deco--right" aria-hidden="true">
+        <span class="deco-circle deco-circle--alt"></span>
+        <span class="deco-curve deco-curve--alt"></span>
+      </div>
       <div class="container">
         <div class="section-head">
           <span class="section-head__tag" data-aos="fade-up">How we work</span>
@@ -497,6 +611,8 @@
 
     <!-- ===== About ===== -->
     <section class="about" id="about">
+      <div class="slide-curve slide-curve--left" aria-hidden="true"></div>
+      <div class="slide-curve slide-curve--right" aria-hidden="true"></div>
       <div class="container about__inner">
         <div class="about__text">
           <span class="section-head__tag" data-aos="fade-up">The studio</span>
@@ -506,9 +622,11 @@
             >
           </h2>
           <p data-aos="fade-up" data-aos-delay="200">
-            nuvisco is a collective of designers, engineers, and motion artists
-            who treat every pixel like it matters. We don't do templates — we
+            Nuvisco is a collective of designers, engineers, and motion artists
+            who treat every pixel like it matters. We don't do templates  we
             build one-of-one digital experiences that move people and rank.
+            We specialise in helping brands increase sales by creating high-end,
+            luxury services optimised for conversion and user retention.
           </p>
           <a
             href="#contact"
@@ -534,6 +652,14 @@
 
     <!-- ===== Testimonials ===== -->
     <section class="testimonials" id="testimonials">
+      <div class="section-deco section-deco--left" aria-hidden="true">
+        <span class="deco-circle"></span>
+        <span class="deco-curve"></span>
+      </div>
+      <div class="section-deco section-deco--right" aria-hidden="true">
+        <span class="deco-circle deco-circle--alt"></span>
+        <span class="deco-curve deco-curve--alt"></span>
+      </div>
       <div class="container">
         <div class="section-head">
           <span class="section-head__tag" data-aos="fade-up">Our team</span>
@@ -584,8 +710,10 @@
       </div>
     </section>
 
-    <!-- ===== Capabilities — what we can build for you ===== -->
+    <!-- ===== Capabilities Ã¢ what we can build for you ===== -->
     <section class="capabilities" id="capabilities">
+      <div class="slide-curve slide-curve--left" aria-hidden="true"></div>
+      <div class="slide-curve slide-curve--right" aria-hidden="true"></div>
       <div class="container">
         <div class="section-head">
           <span class="section-head__tag" data-aos="fade-up"
@@ -603,9 +731,8 @@
             data-aos="fade-up"
             data-aos-delay="200"
           >
-            We're a startup — no case studies yet, just capability. Here's the
-            range of what we'll craft for the first brands brave enough to call
-            us.
+            We use capability and competence to maximise your sales. Here's a snippet
+            of what you'll be working with if you choose to collaborate with us.
           </p>
         </div>
 
@@ -639,7 +766,7 @@
             </div>
             <h3>3D Product Showcases</h3>
             <p>
-              Real-time WebGL product viewers — rotate, configure, and explore
+              Real-time WebGL product viewers  rotate, configure, and explore
               in the browser.
             </p>
           </article>
@@ -660,6 +787,8 @@
 
     <!-- ===== Contact / CTA ===== -->
     <section class="contact" id="contact">
+      <div class="slide-curve slide-curve--left" aria-hidden="true"></div>
+      <div class="slide-curve slide-curve--right" aria-hidden="true"></div>
       <div class="container contact__inner">
         <h2 class="contact__title" data-aos="fade-up">
           Let's make<br />something <em>unreal.</em>
@@ -671,7 +800,7 @@
         <form
           class="contact__form"
           id="contactForm"
-          action="https://formspree.io/f/YOUR_FORM_ID"
+          action="https://formspree.io/f/xgojpegk"
           method="POST"
           data-aos="fade-up"
           data-aos-delay="200"
@@ -694,17 +823,19 @@
         </form>
 
         <div class="contact__details" data-aos="fade-up" data-aos-delay="300">
-          <a href="tel:+441234567890" class="contact__detail" data-magnetic>
+          <a href="tel:+447504541615" class="contact__detail" data-magnetic>
             <span class="contact__detail-label">Phone</span>
-            <span class="contact__detail-value">+44 1234 567 890</span>
+            <span class="contact__detail-value">+44 7504 541615</span>
           </a>
-          <a href="mailto:hello@nuvisco.studio" class="contact__detail" data-magnetic>
+          <a href="mailto:hello@nuvisco.com" class="contact__detail" data-magnetic>
             <span class="contact__detail-label">Email</span>
-            <span class="contact__detail-value">hello@nuvisco.studio</span>
+            <span class="contact__detail-value">hello@nuvisco.com</span>
           </a>
           <div class="contact__detail">
             <span class="contact__detail-label">Hours</span>
-            <span class="contact__detail-value">Mon–Fri · 9:00–18:00 GMT</span>
+            <span class="contact__detail-value">Mon - Fri · 18:00 - 21:00 GMT<br />
+              Sat - Sun · 09:00 - 21:00 GMT
+            </span>
           </div>
         </div>
       </div>
@@ -734,7 +865,7 @@
           <a href="accessibility-statement.html">Accessibility</a>
         </div>
         <p class="footer__copy">
-          © 2026 nuvisco Digital Craft Studio. Crafted with obsession.
+          © 2026 Nuvisco. Crafted with obsession.
         </p>
       </div>
     </footer>

@@ -1,209 +1,300 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Accessibility Statement — nuvisco</title>
-    <meta
-      name="description"
-      content="Accessibility Statement for nuvisco Digital Craft Studio. Our commitment to making our website accessible to everyone."
-    />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://unpkg.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self';">
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Accessibility Statement — nuvisco</title>
+      <meta
+        name="description"
+        content="Accessibility Statement for Nuvisco. Our commitment to making our website accessible to everyone."
+      />
+      <meta
+        http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://formspree.io; base-uri 'self'; form-action 'self' https://formspree.io;"
+      >
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
-      rel="stylesheet"
-    />
+      <!-- Open Graph / Social -->
+      <meta property="og:type" content="website" />
+      <meta property="og:site_name" content="nuvisco" />
+      <meta property="og:title" content="Accessibility Statement — nuvisco" />
+      <meta property="og:description" content="Accessibility Statement for Nuvisco. Our commitment to making our website accessible to everyone." />
+      <meta property="og:url" content="https://nuvisco.com/accessibility-statement.html" />
+      <meta property="og:locale" content="en_GB" />
+      <meta property="og:image" content="https://nuvisco.com/images/logo.png" />
+      <meta property="og:image:type" content="image/png" />
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="home-page-css.css" />
-  </head>
-  <body>
-    <!-- ===== Navigation ===== -->
-    <header class="nav is-scrolled">
-      <div class="nav__inner">
-        <a href="home-page.html" class="nav__logo">
-          <span class="nav__logo-mark"></span>
-          nuvisco
-        </a>
-        <nav class="nav__links">
-          <a href="home-page.html#work">Work</a>
-          <a href="home-page.html#services">Services</a>
-          <a href="home-page.html#process">Process</a>
-          <a href="home-page.html#about">Studio</a>
-        </nav>
-        <a href="home-page.html#contact" class="nav__cta">Start a project</a>
-      </div>
-    </header>
+      <!-- Twitter Card -->
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:image" content="https://nuvisco.com/images/logo.png" />
+      <meta name="twitter:title" content="Accessibility Statement — nuvisco" />
+      <meta name="twitter:description" content="Accessibility Statement for Nuvisco. Our commitment to making our website accessible to everyone." />
 
-    <!-- ===== Legal Page ===== -->
-    <main class="legal">
-      <div class="container legal__inner">
-        <span class="section-head__tag">Legal</span>
-        <h1 class="legal__title">Accessibility Statement</h1>
-        <p class="legal__updated">Last updated: 29 June 2026</p>
+      <!-- Favicon -->
+      <link rel="icon" type="image/png" href="images/logo.png?v=2" />
 
-        <div class="legal__body">
-          <p>
-            nuvisco Digital Craft Studio is committed to making our website
-            accessible to everyone, including people with disabilities. We
-            believe that the web should be inclusive by default, and we
-            continuously work to improve the accessibility of our digital
-            experiences.
-          </p>
+      <!-- Canonical -->
+      <link rel="canonical" href="https://nuvisco.com/accessibility-statement.html" />
 
-          <h2>1. Our commitment</h2>
-          <p>
-            We aim to conform to the <strong>Web Content Accessibility
-            Guidelines (WCAG) 2.1</strong> at the <strong>AA</strong>
-            conformance level. These guidelines explain how to make web content
-            more accessible to people with a wide range of disabilities,
-            including visual, motor, cognitive, and auditory impairments.
-          </p>
+      <!-- Fonts -->
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet"
+      />
 
-          <h2>2. What we have done</h2>
-          <p>
-            As part of our commitment to accessibility, we have implemented the
-            following measures on our website:
-          </p>
-          <ul>
-            <li><strong>Semantic HTML</strong> — our pages use proper heading structures, landmarks, and ARIA roles where appropriate.</li>
-            <li><strong>Keyboard navigation</strong> — all interactive elements are reachable and operable via keyboard.</li>
-            <li><strong>Reduced motion support</strong> — users who have enabled "reduce motion" in their operating system will see animations disabled or simplified.</li>
-            <li><strong>Colour contrast</strong> — we have designed our colour palette to meet WCAG AA contrast ratios for text and interactive elements.</li>
-            <li><strong>Responsive design</strong> — our layout adapts to all screen sizes, from mobile phones to large desktop displays.</li>
-            <li><strong>Form labels</strong> — all form fields have associated labels for screen reader users.</li>
-            <li><strong>Content Security Policy</strong> — we have implemented a CSP to protect users from cross-site scripting and other security risks.</li>
-          </ul>
+      <!-- AOS -->
+      <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
-          <h2>3. Known limitations</h2>
-          <p>
-            We are aware of the following accessibility limitations and are
-            actively working to address them:
-          </p>
-          <ul>
-            <li>
-              <strong>Custom cursor</strong> — our website replaces the native
-              cursor with a custom cursor on devices with a fine pointer
-              (mouse/trackpad). On touch devices and devices with a coarse
-              pointer, the native cursor is preserved. We are exploring ways
-              to make the custom cursor optional.
-            </li>
-            <li>
-              <strong>3D content</strong> — our interactive 3D models (Craft
-              Lab, Showcase) rely on WebGL and may not be fully accessible to
-              screen reader users. We provide text descriptions for each model
-              and ensure that all essential information is available in plain
-              text.
-            </li>
-            <li>
-              <strong>Preloader</strong> — the loading animation may be
-              distracting for some users. Users with "reduce motion" enabled
-              will have the preloader bypassed.
-            </li>
-            <li>
-              <strong>Focus indicators</strong> — we are reviewing our focus
-              styles to ensure they are clearly visible on all interactive
-              elements for keyboard-only users.
-            </li>
-          </ul>
+      <!-- Styles -->
+      <link rel="stylesheet" href="home-page-css.css" />
+    </head>
+    <body>
+      <!-- ===== Custom Cursor ===== -->
+      <div class="cursor" id="cursor"></div>
+      <div class="cursor-follower" id="cursorFollower"></div>
 
-          <h2>4. Technologies used</h2>
-          <p>
-            Our website is built with standard HTML, CSS, and JavaScript, and
-            uses the following third-party libraries for visual effects:
-          </p>
-          <ul>
-            <li>Three.js (3D rendering)</li>
-            <li>GSAP with ScrollTrigger (animations)</li>
-            <li>AOS (animate on scroll)</li>
-            <li>Google Fonts (typography)</li>
-          </ul>
-          <p>
-            We evaluate these libraries for accessibility compatibility and
-            provide fallbacks where they may introduce barriers.
-          </p>
-
-          <h2>5. How to report an issue</h2>
-          <p>
-            If you encounter an accessibility barrier on our website, or if
-            you need information in a different format, please let us know. We
-            take all feedback seriously and will work to resolve issues as
-            quickly as possible.
-          </p>
-          <ul>
-            <li>Email: <a href="mailto:hello@nuvisco.studio">hello@nuvisco.studio</a></li>
-            <li>Phone: +44 1234 567 890</li>
-            <li>Use our <a href="home-page.html#contact">contact form</a></li>
-          </ul>
-          <p>
-            Please include the page URL, a description of the issue, and the
-            assistive technology you are using (if any). We aim to respond
-            within <strong>5 working days</strong>.
-          </p>
-
-          <h2>6. Enforcement</h2>
-          <p>
-            If you are not satisfied with our response to an accessibility
-            issue, you may contact the Equality Advisory and Support Service
-            (EASS):
-          </p>
-          <ul>
-            <li>Website: <a href="https://www.equalityadvisoryservice.com" target="_blank" rel="noopener noreferrer">equalityadvisoryservice.com</a></li>
-            <li>Phone: 0808 800 0082</li>
-            <li>Textphone: 0808 800 0084</li>
-          </ul>
-
-          <h2>7. Ongoing improvements</h2>
-          <p>
-            Accessibility is an ongoing process, not a one-time checklist. We
-            regularly audit our website using both automated tools and manual
-            testing, and we prioritise accessibility in all new features and
-            content. This statement will be updated as we make improvements.
-          </p>
-
-          <h2>8. Contact us</h2>
-          <p>
-            If you have any questions about this Accessibility Statement or
-            our accessibility practices, please contact us:
-          </p>
-          <ul>
-            <li>Email: <a href="mailto:hello@nuvisco.studio">hello@nuvisco.studio</a></li>
-            <li>Phone: +44 1234 567 890</li>
-          </ul>
+      <!-- ===== Navigation ===== -->
+      <header class="nav is-scrolled" id="nav">
+        <div class="nav__inner">
+          <a href="index.html" class="nav__logo" data-magnetic>
+            <span class="nav__logo-mark"></span>
+            <span class="nav__logo-text">nuvisco</span>
+          </a>
+          <nav class="nav__links">
+            <a href="index.html#work" data-magnetic>Work</a>
+            <a href="index.html#services" data-magnetic>Services</a>
+            <a href="index.html#process" data-magnetic>Process</a>
+            <a href="index.html#about" data-magnetic>Studio</a>
+          </nav>
+          <div class="nav__actions">
+            <a href="login.html" class="nav__portal" data-magnetic>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+              Client Portal
+            </a>
+            <a href="index.html#contact" class="nav__cta" data-magnetic>Start a project</a>
+          </div>
         </div>
+      </header>
 
-        <a href="index.html" class="btn btn--ghost legal__back">
-          <span>← Back to home</span>
-        </a>
-      </div>
-    </main>
+      <!-- ===== Legal Page ===== -->
+      <main class="legal">
+        <div class="container legal__inner">
+          <span class="section-head__tag">Legal</span>
+          <h1 class="legal__title">Accessibility Statement</h1>
+          <p class="legal__updated">Last updated: 29 June 2026</p>
 
-    <!-- ===== Footer ===== -->
-    <footer class="footer">
-      <div class="container footer__inner">
-        <div class="footer__brand">
-          <span class="nav__logo-mark"></span>
-          <span>nuvisco</span>
+          <div class="legal__body">
+            <p>
+              Nuvisco is committed to making our website accessible to everyone,
+              including people with disabilities. We believe that the web should
+              be inclusive by default, and we continuously work to improve the
+              accessibility of our digital experiences.
+            </p>
+
+            <h2>1. Our commitment</h2>
+            <p>
+              We aim to conform to the
+              <strong>Web Content Accessibility Guidelines (WCAG) 2.1</strong> at
+              the <strong>AA</strong>
+              conformance level. These guidelines explain how to make web content
+              more accessible to people with a wide range of disabilities,
+              including visual, motor, cognitive, and auditory impairments.
+            </p>
+
+            <h2>2. What we have done</h2>
+            <p>
+              As part of our commitment to accessibility, we have implemented the
+              following measures on our website:
+            </p>
+            <ul>
+              <li>
+                <strong>Semantic HTML</strong> — our pages use proper heading
+                structures, landmarks, and ARIA roles where appropriate.
+              </li>
+              <li>
+                <strong>Keyboard navigation</strong> — all interactive elements
+                are reachable and operable via keyboard.
+              </li>
+              <li>
+                <strong>Reduced motion support</strong> — users who have enabled
+                "reduce motion" in their operating system will see animations
+                disabled or simplified.
+              </li>
+              <li>
+                <strong>Colour contrast</strong> — we have designed our colour
+                palette to meet WCAG AA contrast ratios for text and interactive
+                elements.
+              </li>
+              <li>
+                <strong>Responsive design</strong> — our layout adapts to all
+                screen sizes, from mobile phones to large desktop displays.
+              </li>
+              <li>
+                <strong>Form labels</strong> — all form fields have associated
+                labels for screen reader users.
+              </li>
+              <li>
+                <strong>Content Security Policy</strong> — we have implemented a
+                CSP to protect users from cross-site scripting and other security
+                risks.
+              </li>
+            </ul>
+
+            <h2>3. Known limitations</h2>
+            <p>
+              We are aware of the following accessibility limitations and are
+              actively working to address them:
+            </p>
+            <ul>
+              <li>
+                <strong>Custom cursor</strong> — our website replaces the native
+                cursor with a custom cursor on devices with a fine pointer
+                (mouse/trackpad). On touch devices and devices with a coarse
+                pointer, the native cursor is preserved. We are exploring ways to
+                make the custom cursor optional.
+              </li>
+              <li>
+                <strong>3D content</strong> — our interactive 3D models (Craft
+                Lab, Showcase) rely on WebGL and may not be fully accessible to
+                screen reader users. We provide text descriptions for each model
+                and ensure that all essential information is available in plain
+                text.
+              </li>
+              <li>
+                <strong>Preloader</strong> — the loading animation may be
+                distracting for some users. Users with "reduce motion" enabled
+                will have the preloader bypassed.
+              </li>
+              <li>
+                <strong>Focus indicators</strong> — we are reviewing our focus
+                styles to ensure they are clearly visible on all interactive
+                elements for keyboard-only users.
+              </li>
+            </ul>
+
+            <h2>4. Technologies used</h2>
+            <p>
+              Our website is built with standard HTML, CSS, and JavaScript, and
+              uses the following third-party libraries for visual effects:
+            </p>
+            <ul>
+              <li>Three.js (3D rendering)</li>
+              <li>GSAP with ScrollTrigger (animations)</li>
+              <li>AOS (animate on scroll)</li>
+              <li>Google Fonts (typography)</li>
+            </ul>
+            <p>
+              We evaluate these libraries for accessibility compatibility and
+              provide fallbacks where they may introduce barriers.
+            </p>
+
+            <h2>5. How to report an issue</h2>
+            <p>
+              If you encounter an accessibility barrier on our website, or if you
+              need information in a different format, please let us know. We take
+              all feedback seriously and will work to resolve issues as quickly as
+              possible.
+            </p>
+            <ul>
+              <li>
+                Email: <a href="mailto:hello@nuvisco.com">hello@nuvisco.com</a>
+              </li>
+              <li>Phone: +44 7504 541615</li>
+              <li>Use our <a href="index.html">contact form</a></li>
+            </ul>
+            <p>
+              Please include the page URL, a description of the issue, and the
+              assistive technology you are using (if any). We aim to respond
+              within <strong>5 working days</strong>.
+            </p>
+
+            <h2>6. Enforcement</h2>
+            <p>
+              If you are not satisfied with our response to an accessibility
+              issue, you may contact the Equality Advisory and Support Service
+              (EASS):
+            </p>
+            <ul>
+              <li>
+                Website:
+                <a
+                  href="https://www.equalityadvisoryservice.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >equalityadvisoryservice.com</a
+                >
+              </li>
+              <li>Phone: 0808 800 0082</li>
+              <li>Textphone: 0808 800 0084</li>
+            </ul>
+
+            <h2>7. Ongoing improvements</h2>
+            <p>
+              Accessibility is an ongoing process, not a one-time checklist. We
+              regularly audit our website using both automated tools and manual
+              testing, and we prioritise accessibility in all new features and
+              content. This statement will be updated as we make improvements.
+            </p>
+
+            <h2>8. Contact us</h2>
+            <p>
+              If you have any questions about this Accessibility Statement or our
+              accessibility practices, please contact us:
+            </p>
+            <ul>
+              <li>
+                Email: <a href="mailto:hello@nuvisco.com">hello@nuvisco.com</a>
+              </li>
+              <li>Phone: +44 7504 541615</li>
+            </ul>
+          </div>
+
+          <a href="index.html" class="btn btn--ghost legal__back">
+            <span>← Back to home</span>
+          </a>
         </div>
-        <nav class="footer__links">
-          <a href="home-page.html#work">Work</a>
-          <a href="home-page.html#services">Services</a>
-          <a href="home-page.html#about">Studio</a>
-          <a href="home-page.html#contact">Contact</a>
-        </nav>
-        <div class="footer__legal">
-          <a href="privacy-policy.html">Privacy Policy</a>
-          <a href="terms-and-conditions.html">Terms & Conditions</a>
-          <a href="accessibility-statement.html">Accessibility</a>
+      </main>
+
+      <!-- ===== Footer ===== -->
+      <footer class="footer">
+        <div class="container footer__inner">
+          <div class="footer__brand">
+            <span class="nav__logo-mark"></span>
+            <span>nuvisco</span>
+          </div>
+          <nav class="footer__links">
+            <a href="index.html#work" data-magnetic>Work</a>
+            <a href="index.html#services" data-magnetic>Services</a>
+            <a href="index.html#about" data-magnetic>Studio</a>
+            <a href="index.html#contact" data-magnetic>Contact</a>
+          </nav>
+          <div class="footer__social">
+            <a href="#" data-magnetic>Instagram</a>
+            <a href="#" data-magnetic>Dribbble</a>
+            <a href="#" data-magnetic>LinkedIn</a>
+          </div>
+          <div class="footer__legal">
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="terms-and-conditions.html">Terms & Conditions</a>
+            <a href="accessibility-statement.html">Accessibility</a>
+          </div>
+          <p class="footer__copy">
+            © 2026 Nuvisco. Crafted with obsession.
+          </p>
         </div>
-        <p class="footer__copy">
-          © 2026 nuvisco Digital Craft Studio. Crafted with obsession.
-        </p>
-      </div>
-    </footer>
-  </body>
-</html>
+      </footer>
+
+      <!-- ===== Libraries ===== -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous"></script>
+      <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" crossorigin="anonymous"></script>
+
+      <!-- Custom Cursor -->
+      <script src="cursor.js"></script>
+
+      <!-- App -->
+      <script src="home-page-js.js"></script>
+    </body>
+  </html>
