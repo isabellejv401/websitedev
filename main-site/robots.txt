@@ -7,5 +7,19 @@ Disallow: /reset-password.html
 
 Sitemap: https://nuvisco.com/sitemap.xml
 
-# AI-readable information:
-# https://nuvisco.com/llms.txt
+AI-readable information:
+https://nuvisco.com/llms.txt
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: *
+Allow: /
+Disallow: /dashboard.html
+...
