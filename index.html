@@ -1,0 +1,1300 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>BrandName — Beautiful Interface</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@400;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* Use a CSS custom property for viewport height to avoid cross-browser issues (mobile bars, Firefox quirks) */
+    :root {
+      --vh: 1vh;
+      /* gets updated in JS on load/resize */
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #111;
+      font-family: sans-serif;
+    }
+
+    .sticky-track {
+      height: 100vh;
+      overflow: hidden
+    }
+
+    .parallax-container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: visible;
+
+      background-image: url('images/anh-phan-zxUyEWhcQaE-unsplash.jpg');
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-position: center 40%;
+    }
+
+    .parallax-text-box {
+      background: #000000;
+      position: absolute;
+      inset: 0;
+
+      z-index: 1;
+
+      color: white;
+
+      mix-blend-mode: multiply;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin: 0;
+
+      font-family: Arial Black, Impact, sans-serif;
+
+      font-size: clamp(4rem, 18vw, 13rem);
+
+      font-weight: 900;
+
+      letter-spacing: 5px;
+      line-height: .8;
+
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .website-content {
+      position: relative;
+      z-index: 1;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+      padding: 0 10%;
+
+    }
+
+    .mountain-bg {
+      position: absolute;
+
+      top: -10%;
+      left: -5%;
+
+      width: 110%;
+      height: 120%;
+
+      object-fit: cover;
+
+      z-index: -1;
+    }
+
+
+
+    .right-text-box {
+      background-color: rgba(0, 0, 0, 0.75);
+      color: #ffffff;
+
+      padding: 60px 50px;
+
+      width: 100%;
+      max-width: 550px;
+      min-height: 300px;
+
+      border-radius: 12px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+
+      font-family: Arial, sans-serif;
+      box-sizing: border-box;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: left;
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      line-height: 1.1;
+      overflow-wrap: break-word;
+    }
+
+    /* Use calc(var(--vh) * 100) for consistent full-height behaviour across browsers (incl. Firefox)
+     and fall back to 100vh for older browsers. Also add 3D/painting hints to avoid flicker. */
+    .sticky-track,
+    .parallax-container {
+      position: relative;
+      width: 100%;
+      height: calc(var(--vh, 1vh) * 100);
+      min-height: 100vh;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      -webkit-transform-style: preserve-3d;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    .slideshow-inner-container {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+    }
+
+    .slide-one-container::before,
+    .slide-two-container::before,
+    .slide-three-container::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 120px;
+
+      background: linear-gradient(to bottom,
+          rgba(0, 0, 0, .65),
+          transparent);
+
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    /* Use translate3d and will-change for smoother, more consistent transforms in Firefox */
+    .slide-one-container,
+    .slide-two-container,
+    .slide-three-container {
+      position: absolute;
+      width: 100%;
+      height: calc(var(--vh, 1vh) * 100);
+      min-height: 100vh;
+      transform: translate3d(0, 100%, 0);
+      will-change: transform, opacity;
+      backface-visibility: hidden;
+    }
+
+    /* Wrapper for the scroll animation trigger */
+    .scroll-slides-wrapper {
+      position: relative;
+      inset: 0;
+      z-index: 10;
+      height: 300vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+
+    /* Fixes the spacing and font size of the title */
+    .right-text-box h2 {
+      margin: 0 0 20px 0;
+      font-size: 2.8rem;
+      font-family: 'Arial Black', Impact, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      line-height: 1.1;
+      margin-top: 0;
+      color: #ffffff;
+    }
+
+    .right-text-box p {
+      margin: 0;
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: #dddddd;
+      white-space: normal;
+    }
+
+    :root {
+      --bg: #0f1724;
+      --card: #0f1724;
+      --muted: #94a3b8;
+      --accent: #ffd166;
+      --accent-2: #06b6d4;
+      --glass: rgba(255, 255, 255, 0.04);
+      --radius: 14px;
+      --max-width: 1200px;
+      --container-padding: 24px;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      height: 100%
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg, #071024 0%, #081026 100%);
+      color: #e6eef8;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--container-padding)
+    }
+
+    .site-header {
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      z-index: 60;
+
+      background: linear-gradient(180deg,
+          rgba(7, 10, 20, 0.75),
+          rgba(7, 10, 20, 0.35));
+
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      max-width: 1100px;
+      margin: 0 auto;
+
+      padding: 16px 20px;
+      /* 👈 THIS is the key change */
+      min-height: 80px;
+      /* 👈 makes it feel like a real header bar */
+
+      gap: 16px;
+    }
+
+    .logo {
+      font-family: "Playfair Display", serif;
+      font-weight: 700;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 20px
+    }
+
+    .nav {
+      margin-left: 8px;
+      display: flex;
+      gap: 16px;
+      align-items: center
+    }
+
+    .nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+      padding: 4px 0;
+    }
+
+    .nav a:hover {
+      color: #fff;
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    }
+
+    .cta {
+      margin-left: auto;
+      background: linear-gradient(90deg, #ffd166, #06b6d4);
+      padding: 10px 14px;
+      border-radius: 10px;
+      color: #071024;
+      text-decoration: none;
+      font-weight: 700;
+
+      transition: transform 0.4s ease, box-shadow .2s ease, filter .2s ease;
+    }
+
+    .cta:hover {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow:
+        0 0 10px rgba(255, 209, 102, 0.5),
+        0 0 25px rgba(6, 182, 212, 0.35),
+        0 12px 20px rgba(0, 0, 0, 0.4);
+      filter: brightness(1.08);
+    }
+
+    @media (max-width: 768px) {
+      .nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 6px;
+      }
+
+      .site-header {
+        padding: 0;
+      }
+
+      .nav a {
+        padding: 6px 8px;
+        font-size: 0.9rem;
+      }
+
+
+      .logo {
+        font-size: 1.4rem;
+      }
+
+      .cta {
+        width: 100%;
+        margin: 0;
+        text-align: center;
+      }
+
+      .header-inner {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 16px;
+        gap: 10px;
+        min-height: 64px;
+      }
+
+
+      .header-inner {
+        justify-content: space-between;
+      }
+    }
+
+    @media (max-width: 768px) {
+
+      .website-content {
+        justify-content: center;
+        padding: 0;
+      }
+
+      body {
+        padding-top: 170px;
+        /* prevents overlap under fixed header */
+      }
+
+
+      .right-text-box {
+        max-width: 100%;
+        width: 100%;
+        padding: 32px 24px;
+        min-height: auto;
+      }
+
+      .right-text-box h2 {
+        font-size: 2rem;
+        line-height: 1;
+        letter-spacing: 0;
+      }
+
+      .right-text-box p {
+        font-size: 1rem;
+      }
+
+    }
+
+    @media (max-width:768px) {
+
+      .hero {
+        min-height: 100svh;
+        padding-top: 90px;
+        padding-bottom: 40px;
+      }
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 30;
+      padding-top: 100px
+    }
+
+    .intro {
+      max-width: 640px
+    }
+
+    .intro h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(28px, 6vw, 56px);
+      line-height: 1.02;
+      margin: 0 0 12px;
+      color: #fff;
+      font-size: 2.5rem;
+      line-height: 1.05;
+    }
+
+    .lead {
+      color: var(--muted);
+      margin: 0 0 18px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      overflow-wrap: break-word;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 12px
+    }
+
+    @media (max-width: 480px) {
+      .hero-cta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+      will-change: transform;
+    }
+
+    /* Hover lift effect */
+    .btn:hover {
+      transform: translateY(-4px);
+    }
+
+    /* Primary button (Explore) hover glow */
+    .btn.primary:hover {
+      box-shadow: 0 12px 30px rgba(255, 209, 102, 0.25);
+      filter: brightness(1.05);
+    }
+
+    /* Ghost button (Learn more) hover effect */
+    .btn.ghost {
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, color .25s ease;
+    }
+
+    .btn.ghost:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+      box-shadow: 0 12px 30px rgba(6, 182, 212, 0.10);
+    }
+
+    .btn.primary {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      color: #071024
+    }
+
+    .btn.ghost {
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--muted);
+      background: transparent
+    }
+
+    .image-track {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      z-index: 0;
+    }
+
+    .bg-image {
+      flex: 0 0 auto;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      filter: contrast(110%) saturate(110%);
+      transform-origin: center center
+    }
+
+    .section {
+      padding: 80px 0
+    }
+
+    .features h2,
+    .about h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 28px;
+      margin-bottom: 18px
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px
+    }
+
+    .card {
+      background: linear-gradient(180deg,
+          rgba(255, 255, 255, 0.06),
+          rgba(255, 255, 255, 0.02));
+
+      border: 1px solid rgba(255, 255, 255, 0.10);
+
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.55);
+
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(10px);
+
+      padding: 22px;
+      border-radius: 12px;
+
+      /* smooth lift on hover/focus */
+      transition: transform .45s cubic-bezier(.2, .8, .2, 1), box-shadow .45s cubic-bezier(.2, .8, .2, 1);
+      will-change: transform, box-shadow;
+    }
+
+    /* Hover / keyboard focus lift */
+    .card:hover,
+    .card:focus-within {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.65);
+    }
+
+    /* Disable hover lift on touch devices where hover isn't available */
+    @media (hover: none) {
+
+      .card:hover,
+      .card:focus-within {
+        transform: none;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.55);
+      }
+    }
+
+    /* Respect reduced motion preference */
+    @media (prefers-reduced-motion: reduce) {
+      .card {
+        transition: none;
+        transform: none !important;
+      }
+    }
+
+    /* Our Process Section */
+    .process-section {
+      padding: 120px 0;
+      position: relative;
+      background: linear-gradient(180deg, #081026 0%, #071024 100%);
+      overflow: hidden;
+    }
+
+    .process-section h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 36px;
+      text-align: center;
+      margin-bottom: 16px;
+      color: #fff;
+    }
+
+    .process-lead {
+      max-width: 600px;
+      margin: 0 auto 60px auto;
+      text-align: center;
+      color: var(--muted);
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .process-scroller {
+      overflow-x: auto;
+      overflow-y: hidden;
+      width: 100%;
+      position: relative;
+      scrollbar-width: none;
+      /* Firefox */
+    }
+
+    .process-scroller::-webkit-scrollbar {
+      display: none;
+      /* Chrome/Safari */
+    }
+
+    .scroll-hint {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 18px;
+      pointer-events: none;
+    }
+
+    .scroll-indicator {
+      margin-top: 25px;
+      display: flex;
+      justify-content: center;
+      pointer-events: none;
+      width: 100%;
+      align-items: center;
+    }
+
+    .scroll-line {
+      width: 140px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* this is the "progress" */
+    .scroll-fill {
+      height: 100%;
+      width: 0%;
+      background: rgba(255, 255, 255, 0.5);
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    .scroll-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.8);
+
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      left: 0;
+    }
+
+    .process-track {
+      display: flex;
+      gap: 40px;
+      padding: 40px 10vw;
+      /* Increased padding for side clearance */
+      width: max-content;
+    }
+
+    .process-card {
+      flex: 0 0 auto;
+      width: 400px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 40px 32px;
+      /* Increased top/bottom padding */
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+      will-change: transform;
+    }
+
+    .process-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .card-content .card-step {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .card-content h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.75rem;
+      color: #fff;
+      margin: 0 0 12px 0;
+    }
+
+    .card-content p {
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Contact Section Upgrade */
+    .contact-section {
+      background: linear-gradient(180deg,
+          rgba(255, 255, 255, 0.04),
+          rgba(255, 255, 255, 0.015));
+
+      border: 1px solid rgba(255, 255, 255, 0.08);
+
+      border-radius: 22px;
+
+      /* increase vertical spacing while preserving container horizontal padding */
+      padding: 80px var(--container-padding);
+
+      /* ensure extra separation from the next section */
+      margin-bottom: 48px;
+
+      box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.55),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+
+      position: relative;
+
+    }
+
+
+
+    .contact-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+      opacity: 0.03;
+      pointer-events: none;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 100px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 920px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+      }
+
+      .contact-info h2 {
+        font-size: clamp(2rem, 8vw, 2.5rem);
+      }
+
+      .contact-info p {
+        font-size: 1.2rem;
+      }
+
+      .contact-form {
+        padding: 40px;
+      }
+    }
+
+    .contact-info h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      line-height: 1.1;
+      margin-bottom: 24px;
+      background: linear-gradient(90deg, #fff, var(--muted));
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .contact-info p {
+      font-size: 1.4rem;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 500px;
+    }
+
+    .contact-form {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+      padding: 60px;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      box-shadow: -3px 30px 60px rgba(0, 0, 0, 0.925);
+      backdrop-filter: blur(20px);
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 16px;
+      border-radius: 10px;
+      color: #fff;
+      font-family: inherit;
+      font-size: 1rem;
+      transition: border-color 0.3s ease, background 0.3s ease;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .contact-form button {
+      margin-top: 10px;
+      padding: 18px;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Core Values / Why Us Section */
+    .values-section {
+      padding: 120px 0;
+      background: #071024;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    @media (max-width: 920px) {
+      .values-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .value-item {
+        padding: 30px 20px;
+      }
+    }
+
+    .value-item {
+      padding: 40px;
+      border-left: 1px solid rgba(255, 255, 255, 0.1);
+      transition: border-color 0.4s ease;
+    }
+
+    .value-item:hover {
+      border-color: var(--accent);
+    }
+
+    .value-item h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+      color: var(--accent);
+    }
+
+    .value-item p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* Final About Section */
+    .final-about-section {
+      padding: 14px 0;
+      background: url("https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1400&q=80") center/cover;
+      position: relative;
+      text-align: center;
+    }
+
+    .final-about-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(7, 16, 36, 0.8), rgba(7, 16, 36, 0.95));
+    }
+
+    .final-about-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .final-about-content h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .final-about-content p {
+      font-size: 1.25rem;
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto 32px auto;
+      line-height: 1.6;
+    }
+
+    /* Footer Redesign */
+    .footer {
+      background: #071024;
+      padding-top: 70px;
+      padding-bottom: 110px;
+      color: var(--muted);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    @media (max-width: 920px) {
+      .footer-inner {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 40px;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .footer-inner .logo {
+        font-size: 40px;
+      }
+    }
+
+    .footer-inner .logo {
+      font-size: 52px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 60px;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 800;
+      transition: color 0.3s ease;
+      font-size: 20px;
+    }
+
+    @media (max-width: 920px) {
+      .footer-links a {
+        font-size: 16px;
+      }
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 16px;
+    }
+
+    .footer-social a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .footer-social a:hover {
+      color: var(--accent);
+      transform: scale(1.1);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+
+      display: flex;
+      align-items: center;
+      /* Vertical center */
+    }
+  </style>
+  <script defer src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+  <script defer src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="logo" href="home-page.html">BrandName</a>
+
+      <nav class="nav" aria-label="Main navigation">
+        <a href="features.html">Features</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <a class="cta" href="contact.html">Get in touch</a>
+    </div>
+  </header>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <!-- AOS will be initialized from script.js on window load so it runs after the DOM is ready -->
+
+  <main>
+    <section class="hero" aria-label="Hero">
+      <div class="hero-inner container">
+        <div class="intro">
+          <h1>PAGE/SITE WORK IN PROGRESS</h1>
+          <p class="lead">We build beautiful, high-performance websites and digital experiences that connect with your
+            audience and elevate your brand.</p>
+          <div class="hero-cta">
+            <a class="btn primary" href="features.html">Our Work</a>
+            <a class="btn ghost" href="contact.html">Get in Touch</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="image-track" aria-hidden="true">
+        <img class="bg-image"
+          src="https://images.unsplash.com/photo-1549880338-65ddcdfd017b?auto=format&fit=crop&w=1400&q=80"
+          alt="Landscape 1" loading="lazy">
+        <img class="bg-image"
+          src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1400&q=80"
+          alt="Landscape 2" loading="lazy">
+        <img class="bg-image"
+          src="https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1400&q=80"
+          alt="Landscape 3" loading="lazy">
+        <img class="bg-image" src="images/anh-phan-zxUyEWhcQaE-unsplash.jpg" alt="Landscape 4" loading="lazy">
+      </div>
+    </section>
+
+    <section id="features" class="section features container">
+      <h2>What We Do</h2>
+      <div class="grid">
+        <article class="card" data-aos="flip-down" data-aos-delay="0">
+          <h3>Web Design & Development</h3>
+          <p>Creating stunning, responsive websites that are as functional as they are beautiful.</p>
+        </article>
+        <article class="card" data-aos="flip-down" data-aos-delay="150">
+          <h3>Brand Identity</h3>
+          <p>Shaping unique brand identities that resonate with your target audience and stand the test of time.</p>
+        </article>
+        <article class="card" data-aos="flip-down" data-aos-delay="300">
+          <h3>Digital Strategy</h3>
+          <p>Providing data-driven insights to help you navigate the digital landscape and achieve your goals.</p>
+        </article>
+      </div>
+    </section>
+
+
+    <div class="parallax-3d-viewport"></div>
+
+    <div class="sticky-track">
+
+      <div class="parallax-container">
+
+        <h1 class="parallax-text-box">
+          BUSINESS STARTS HERE.
+        </h1>
+
+
+        <div class="scroll-slides-wrapper">
+
+          <div class="slide-one-container">
+
+            <div class="website-content">
+
+              <img class="mountain-bg" src="images/anh-phan-zxUyEWhcQaE-unsplash.jpg">
+
+              <div class="right-text-box">
+                <h2>Increase Clientele</h2>
+                <p>
+                  Increase your clientele, number of customers, and overall revenue with our expert solutions.
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="slide-two-container">
+
+            <div class="website-content">
+
+              <img class="mountain-bg" src="images/mountain.jpg">
+
+
+              <div class="right-text-box">
+                <h2>SEO Optimisation</h2>
+                <p>
+                  Rank higher on Google and generate more organic traffic for your business.
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="slide-three-container">
+
+            <div class="website-content">
+
+              <img class="mountain-bg" src="images/river.jpg">
+
+              <div class="right-text-box">
+                <h2>Grow Your Brand</h2>
+                <p>
+                  Build a stronger online presence and turn visitors into loyal customers.
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+    <section id="process" class="section process-section" data-aos="fade-up">
+      <div class="container">
+        <h2>Our Process</h2>
+        <p class="process-lead">We follow a proven, collaborative process to ensure we deliver exceptional results every
+          time. From initial discovery to final deployment, we're with you every step of the way.</p>
+      </div>
+      <div class="process-scroller">
+        <div class="scroll-indicator-dot"></div>
+        <div class="process-track">
+          <div class="process-card">
+            <div class="card-content">
+              <span class="card-step">01</span>
+              <h3>Discovery & Strategy</h3>
+              <p>We start by understanding your business, goals, and audience. This phase is all about research,
+                analysis, and creating a strategic plan for success.</p>
+            </div>
+          </div>
+          <div class="process-card">
+            <div class="card-content">
+              <span class="card-step">02</span>
+              <h3>Design & Prototyping</h3>
+              <p>Next, we create wireframes and high-fidelity designs. We focus on user experience (UX) and creating a
+                beautiful, intuitive interface (UI) that your users will love.</p>
+            </div>
+          </div>
+          <div class="process-card">
+            <div class="card-content">
+              <span class="card-step">03</span>
+              <h3>Development & Testing</h3>
+              <p>Our developers bring the designs to life using clean, efficient code. We rigorously test across devices
+                and browsers to ensure a flawless experience.</p>
+            </div>
+          </div>
+          <div class="process-card">
+            <div class="card-content">
+              <span class="card-step">04</span>
+              <h3>Launch & Review</h3>
+              <p>We perform a thorough final check before pushing live. Every detail is polished to ensure your website
+                performs perfectly from day one.</p>
+            </div>
+          </div>
+          <div class="process-card">
+            <div class="card-content">
+              <span class="card-step">05</span>
+              <h3>Optimization & Growth</h3>
+              <p>After launch, we monitor performance and offer ongoing support and analytics to help you scale and
+                reach your long-term business goals.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-indicator">
+        <div class="scroll-line">
+          <div class="scroll-fill"></div>
+          <div class="scroll-dot"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section values-section">
+      <div class="container">
+        <div class="values-grid">
+          <div class="value-item" data-aos="fade-up">
+            <h3>Uncompromising Quality</h3>
+            <p>We believe that every pixel and every line of code matters. Our commitment to excellence ensures that
+              your digital presence is flawless, performant, and built to last.</p>
+          </div>
+          <div class="value-item" data-aos="fade-up" data-aos-delay="100">
+            <h3>Strategic Innovation</h3>
+            <p>By looking for unique opportunities in every project, our goal is to give you a competitive edge through
+              creative problem-solving and modern tech.</p>
+          </div>
+          <div class="value-item" data-aos="fade-up" data-aos-delay="200">
+            <h3>Partnership First</h3>
+            <p>As a collaborator, we share your passion for your business and work tirelessly to ensure our digital
+              solutions drive real, measurable growth.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact-section container" data-aos="fade-up">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h2>Let's Build the Future.</h2>
+          <p>Your vision, our expertise. Let's start the conversation about your next project.</p>
+        </div>
+        <form class="contact-form" action="#" method="POST">
+          <label for="name" class="sr-only">Your Name</label>
+          <input type="text" id="name" placeholder="Your Name" required>
+          <label for="email" class="sr-only">Your Email</label>
+          <input type="email" id="email" placeholder="Your Email" required>
+          <label for="message" class="sr-only">Your Message</label>
+          <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+          <button type="submit" class="btn primary">Send Message</button>
+        </form>
+      </div>
+    </section>
+
+
+    <section id="about" class="section final-about-section">
+      <div class="container final-about-content">
+        <h2 data-aos="fade-up">Driven by Passion, Defined by Results.</h2>
+        <p data-aos="fade-up" data-aos-delay="100">We are a boutique digital agency with a relentless focus on quality.
+          We believe that the best digital experiences are born from a deep understanding of your brand and your
+          audience. Let's create something exceptional together.</p>
+        <div data-aos="fade-up" data-aos-delay="200">
+          <a href="about.html" class="btn primary">More About Us</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <a href="#" class="logo">BrandName</a>
+        <div class="footer-links">
+          <a href="#features">Features</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="privacy-policy.html">Privacy Policy</a>
+        </div>
+        <div class="footer-social">
+          <a href="#" aria-label="Twitter">Tw</a>
+          <a href="#" aria-label="Dribbble">Dr</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script src="script.js" defer></script>
+
+</body>
+
+</html>
