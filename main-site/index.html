@@ -116,21 +116,23 @@
           <span class="nav__logo-mark"></span>
           <span class="nav__logo-text">nuvisco</span>
         </a>
-        <nav class="nav__links">
+        <nav class="nav__links" aria-label="Main navigation">
+          <a href="services.html" data-magnetic>Services &amp; Pricing</a>
+          <a href="about.html" data-magnetic>About</a>
+          <a href="contact.html" data-magnetic>Contact</a>
           <a href="#work" data-magnetic>Work</a>
-          <a href="#services" data-magnetic>Services</a>
-          <a href="#process" data-magnetic>Process</a>
-          <a href="#about" data-magnetic>Studio</a>
         </nav>
         <div class="nav__actions">
           <a href="login.html" class="nav__portal" data-magnetic>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
             Client Portal
           </a>
-          <a href="#contact" class="nav__cta" data-magnetic>Start a project</a>
+          <a href="contact.html" class="nav__cta" data-magnetic>Start a project</a>
         </div>
       </div>
     </header>
+
+    <main id="main-content">
 
     <!-- ===== Hero ===== -->
     <section class="hero" id="hero">
@@ -160,7 +162,7 @@
           <a href="#work" class="btn btn--primary" data-magnetic>
             <span>View our work</span>
           </a>
-          <a href="#contact" class="btn btn--ghost" data-magnetic>
+          <a href="contact.html" class="btn btn--ghost" data-magnetic>
             <span>Book a call</span>
           </a>
         </div>
@@ -628,8 +630,7 @@
             We specialise in helping brands increase sales by creating high-end,
             luxury services optimised for conversion and user retention.
           </p>
-          <a
-            href="#contact"
+          <a href="contact.html"
             class="btn btn--primary"
             data-aos="fade-up"
             data-aos-delay="300"
@@ -841,6 +842,8 @@
       </div>
     </section>
 
+    </main>
+
     <!-- ===== Footer ===== -->
     <footer class="footer">
       <div class="container footer__inner">
@@ -848,17 +851,13 @@
           <span class="nav__logo-mark"></span>
           <span>nuvisco</span>
         </div>
-        <nav class="footer__links">
-          <a href="#work" data-magnetic>Work</a>
-          <a href="#services" data-magnetic>Services</a>
-          <a href="#about" data-magnetic>Studio</a>
-          <a href="#contact" data-magnetic>Contact</a>
+        <nav class="footer__links" aria-label="Footer navigation">
+          <a href="index.html" data-magnetic>Home</a>
+          <a href="services.html" data-magnetic>Services &amp; Pricing</a>
+          <a href="about.html" data-magnetic>About</a>
+          <a href="contact.html" data-magnetic>Contact</a>
         </nav>
-        <div class="footer__social">
-          <a href="#" data-magnetic>Instagram</a>
-          <a href="#" data-magnetic>Dribbble</a>
-          <a href="#" data-magnetic>LinkedIn</a>
-        </div>
+
         <div class="footer__legal">
           <a href="privacy-policy.html">Privacy Policy</a>
           <a href="terms-and-conditions.html">Terms & Conditions</a>
@@ -875,6 +874,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" crossorigin="anonymous"></script>
+
+    <!-- Accessibility -->
+    <script src="accessibility.js"></script>
 
     <!-- App -->
     <script src="home-page-js.js"></script>

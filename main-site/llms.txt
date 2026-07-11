@@ -1,0 +1,155 @@
+# Nuvisco — Digital Craft Studio
+
+> Nuvisco is a digital craft studio building visually unreal websites, immersive 3D experiences, and SEO-driven growth for ambitious brands. Founded in 2026 by Jacob Williams, Josh Geo, and Isabelle Viles. Based in Cambridge & Cambridgeshire, UK.
+
+## Core Pages
+
+- Homepage: https://nuvisco.com/
+- Services: https://nuvisco.com/services.html
+- About: https://nuvisco.com/about.html
+- Contact: https://nuvisco.com/contact.html
+- Privacy Policy: https://nuvisco.com/privacy-policy.html
+- Terms & Conditions: https://nuvisco.com/terms-and-conditions.html
+- Accessibility Statement: https://nuvisco.com/accessibility-statement.html
+
+## Services
+
+Nuvisco provides four core services:
+
+### 1. Immersive Web Design
+- Bespoke layouts and typography
+- Fluid scroll-triggered animations
+- Mobile-first responsive design
+- Conversion-optimised user flows
+- Every build is one-of-one, designed from a blank canvas
+
+### 2. 3D & WebGL Development
+- Interactive 3D product showcases
+- Scroll-driven 3D storytelling
+- Custom shader effects and particles
+- WebGL performance optimisation
+- Built on Three.js and GSAP
+
+### 3. SEO Engineering
+- Technical SEO audits and implementation
+- Core Web Vitals optimisation
+- Structured data and schema markup
+- AI search optimisation (llms.txt)
+- Clean semantics for search engine visibility
+
+### 4. Brand & Art Direction
+- Brand identity and visual systems
+- Art direction and mood boards
+- Motion language and design tokens
+- Style guides and brand documentation
+
+## Pricing
+
+- **Website Project**: £1,000 — complete custom-built website including design, development, SEO setup, and launch. Payment is 50% upfront to begin the project, with the remaining 50% due upon completion and before launch.
+- **Maintenance Plan**: £200 every 4 weeks — ongoing updates, security patches, performance monitoring, and priority support
+
+## About
+
+Nuvisco is a collective of designers, engineers, and motion artists who treat every pixel like it matters. The studio was founded in 2026 by:
+
+- **Jacob Williams** — Co-Founder, Design & Art Direction
+- **Josh Geo** — Co-Founder, 3D & WebGL Development
+- **Isabelle Viles** — Co-Founder, SEO & Engineering
+
+### What Makes Nuvisco Different
+- No templates — every build is one-of-one
+- 3D is native, not bolted on
+- Core Web Vitals in the green, sub-second loads
+- Structured data, clean semantics, and technical SEO depth
+- Every pixel, type, rhythm, and easing is treated like an instrument
+
+## Contact
+
+- Email: hello@nuvisco.com
+- Phone: +44 7504 541615
+- Location: Cambridge & Cambridgeshire, UK
+- Availability:
+  - Monday-Friday: 18:00-21:00 GMT
+  - Weekends: 09:00-21:00 GMT
+- Response time: Within one business day
+
+## Frequently Asked Questions
+
+### How much does a website cost?
+A complete website project costs £1,000. Payment is 50% upfront to begin the project, with the remaining 50% due upon completion and before launch. An optional maintenance plan is available for £200 every 4 weeks.
+
+### How long does it take to build a website?
+For small to medium-sized businesses, Nuvisco websites are typically completed within around 2 weeks, depending on requirements and feedback speed.
+
+### Do I need a new website or a redesign?
+Nuvisco focuses on creating custom websites from the ground up. This allows greater control over design, performance, functionality, and user experience.
+
+### Will my new website get me more customers?
+A website cannot guarantee customers, but a professionally designed website with strong messaging, trust signals, clear calls-to-action, and good user experience can help businesses generate more enquiries.
+
+### What makes a website convert visitors into customers?
+High-converting websites typically include: clear messaging, strong calls-to-action, mobile optimisation, fast loading speeds, trust signals such as reviews and testimonials, and simple navigation.
+
+### Will my website rank on Google?
+No company can guarantee Google rankings. However, Nuvisco builds websites with SEO best practices, strong structure, performance optimisation, and content organisation to improve search engine visibility.
+
+### What platforms do you build websites with?
+Nuvisco creates custom websites from scratch, providing full control over design and functionality.
+
+### Do you build websites for small businesses?
+Yes. Nuvisco specialises in helping small and local businesses create a more professional online presence.
+
+### Can you redesign my website while keeping my branding?
+Yes. Existing branding elements such as logos, colours, fonts, images, and business identity can be incorporated into a new website.
+
+### Do I need a website if I already get customers from referrals?
+A website can help businesses establish credibility, attract new customers, and make it easier to scale beyond referrals.
+
+### Why isn't my current website generating leads?
+Common issues include: weak calls-to-action, poor mobile experience, slow performance, lack of trust signals, poor messaging, and weak SEO foundations.
+
+### Do you create websites for every industry?
+Nuvisco works with many industries, particularly local service businesses. Each project is assessed individually.
+
+### Can you improve my website's mobile experience?
+Yes. Mobile optimisation is a core part of Nuvisco's website development process.
+
+### How do I know if my website is outdated?
+A website may need updating if: it looks outdated compared with competitors, it is difficult to navigate, it does not work well on mobile, it does not generate enquiries, or it lacks modern design standards.
+
+### What makes a website look trustworthy?
+Trustworthy websites usually have: professional design, clear information, consistent branding, reviews and testimonials, easy navigation, fast performance, and strong user experience.
+
+## Ideal Clients
+
+Nuvisco specialises in creating websites for:
+- Local service businesses
+- Tradespeople
+- Automotive businesses
+- Detailing companies
+- Professional services
+- Hospitality businesses
+- Beauty and lifestyle brands
+- Small businesses looking to improve their online presence
+
+## Website Design Process
+
+1. Business and website analysis
+2. Custom homepage concept and design direction
+3. Website development
+4. Mobile optimisation and performance improvements
+5. SEO and AI search optimisation setup
+6. Launch and optional ongoing maintenance
+
+## Technical Details
+
+- Built with vanilla JavaScript, Three.js, GSAP, and AOS
+- Custom cursor with magnetic hover effects
+- 3D particle fields and interactive WebGL scenes
+- Responsive design with mobile-first approach
+- SEO-optimised with structured data (JSON-LD)
+- WCAG 2.1 AA accessibility compliant
+- Keyboard-navigable with skip-to-content links
+- Focus-visible indicators for keyboard users
+- Screen reader friendly with ARIA labels and roles
+- Reduced motion support via prefers-reduced-motion

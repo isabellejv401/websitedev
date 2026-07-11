@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <link rel="canonical" href="https://nuvisco.com/login.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Client Login — nuvisco</title>
+    <meta
+      name="description"
+      content="Sign in to your nuvisco client dashboard to follow your project's progress, deliverables and timeline."
+    />
+    <!--
+      Supabase-wired: login, forgot/reset password, and session recovery
+      are all handled via the Supabase client library loaded from esm.sh.
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://esm.sh https://*.esm.sh; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://vyrurccfhlxnqapfaiur.supabase.co https://*.supabase.co; frame-ancestors 'none'; base-uri 'self'; form-action 'self';"
+    />
+
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="nuvisco" />
+    <meta property="og:title" content="Client Login — nuvisco" />
+    <meta property="og:description" content="Sign in to your nuvisco client dashboard to follow your project's progress, deliverables and timeline." />
+    <meta property="og:url" content="https://nuvisco.com/login.html" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:image" content="https://nuvisco.com/images/logo.png" />
+    <meta property="og:image:type" content="image/png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://nuvisco.com/images/logo.png" />
+    <meta name="twitter:title" content="Client Login — nuvisco" />
+    <meta name="twitter:description" content="Sign in to your nuvisco client dashboard to follow your project's progress, deliverables and timeline." />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/logo.png?v=2" />
+
+    <!-- Styles: shared design system first, then login-specific -->
+    <link rel="stylesheet" href="home-page-css.css" />
+    <link rel="stylesheet" href="login-page.css" />
+  </head>
+  <body>
+    <!-- ===== Custom Cursor ===== -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
+
+    <!-- ===== Navigation ===== -->
+    <header class="nav is-scrolled">
+      <div class="nav__inner">
+        <a href="index.html" class="nav__logo">
+          <span class="nav__logo-mark"></span>
+          <span class="nav__logo-text">nuvisco</span>
+        </a>
+        <a href="index.html" class="nav__cta">Back to site</a>
+      </div>
+    </header>
+
+    <!-- ===== Login ===== -->
+    <main class="login" id="main-content">
+      <div class="login__grid" aria-hidden="true"></div>
+      <div class="login__glow login__glow--1" aria-hidden="true"></div>
+      <div class="login__glow login__glow--2" aria-hidden="true"></div>
+
+      <div class="login__card">
+        <div class="login__brand">
+          <span class="nav__logo-mark"></span>
+          <span>nuvisco</span>
+        </div>
+
+        <span class="login__eyebrow">Client Portal</span>
+        <h1 class="login__title">Welcome <em>back.</em></h1>
+        <p class="login__sub">Sign in to access your client dashboard.</p>
+
+        <!-- Supabase-wired form: login, forgot password modal, and password recovery. -->
+        <form class="login__form" id="loginForm" novalidate>
+          <div class="field">
+            <input type="email" id="email" name="email" autocomplete="email" required />
+            <label for="email">Email address</label>
+          </div>
+
+          <div class="field">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              autocomplete="current-password"
+              required
+            />
+            <label for="password">Password</label>
+          </div>
+
+          <div class="login__row">
+            <button type="button" class="login__forgot" id="forgotBtn">Forgot password?</button>
+          </div>
+
+          <button type="submit" class="btn btn--primary btn--lg">
+            <span>Sign in</span>
+          </button>
+        </form>
+
+        <div class="login__divider"><span>or</span></div>
+
+        <p class="login__alt">
+          New to nuvisco?
+          <a href="contact.html">Request a project</a>
+        </p>
+
+        <a href="index.html" class="login__back">← Back to home</a>
+      </div>
+    </main>
+
+    <!-- ===== Footer ===== -->
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div class="footer__brand">
+          <span class="nav__logo-mark"></span>
+          <span>nuvisco</span>
+        </div>
+        <div class="footer__legal">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms-and-conditions.html">Terms & Conditions</a>
+          <a href="accessibility-statement.html">Accessibility</a>
+        </div>
+        <p class="footer__copy">© 2026 Nuvisco. Crafted with obsession.</p>
+      </div>
+    </footer>
+
+    <!-- ===== Forgot Password Modal ===== -->
+    <div
+      class="modal"
+      id="forgotModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="forgotTitle"
+      aria-hidden="true"
+    >
+      <div class="modal__backdrop" data-close></div>
+      <div class="modal__card">
+        <button class="modal__close" type="button" data-close aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+        </button>
+
+        <!-- Step 1: request reset -->
+        <div class="modal__body" data-step="form">
+          <span class="modal__eyebrow">Password reset</span>
+          <h2 class="modal__title" id="forgotTitle">Reset your <em>password.</em></h2>
+          <p class="modal__sub">
+            Enter your email and we'll send you a link to set a new one.
+          </p>
+          <form class="modal__form" id="forgotForm">
+            <div class="field">
+              <input
+                type="email"
+                id="resetEmail"
+                name="resetEmail"
+                autocomplete="email"
+                required
+              />
+              <label for="resetEmail">Email address</label>
+            </div>
+            <button type="submit" class="btn btn--primary btn--lg">
+              <span>Send reset link</span>
+            </button>
+          </form>
+          <button type="button" class="modal__back" data-close>← Back to login</button>
+        </div>
+
+        <!-- Step 2: confirmation -->
+        <div class="modal__body modal__body--success" data-step="success" hidden>
+          <div class="modal__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+          </div>
+          <h2 class="modal__title">Check your <em>email.</em></h2>
+          <p class="modal__sub">
+            We've sent a password reset link to
+            <strong data-email>your email</strong>. It may take a minute to arrive.
+          </p>
+          <button type="button" class="btn btn--primary btn--lg" data-close>
+            <span>Back to login</span>
+          </button>
+          <p class="modal__note">Didn't get it? Check your spam folder.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Reset Password Modal (shown after clicking the email recovery link) ===== -->
+    <div
+      class="modal"
+      id="resetModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="resetTitle"
+      aria-hidden="true"
+    >
+      <div class="modal__backdrop"></div>
+      <div class="modal__card">
+        <button class="modal__close" type="button" id="resetCloseBtn" aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+        </button>
+
+        <div class="modal__body">
+          <span class="modal__eyebrow">Secure your account</span>
+          <h2 class="modal__title" id="resetTitle">Set your new <em>password.</em></h2>
+          <p class="modal__sub">
+            Choose a strong password to finish securing your account.
+          </p>
+          <form class="modal__form" id="resetForm" novalidate>
+            <div class="field">
+              <input
+                type="password"
+                id="newPassword"
+                name="newPassword"
+                autocomplete="new-password"
+                required
+                minlength="8"
+              />
+              <label for="newPassword">New password (min 8 characters)</label>
+            </div>
+            <div class="field">
+              <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                autocomplete="new-password"
+                required
+                minlength="8"
+              />
+              <label for="confirmPassword">Confirm new password</label>
+            </div>
+            <p class="modal__error" id="resetError" hidden></p>
+            <button type="submit" class="btn btn--primary btn--lg" id="resetSubmit">
+              <span>Set new password</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Toast Notifications ===== -->
+    <div class="toast" id="toast" role="alert" aria-live="assertive" aria-atomic="true" aria-hidden="true">
+      <div class="toast__icon" aria-hidden="true"></div>
+      <div class="toast__body">
+        <p class="toast__title"></p>
+        <p class="toast__msg"></p>
+      </div>
+      <button class="toast__close" type="button" id="toastClose" aria-label="Dismiss notification">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+      </button>
+      <div class="toast__progress" aria-hidden="true"><span></span></div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <script src="cursor.js"></script>
+    <!-- Accessibility -->
+    <script src="accessibility.js"></script>
+    <!-- Supabase-wired: login, forgot/reset password, auth state recovery. -->
+    <script type="module" src="login-page.js"></script>
+  </body>
+</html>

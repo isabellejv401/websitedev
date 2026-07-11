@@ -101,7 +101,7 @@
     };
     render();
 
-    document.querySelectorAll("a, button, [data-magnetic], .flipcard").forEach((el) => {
+    document.querySelectorAll("a, button, [data-magnetic], .flipcard, .faq__summary").forEach((el) => {
       el.addEventListener("mouseenter", () => {
         cursor.classList.add("is-hover");
         follower.classList.add("is-hover");
@@ -116,6 +116,7 @@
   function initMagnetic() {
     if (prefersReduced) return;
     document.querySelectorAll("[data-magnetic]").forEach((el) => {
+      if (el.classList.contains("cap")) return;
       const strength = 0.35;
       el.addEventListener("mousemove", (e) => {
         const r = el.getBoundingClientRect();
@@ -123,8 +124,11 @@
         const y = e.clientY - (r.top + r.height / 2);
         gsap.to(el, { x: x * strength, y: y * strength, duration: 0.5, ease: "power3.out" });
       });
+      el.addEventListener("mouseenter", () => {
+        gsap.to(el, { yPercent: -4, duration: 0.4, ease: "power2.out" });
+      });
       el.addEventListener("mouseleave", () => {
-        gsap.to(el, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1, 0.4)" });
+        gsap.to(el, { x: 0, y: 0, yPercent: 0, duration: 0.6, ease: "elastic.out(1, 0.4)" });
       });
     });
   }

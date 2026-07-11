@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <link rel="canonical" href="https://nuvisco.com/dashboard.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Client Dashboard — nuvisco</title>
+    <meta
+      name="description"
+      content="Your nuvisco client dashboard — track project progress, share assets and branding, and manage billing and support."
+    />
+    <!--
+      Supabase-wired: auth, sessions, file storage and data are all handled
+      via the Supabase client library loaded from esm.sh.
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://esm.sh https://*.esm.sh; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://vyrurccfhlxnqapfaiur.supabase.co https://*.supabase.co; frame-ancestors 'none'; base-uri 'self'; form-action 'self';"
+    />
+
+    <!-- SECURITY: Synchronous session existence gate — blocks page rendering
+         if no Supabase session token is found in localStorage. This runs before
+         any body content is parsed, preventing unauthenticated access to the
+         dashboard shell. -->
+    <script>
+      (function () {
+        try {
+          var hasSession = false;
+          for (var i = 0; i < localStorage.length; i++) {
+            if (localStorage.key(i).indexOf('sb-') === 0) {
+              hasSession = true;
+              break;
+            }
+          }
+          if (!hasSession) {
+            window.location.replace('login.html');
+          }
+        } catch (e) {
+          /* If localStorage is inaccessible (private mode restrictions etc.),
+             redirect as a safety measure — the async check will handle it too. */
+          window.location.replace('login.html');
+        }
+      })();
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles: shared design system first, then dashboard-specific -->
+    <link rel="stylesheet" href="home-page-css.css" />
+    <link rel="stylesheet" href="dashboard-css.css" />
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="nuvisco" />
+    <meta property="og:title" content="Client Dashboard — nuvisco" />
+    <meta property="og:description" content="Your nuvisco client dashboard — track project progress, share assets and branding, and manage billing and support." />
+    <meta property="og:url" content="https://nuvisco.com/dashboard.html" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:image" content="https://nuvisco.com/images/logo.png" />
+    <meta property="og:image:type" content="image/png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://nuvisco.com/images/logo.png" />
+    <meta name="twitter:title" content="Client Dashboard — nuvisco" />
+    <meta name="twitter:description" content="Your nuvisco client dashboard — track project progress, share assets and branding, and manage billing and support." />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/logo.png?v=2" />
+  </head>
+  <body>
+    <!-- ===== Loading Overlay ===== -->
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="loading-overlay__inner">
+        <span class="nav__logo-mark"></span>
+        <span class="loading-overlay__brand">nuvisco</span>
+        <div class="loading-overlay__spinner" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+        </div>
+        <p class="loading-overlay__text">Loading your dashboard…</p>
+      </div>
+    </div>
+
+    <!-- ===== Custom Cursor ===== -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
+
+    <!-- ===== Navigation ===== -->
+    <header class="nav is-scrolled">
+      <div class="nav__inner">
+        <a href="index.html" class="nav__logo">
+          <span class="nav__logo-mark"></span>
+          <span class="nav__logo-text">nuvisco</span>
+        </a>
+        <a href="index.html" class="nav__cta">Back to site</a>
+      </div>
+    </header>
+
+    <!-- ===== Dashboard ===== -->
+    <main class="dash" id="main-content">
+      <div class="dash__grid" aria-hidden="true"></div>
+      <div class="dash__glow dash__glow--1" aria-hidden="true"></div>
+      <div class="dash__glow dash__glow--2" aria-hidden="true"></div>
+
+      <div class="container">
+        <!-- ===== Header: welcome + launch date ===== -->
+        <section class="dash__header">
+          <div class="dash__welcome">
+            <span class="dash__eyebrow">Client dashboard</span>
+            <!-- Supabase: replace with the signed-in client's company name -->
+            <h1 class="dash__hello">Welcome back, <em>[Brand Name].</em></h1>
+            <p class="dash__lede">
+              Here's where your project stands — track progress, share assets,
+              and reach support, all in one place.
+            </p>
+          </div>
+
+          <div class="dash__meta">
+            <div class="launch">
+              <span class="launch__label">Target launch</span>
+              <span class="launch__date" id="launchDate">[Target Launch Date]</span>
+              <span class="launch__count" id="launchCount">— days to go</span>
+            </div>
+            <div class="phase">
+              <span class="phase__label">Current phase</span>
+              <span class="phase__name">Design</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== Project timeline ===== -->
+        <section class="dash__section">
+          <div class="section-head">
+            <span class="section-head__tag">Progress</span>
+            <h2 class="dash__title">Project <em>timeline.</em></h2>
+          </div>
+
+          <div class="timeline" data-timeline>
+            <div class="timeline__line">
+              <span class="timeline__fill" style="--p: 40%"></span>
+            </div>
+            <ol class="timeline__steps">
+              <li class="timeline__step is-done">
+                <span class="timeline__node">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
+                </span>
+                <span class="timeline__name">Onboarding</span>
+                <span class="timeline__status">Complete</span>
+              </li>
+              <li class="timeline__step is-done">
+                <span class="timeline__node">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
+                </span>
+                <span class="timeline__name">Discovery</span>
+                <span class="timeline__status">Complete</span>
+              </li>
+              <li class="timeline__step is-active">
+                <span class="timeline__node">3</span>
+                <span class="timeline__name">Design</span>
+                <span class="timeline__status">In progress</span>
+              </li>
+              <li class="timeline__step is-upcoming">
+                <span class="timeline__node">4</span>
+                <span class="timeline__name">Development</span>
+                <span class="timeline__status">Upcoming</span>
+              </li>
+              <li class="timeline__step is-upcoming">
+                <span class="timeline__node">5</span>
+                <span class="timeline__name">Review & QA</span>
+                <span class="timeline__status">Upcoming</span>
+              </li>
+              <li class="timeline__step is-upcoming">
+                <span class="timeline__node">6</span>
+                <span class="timeline__name">Launch</span>
+                <span class="timeline__status">Upcoming</span>
+              </li>
+            </ol>
+          </div>
+
+          <div class="timeline__detail">
+            <div class="timeline__detail-head">
+              <span class="timeline__detail-phase">Design</span>
+              <span class="badge badge--active">In progress</span>
+            </div>
+            <p class="timeline__detail-desc">
+              We're art-directing your site — mood, type, colour and layout are
+              taking shape. You'll see hi-fidelity comps next.
+            </p>
+            <div class="timeline__detail-meta">
+              <div>
+                <span class="timeline__detail-label">Started</span>
+                <span>[Start Date]</span>
+              </div>
+              <div>
+                <span class="timeline__detail-label">Estimated finish</span>
+                <span>[End Date]</span>
+              </div>
+              <div>
+                <span class="timeline__detail-label">Milestones</span>
+                <span>3 of 5</span>
+              </div>
+            </div>
+            <ul class="timeline__milestones">
+              <li class="is-done">Mood board</li>
+              <li class="is-done">Type system</li>
+              <li class="is-done">Wireframes</li>
+              <li>Hi-fidelity comps</li>
+              <li>Motion specs</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- ===== Assets & branding ===== -->
+        <section class="dash__section">
+          <div class="section-head">
+            <span class="section-head__tag">Assets & branding</span>
+            <h2 class="dash__title">Your project <em>assets.</em></h2>
+            <p class="section-head__lede">
+              Drop in your brand material and access details. Files are stored
+              securely against your project — nothing is sent until you save.
+            </p>
+          </div>
+
+          <div class="dash__assets">
+            <!-- Branding text block -->
+            <article class="dash__card dash__card--full">
+              <div class="dash__card-head">
+                <h3>Branding text</h3>
+                <p>Company bio, slogans, and page copy.</p>
+              </div>
+              <div class="field field--grow">
+                <textarea id="brandingText" name="brandingText" rows="6" required></textarea>
+                <label for="brandingText">Tell us about your brand — bio, slogans, page text…</label>
+              </div>
+            </article>
+
+            <!-- Media upload -->
+            <article class="dash__card">
+              <div class="dash__card-head">
+                <h3>Media upload</h3>
+                <p>High-resolution logos & team photos.</p>
+              </div>
+
+              <div class="dropzone" data-dropzone data-dropzone-type="logos" tabindex="0" role="button" aria-label="Upload logo variants">
+                <input class="dropzone__input" type="file" multiple accept=".svg,.png,image/svg+xml,image/png" hidden data-dropzone-input />
+                <div class="dropzone__inner">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M4 20h16" /></svg>
+                  <p class="dropzone__text"><strong>Drag & drop</strong> or click to browse</p>
+                  <p class="dropzone__hint">Logo variants · SVG or PNG</p>
+                </div>
+                <ul class="dropzone__files" data-dropzone-files></ul>
+              </div>
+
+              <div class="dropzone" data-dropzone data-dropzone-type="team" tabindex="0" role="button" aria-label="Upload team photos">
+                <input class="dropzone__input" type="file" multiple accept="image/png,image/jpeg" hidden data-dropzone-input />
+                <div class="dropzone__inner">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M4 20h16" /></svg>
+                  <p class="dropzone__text"><strong>Drag & drop</strong> or click to browse</p>
+                  <p class="dropzone__hint">Team photos · JPG or PNG</p>
+                </div>
+                <ul class="dropzone__files" data-dropzone-files></ul>
+              </div>
+            </article>
+
+            <!-- Integration access -->
+            <article class="dash__card">
+              <div class="dash__card-head">
+                <h3>Integration access</h3>
+                <p>Scheduling, domain provider, social links, and payment details.</p>
+              </div>
+
+              <!-- Scheduling -->
+              <div class="field">
+                <input type="url" id="scheduling" name="scheduling" placeholder=" " />
+                <label for="scheduling">Scheduling link (e.g. Calendly)</label>
+              </div>
+
+              <!-- Domain provider access (collapsible) -->
+              <details class="dash__details">
+                <summary>Domain provider access</summary>
+                <p class="dash__conf-note">If your domain is managed by an agency, tell us which one below and we'll reach out to arrange an introduction.</p>
+                <div class="field">
+                  <input type="text" id="domainAgency" name="domainAgency" placeholder=" " />
+                  <label for="domainAgency">Agency name (if applicable)</label>
+                </div>
+                <p class="dash__conf-note" style="margin-top: 12px;">Otherwise, please add us as a collaborator or admin on your domain platform (Wix, Squarespace, GoDaddy, etc.) and let us know the details below.</p>
+                <div class="field">
+                  <input type="text" id="domainPlatform" name="domainPlatform" placeholder=" " />
+                  <label for="domainPlatform">Domain platform (e.g. Wix, Squarespace)</label>
+                </div>
+                <div class="field">
+                  <input type="text" id="domainName" name="domainName" placeholder=" " />
+                  <label for="domainName">Your domain name (e.g. yourbrand.com)</label>
+                </div>
+                <p class="dash__conf-note" style="margin-top: 8px;">
+                  <a href="#" target="_blank" rel="noopener" style="color: var(--accent-3); text-decoration: underline;">📄 Download our guide</a> on how to add a collaborator on common platforms.
+                </p>
+              </details>
+
+              <!-- Social media links (collapsible) -->
+              <details class="dash__details">
+                <summary>Social media links</summary>
+                <div class="field">
+                  <input type="url" id="socialInstagram" name="socialInstagram" placeholder=" " />
+                  <label for="socialInstagram">Instagram URL</label>
+                </div>
+                <div class="field">
+                  <input type="url" id="socialTikTok" name="socialTikTok" placeholder=" " />
+                  <label for="socialTikTok">TikTok URL</label>
+                </div>
+                <div class="field">
+                  <input type="url" id="socialYouTube" name="socialYouTube" placeholder=" " />
+                  <label for="socialYouTube">YouTube URL</label>
+                </div>
+                <div class="field">
+                  <input type="url" id="socialX" name="socialX" placeholder=" " />
+                  <label for="socialX">X (Twitter) URL</label>
+                </div>
+                <div class="field">
+                  <input type="url" id="socialFacebook" name="socialFacebook" placeholder=" " />
+                  <label for="socialFacebook">Facebook URL</label>
+                </div>
+                <div class="field">
+                  <input type="url" id="socialOther" name="socialOther" placeholder=" " />
+                  <label for="socialOther">Other social links</label>
+                </div>
+              </details>
+
+              <!-- Payment provider access (collapsible) -->
+              <details class="dash__details">
+                <summary>Payment provider access</summary>
+                <p class="dash__conf-note">Please add us as a team member or collaborator on your payment platform (Stripe, Klarna, Square, etc.).</p>
+                <p class="dash__conf-note">Let us know which provider you use below.</p>
+                <div class="field">
+                  <input type="text" id="paymentProvider" name="paymentProvider" placeholder=" " />
+                  <label for="paymentProvider">Provider name (e.g. Stripe, Klarna)</label>
+                </div>
+                <p class="dash__conf-note" style="margin-top: 8px;">
+                  <a href="#" target="_blank" rel="noopener" style="color: var(--accent-3); text-decoration: underline;">📄 Download our guide</a> on how to add a collaborator on common payment platforms.
+                </p>
+              </details>
+            </article>
+
+            <!-- Special requests -->
+            <article class="dash__card dash__card--full">
+              <div class="dash__card-head">
+                <h3>Special requests</h3>
+                <p>Anything specific you'd like us to know?</p>
+              </div>
+              <div class="field field--grow">
+                <textarea id="requests" name="requests" rows="4" required></textarea>
+                <label for="requests">Tell us anything specific you'd like…</label>
+              </div>
+            </article>
+
+          </div>
+        </section>
+
+        <!-- ===== Policy documents upload ===== -->
+        <section class="dash__section">
+          <div class="section-head">
+            <span class="section-head__tag">Policy documents</span>
+            <h2 class="dash__title">Upload your <em>policies.</em></h2>
+            <p class="section-head__lede">
+              Import your company policies as .txt documents. They'll be stored securely
+              against your project and accessible to your team.
+            </p>
+          </div>
+
+          <div class="dash__assets">
+            <article class="dash__card dash__card--full">
+              <div class="dash__card-head">
+                <h3>Policy documents</h3>
+                <p>Privacy policy, terms of service, cookie policy, or any other .txt files.</p>
+              </div>
+
+              <div class="dropzone" data-policy-dropzone tabindex="0" role="button" aria-label="Upload policy documents">
+                <input class="dropzone__input" type="file" multiple accept=".txt,text/plain" data-policy-input />
+                <div class="dropzone__inner">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M16 13H8M16 17H8M10 9H8"/></svg>
+                  <p class="dropzone__text"><strong>Drag & drop</strong> or click to browse</p>
+                  <p class="dropzone__hint">Policy documents · .txt only</p>
+                </div>
+                <ul class="dropzone__files" data-policy-files></ul>
+              </div>
+            </article>
+
+            <!-- Save button row -->
+            <article class="dash__card dash__card--full dash__save-row">
+              <div class="dash__save-bar">
+                <div class="dash__save-info">
+                  <p class="dash__save-hint">Don't forget to save your changes.</p>
+                  <span class="dash__save-feedback" id="saveFeedback"></span>
+                </div>
+                <button class="btn btn--primary" type="button" id="saveBtn">
+                  <span>Save changes</span>
+                </button>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- ===== Admin & support center ===== -->
+        <section class="dash__section">
+          <div class="section-head">
+            <span class="section-head__tag">Admin & support</span>
+            <h2 class="dash__title">Admin & support <em>center.</em></h2>
+          </div>
+
+          <div class="dash__support">
+            
+
+            <!-- Support hotline -->
+            <article class="support__card">
+              <div class="support__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13a8 8 0 0 1 16 0" /><path d="M4 13v3a2 2 0 0 0 2 2h1v-5H6a2 2 0 0 0-2 0z" /><path d="M20 13v3a2 2 0 0 1-2 2h-1v-5h1a2 2 0 0 1 2 0z" /></svg>
+              </div>
+              <h3>Support hotline</h3>
+              <p>Reach your dedicated team during business hours.</p>
+              <a class="support__email" href="mailto:hello@nuvisco.com">hello@nuvisco.com</a>
+              <span class="support__hours">Mon - Fri · 18:00 - 21:00 GMT<br />Sat - Sun · 09:00 - 21:00 GMT</span>
+            </article>
+
+            <!-- Account controls -->
+            <article class="support__card">
+              <div class="support__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" /><path d="M16 17l5-5-5-5M21 12H9" /></svg>
+              </div>
+              <h3>Account controls</h3>
+              <p>End your session securely. You can sign back in any time.</p>
+              <!-- Supabase: call supabase.auth.signOut() here — do NOT clear sessions manually -->
+              <button class="btn btn--primary" type="button" id="logoutBtn">
+                <span>Log out</span>
+              </button>
+            </article>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- ===== Delete Confirmation Modal ===== -->
+    <div
+      class="modal"
+      id="deleteModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="deleteTitle"
+      aria-hidden="true"
+    >
+      <div class="modal__backdrop" data-delete-close></div>
+      <div class="modal__card">
+        <button class="modal__close" type="button" data-delete-close aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+        </button>
+
+        <div class="modal__body">
+          <div class="modal__icon modal__icon--warn" aria-hidden="true" data-delete-close>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+          </div>
+          <span class="modal__eyebrow" data-delete-close>Confirm deletion</span>
+          <h2 class="modal__title" id="deleteTitle" data-delete-close>Are you <em>sure?</em></h2>
+          <p class="modal__sub" id="deleteMessage" data-delete-close>
+            This file will be permanently removed from your project storage.
+          </p>
+          <div class="modal__actions">
+            <button class="btn btn--ghost" type="button" data-delete-close>
+              <span>Go back</span>
+            </button>
+            <button class="btn btn--danger" type="button" id="confirmDeleteBtn">
+              <span>Yes, delete it</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Footer ===== -->
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div class="footer__brand">
+          <span class="nav__logo-mark"></span>
+          <span>nuvisco</span>
+        </div>
+        <div class="footer__legal">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms-and-conditions.html">Terms & Conditions</a>
+          <a href="accessibility-statement.html">Accessibility</a>
+        </div>
+        <p class="footer__copy">© 2026 Nuvisco. Crafted with obsession.</p>
+      </div>
+    </footer>
+
+    <!-- Custom Cursor -->
+    <script src="cursor.js"></script>
+    <!-- Accessibility -->
+    <script src="accessibility.js"></script>
+    <!-- Dashboard interactions — supabase-wired: auth guard, data fetch, file upload, logout. -->
+    <script type="module" src="dashboard-js.js"></script>
+  </body>
+</html>

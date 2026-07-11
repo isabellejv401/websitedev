@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact — nuvisco | Start Your Project</title>
+    <meta
+      name="description"
+      content="Get in touch with nuvisco. Start your project, book a call, or send us a message. We reply within one business day."
+    />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://formspree.io; base-uri 'self'; form-action 'self' https://formspree.io;"
+    />
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="nuvisco" />
+    <meta property="og:title" content="Contact — nuvisco | Start Your Project" />
+    <meta property="og:description" content="Get in touch with nuvisco. Start your project, book a call, or send us a message." />
+    <meta property="og:url" content="https://nuvisco.com/contact.html" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:image" content="https://nuvisco.com/images/logo.png" />
+    <meta property="og:image:type" content="image/png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://nuvisco.com/images/logo.png" />
+    <meta name="twitter:title" content="Contact — nuvisco | Start Your Project" />
+    <meta name="twitter:description" content="Get in touch with nuvisco. Start your project, book a call, or send us a message." />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://nuvisco.com/contact.html" />
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/logo.png?v=2" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="home-page-css.css" />
+  </head>
+  <body>
+    <!-- ===== Custom Cursor ===== -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
+
+    <!-- ===== 3D Background ===== -->
+    <canvas id="bg3d"></canvas>
+
+    <!-- ===== Scroll Progress ===== -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- ===== Navigation ===== -->
+    <header class="nav is-scrolled" id="nav">
+      <div class="nav__inner">
+        <a href="index.html" class="nav__logo" data-magnetic>
+          <span class="nav__logo-mark"></span>
+          <span class="nav__logo-text">nuvisco</span>
+        </a>
+        <nav class="nav__links" aria-label="Main navigation">
+          <a href="index.html" data-magnetic>Home</a>
+          <a href="services.html" data-magnetic>Services &amp; Pricing</a>
+          <a href="about.html" data-magnetic>About</a>
+          <a href="contact.html" aria-current="page" data-magnetic>Contact</a>
+        </nav>
+        <div class="nav__actions">
+          <a href="login.html" class="nav__portal" data-magnetic>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+            Client Portal
+          </a>
+          <a href="contact.html" class="nav__cta" data-magnetic>Start a project</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- ===== Hero ===== -->
+    <main id="main-content">
+      <section class="hero" id="hero" style="min-height: 40vh;">
+        <div class="hero__grid"></div>
+        <div class="slide-curve slide-curve--left" aria-hidden="true"></div>
+        <div class="slide-curve slide-curve--right" aria-hidden="true"></div>
+        <div class="hero__content">
+          <div class="hero__eyebrow" data-aos="fade-up">
+            <span style="color: var(--accent-3); letter-spacing: 2px; font-size: 0.75rem; display: block; margin-bottom: 4px;">PAGE &mdash; CONTACT</span>
+            Get in touch
+          </div>
+          <h1 class="hero__title">
+            <span class="line"><span class="line__inner">Let's make</span></span>
+            <span class="line"><span class="line__inner">something</span></span>
+            <span class="line"><span class="line__inner"><em>unreal.</em></span></span>
+          </h1>
+          <p class="hero__sub" data-aos="fade-up" data-aos-delay="300">
+            Tell us about your brand and ambition. We reply within one business day.
+            Whether you're a local business looking to establish your online presence
+            or an ambitious brand ready for a complete digital transformation — we'd
+            love to hear from you.
+          </p>
+
+          <div class="hero__scroll">
+            <span>Scroll</span>
+            <div class="hero__scroll-line"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Contact Form & Details ===== -->
+      <section class="contact" id="contact-form" style="padding-top: 0;">
+        <div class="slide-curve slide-curve--left" aria-hidden="true"></div>
+        <div class="slide-curve slide-curve--right" aria-hidden="true"></div>
+        <div class="container contact__inner">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;">
+            <!-- Contact Form -->
+            <div>
+              <h2 class="section-head__title" style="margin-bottom: 24px; font-size: 2rem;">
+                Send us a <em>message.</em>
+              </h2>
+              <form
+                class="contact__form"
+                id="contactForm"
+                action="https://formspree.io/f/xgojpegk"
+                method="POST"
+                data-aos="fade-up"
+                novalidate
+              >
+                <div class="field">
+                  <input type="text" id="name" name="name" required aria-required="true" />
+                  <label for="name">Your name</label>
+                </div>
+                <div class="field">
+                  <input type="email" id="email" name="email" required aria-required="true" autocomplete="email" />
+                  <label for="email">Email</label>
+                </div>
+                <div class="field">
+                  <input type="tel" id="phone" name="phone" autocomplete="tel" />
+                  <label for="phone">Phone (optional)</label>
+                </div>
+                <div class="field field--full">
+                  <textarea id="message" name="message" rows="4" required aria-required="true"></textarea>
+                  <label for="message">Tell us about your project</label>
+                </div>
+                <div class="field field--full">
+                  <textarea id="budget" name="budget" rows="2"></textarea>
+                  <label for="budget">Budget & timeline (optional)</label>
+                </div>
+                <button type="submit" class="btn btn--primary btn--lg" data-magnetic>
+                  <span>Send message</span>
+                </button>
+              </form>
+            </div>
+
+            <!-- Contact Details -->
+            <div data-aos="fade-up" data-aos-delay="100">
+              <h2 class="section-head__title" style="margin-bottom: 24px; font-size: 2rem;">
+                Contact <em>info.</em>
+              </h2>
+
+              <div style="display: flex; flex-direction: column; gap: 24px;">
+                <a href="tel:+447504541615" class="contact__detail" data-magnetic>
+                  <span class="contact__detail-label">Phone</span>
+                  <span class="contact__detail-value">+44 7504 541615</span>
+                </a>
+                <a href="mailto:hello@nuvisco.com" class="contact__detail" data-magnetic>
+                  <span class="contact__detail-label">Email</span>
+                  <span class="contact__detail-value">hello@nuvisco.com</span>
+                </a>
+                <div class="contact__detail">
+                  <span class="contact__detail-label">Location</span>
+                  <span class="contact__detail-value">Cambridge & Cambridgeshire, UK</span>
+                </div>
+                <div class="contact__detail">
+                  <span class="contact__detail-label">Hours</span>
+                  <span class="contact__detail-value">
+                    Mon - Fri · 18:00 - 21:00 GMT<br />
+                    Sat - Sun · 09:00 - 21:00 GMT
+                  </span>
+                </div>
+                <div class="contact__detail">
+                  <span class="contact__detail-label">Response time</span>
+                  <span class="contact__detail-value">Within one business day</span>
+                </div>
+              </div>
+
+              </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== FAQ ===== -->
+      <section class="faq" id="faq">
+        <div class="slide-curve slide-curve--left" aria-hidden="true"></div>
+        <div class="slide-curve slide-curve--right" aria-hidden="true"></div>
+        <div class="container">
+          <div class="section-head">
+            <span class="section-head__tag" data-aos="fade-up">FAQ</span>
+            <h2 class="section-head__title" data-aos="fade-up" data-aos-delay="100">
+              Frequently asked <em>questions.</em>
+            </h2>
+            <p class="section-head__lede" data-aos="fade-up" data-aos-delay="200">
+              Everything you need to know about working with us. Can't find what you're looking for? <a href="mailto:hello@nuvisco.com" style="color: var(--accent); text-decoration: underline;">Drop us a line</a>.
+            </p>
+          </div>
+
+          <div class="faq__list" role="list" aria-label="Frequently asked questions">
+            <details class="faq__item" role="listitem">
+              <summary class="faq__summary">
+                <span>How much does a website cost?</span>
+                <span class="faq__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                </span>
+              </summary>
+              <div class="faq__answer">
+                <p>A complete website project costs <strong>£1,000</strong>, 50% paid upfront, and 50% paid on completion before delivery. This includes custom design, development, SEO setup, and launch. An optional maintenance plan is available for <strong>£200 every 4 weeks</strong> for ongoing updates, security patches, priority support, tailored direction and branding, page updates, and lots more.</p>
+              </div>
+            </details>
+
+            <details class="faq__item" role="listitem">
+              <summary class="faq__summary">
+                <span>How long does it take to build a website?</span>
+                <span class="faq__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                </span>
+              </summary>
+              <div class="faq__answer">
+                <p>For small to medium-sized businesses, websites are typically completed within <strong>around 2 weeks</strong>, depending on the scope of requirements and how quickly feedback is provided. We'll give you a clear timeline during our initial consultation.</p>
+              </div>
+            </details>
+
+            <details class="faq__item" role="listitem">
+              <summary class="faq__summary">
+                <span>Do you work with local businesses?</span>
+                <span class="faq__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                </span>
+              </summary>
+              <div class="faq__answer">
+                <p>Absolutely. Nuvisco specialises in helping <strong>small and local businesses</strong> create a more professional online presence. We're based in Cambridge and Cambridgeshire and work with businesses across the UK.</p>
+              </div>
+            </details>
+
+            <details class="faq__item" role="listitem">
+              <summary class="faq__summary">
+                <span>What industries do you work with?</span>
+                <span class="faq__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                </span>
+              </summary>
+              <div class="faq__answer">
+                <p>We work with a wide range of industries, particularly: <strong>local service businesses, tradespeople, automotive and detailing companies, professional services, hospitality, beauty and lifestyle brands</strong>. Each project is assessed individually to ensure we're the right fit.</p>
+              </div>
+            </details>
+
+            <details class="faq__item" role="listitem">
+              <summary class="faq__summary">
+                <span>Will my website rank on Google?</span>
+                <span class="faq__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                </span>
+              </summary>
+              <div class="faq__answer">
+                <p>No company can guarantee Google rankings. However, Nuvisco builds websites with <strong>SEO best practices</strong> baked in — strong semantic structure, performance optimisation, Core Web Vitals, and content organisation — all designed to improve your search engine visibility.</p>
+              </div>
+            </details>
+
+            <details class="faq__item" role="listitem">
+              <summary class="faq__summary">
+                <span>Do I need a new website or a redesign?</span>
+                <span class="faq__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                </span>
+              </summary>
+              <div class="faq__answer">
+                <p>Nuvisco focuses on creating <strong>custom websites from the ground up</strong>. This gives us full control over design, performance, functionality, and user experience. If you have existing branding, we can incorporate it into the new build.</p>
+              </div>
+            </details>
+
+            <details class="faq__item" role="listitem">
+              <summary class="faq__summary">
+                <span>What makes a website convert visitors into customers?</span>
+                <span class="faq__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                </span>
+              </summary>
+              <div class="faq__answer">
+                <p>High-converting websites typically include: <strong>clear messaging, strong calls-to-action, mobile optimisation, fast loading speeds, trust signals</strong> (reviews, testimonials), and simple navigation. We design every site with these principles in mind.</p>
+              </div>
+            </details>
+
+            <details class="faq__item" role="listitem">
+              <summary class="faq__summary">
+                <span>Can you redesign my website while keeping my branding?</span>
+                <span class="faq__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                </span>
+              </summary>
+              <div class="faq__answer">
+                <p>Yes. Existing branding elements such as <strong>logos, colours, fonts, images, and business identity</strong> can be incorporated into a new website. We'll work with what you have to create something fresh and effective.</p>
+              </div>
+            </details>
+
+            <details class="faq__item" role="listitem">
+              <summary class="faq__summary">
+                <span>Do I need a website if I already get customers from referrals?</span>
+                <span class="faq__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                </span>
+              </summary>
+              <div class="faq__answer">
+                <p>Even if you're busy through referrals, a professional website helps you <strong>establish credibility, attract new customers, and scale beyond word-of-mouth</strong>. It's your digital storefront — open 24/7.</p>
+              </div>
+            </details>
+
+            <details class="faq__item" role="listitem">
+              <summary class="faq__summary">
+                <span>What platforms do you build websites with?</span>
+                <span class="faq__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                </span>
+              </summary>
+              <div class="faq__answer">
+                <p>Nuvisco creates <strong>custom websites from scratch</strong> using vanilla JavaScript, Three.js, GSAP, and modern CSS. This gives us — and you — full control over design, performance, and functionality without the limitations of templates.</p>
+              </div>
+            </details>
+
+            <details class="faq__item" role="listitem">
+              <summary class="faq__summary">
+                <span>How do I know if my website is outdated?</span>
+                <span class="faq__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                </span>
+              </summary>
+              <div class="faq__answer">
+                <p>Signs your website may need updating: it <strong>looks outdated compared with competitors, is difficult to navigate, doesn't work well on mobile, isn't generating enquiries, or lacks modern design standards</strong>. If any of these sound familiar, we can help.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== Footer ===== -->
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div class="footer__brand">
+          <span class="nav__logo-mark"></span>
+          <span>nuvisco</span>
+        </div>
+        <nav class="footer__links" aria-label="Footer navigation">
+          <a href="index.html" data-magnetic>Home</a>
+          <a href="services.html" data-magnetic>Services &amp; Pricing</a>
+          <a href="about.html" data-magnetic>About</a>
+          <a href="contact.html" data-magnetic>Contact</a>
+        </nav>
+        <div class="footer__legal">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms-and-conditions.html">Terms & Conditions</a>
+          <a href="accessibility-statement.html">Accessibility</a>
+        </div>
+        <p class="footer__copy">© 2026 Nuvisco. Crafted with obsession.</p>
+      </div>
+    </footer>
+
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous"></script>
+
+    <!-- Scripts -->
+    <script src="cursor.js"></script>
+    <script src="sub-page.js"></script>
+    <script src="accessibility.js"></script>
+    <script>
+      AOS.init({ duration: 900, easing: "ease-out-cubic", once: true, offset: 80 });
+    </script>
+  </body>
+</html>

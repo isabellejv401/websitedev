@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Services &amp; Pricing — nuvisco | Web Design, 3D Development &amp; SEO</title>
+    <meta
+      name="description"
+      content="nuvisco offers premium web design, 3D WebGL development, SEO engineering, and brand art direction. Bespoke websites built for ambitious brands."
+    />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://formspree.io; base-uri 'self'; form-action 'self' https://formspree.io;"
+    />
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="nuvisco" />
+    <meta property="og:title" content="Services &amp; Pricing — nuvisco | Web Design, 3D Development &amp; SEO" />
+    <meta property="og:description" content="Premium web design, 3D WebGL development, SEO engineering, and brand art direction from nuvisco." />
+    <meta property="og:url" content="https://nuvisco.com/services.html" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:image" content="https://nuvisco.com/images/logo.png" />
+    <meta property="og:image:type" content="image/png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://nuvisco.com/images/logo.png" />
+    <meta name="twitter:title" content="Services — nuvisco | Web Design, 3D Development & SEO" />
+    <meta name="twitter:description" content="Premium web design, 3D WebGL development, SEO engineering, and brand art direction from nuvisco." />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://nuvisco.com/services.html" />
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/logo.png?v=2" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="home-page-css.css" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "provider": {
+        "@type": "Organization",
+        "name": "Nuvisco",
+        "url": "https://nuvisco.com"
+      },
+      "areaServed": "GB",
+      "description": "nuvisco offers premium web design, 3D WebGL development, SEO engineering, and brand art direction services."
+    }
+    </script>
+  </head>
+  <body>
+    <!-- ===== Custom Cursor ===== -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
+
+    <!-- ===== 3D Background ===== -->
+    <canvas id="bg3d"></canvas>
+
+    <!-- ===== Scroll Progress ===== -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- ===== Navigation ===== -->
+    <header class="nav is-scrolled" id="nav">
+      <div class="nav__inner">
+        <a href="index.html" class="nav__logo" data-magnetic>
+          <span class="nav__logo-mark"></span>
+          <span class="nav__logo-text">nuvisco</span>
+        </a>
+        <nav class="nav__links" aria-label="Main navigation">
+          <a href="index.html" data-magnetic>Home</a>
+          <a href="services.html" aria-current="page" data-magnetic>Services &amp; Pricing</a>
+          <a href="about.html" data-magnetic>About</a>
+          <a href="contact.html" data-magnetic>Contact</a>
+        </nav>
+        <div class="nav__actions">
+          <a href="login.html" class="nav__portal" data-magnetic>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+            Client Portal
+          </a>
+          <a href="contact.html" class="nav__cta" data-magnetic>Start a project</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- ===== Hero ===== -->
+    <main id="main-content">
+      <section class="hero" id="hero" style="min-height: 35vh;">
+        <div class="hero__grid"></div>
+        <div class="slide-curve slide-curve--left" aria-hidden="true"></div>
+        <div class="slide-curve slide-curve--right" aria-hidden="true"></div>
+        <div class="hero__content">
+          <div class="hero__eyebrow" data-aos="fade-up">
+            <span style="color: var(--accent-3); letter-spacing: 2px; font-size: 0.75rem; display: block; margin-bottom: 4px;">PAGE &mdash; SERVICES</span>
+            What we do
+          </div>
+          <h1 class="hero__title">
+            <span class="line"><span class="line__inner">Services that</span></span>
+            <span class="line"><span class="line__inner"><em>move the needle.</em></span></span>
+          </h1>
+          <p class="hero__sub" data-aos="fade-up" data-aos-delay="300">
+            From immersive web design to technical SEO, every service is crafted to
+            help your brand stand out, convert visitors, and grow online. We combine
+            art direction with engineering precision — building sites that look
+            stunning, load instantly, and rank strongly in search results.
+          </p>
+
+          <div class="hero__scroll">
+            <span>Scroll</span>
+            <div class="hero__scroll-line"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Services Detail ===== -->
+      <section class="services" id="services" style="padding-top: 0;">
+        <div class="container">
+          <div class="section-head" style="text-align: left;">
+            <span class="section-head__tag" data-aos="fade-up">Our expertise</span>
+            <h2 class="section-head__title" data-aos="fade-up" data-aos-delay="100">
+              Every service is <em>bespoke.</em>
+            </h2>
+            <p class="section-head__lede" data-aos="fade-up" data-aos-delay="200">
+              We don't do templates or off-the-shelf solutions. Every website we build is
+              custom-crafted from a blank canvas — designed to reflect your brand, engage
+              your audience, and drive measurable results. Our four core services work
+              together to create a complete digital presence that stands out.
+            </p>
+          </div>
+          <div class="services__list">
+            <article class="service" data-aos="fade-up" data-magnetic>
+              <div class="service__num">01</div>
+              <div class="service__body">
+                <h2>Immersive Web Design</h2>
+                <p>
+                  Pixel-perfect, art-directed websites with bespoke layouts, fluid
+                  motion, and a soul you can feel. Every build is one-of-one —
+                  designed and engineered from a blank canvas for your brand alone.
+                </p>
+                <ul style="margin-top: 16px; list-style: none; color: var(--ink-dim);">
+                  <li style="padding: 4px 0;">✦ Bespoke layouts & typography</li>
+                  <li style="padding: 4px 0;">✦ Fluid scroll-triggered animations</li>
+                  <li style="padding: 4px 0;">✦ Mobile-first responsive design</li>
+                  <li style="padding: 4px 0;">✦ Conversion-optimised user flows</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="service" data-aos="fade-up" data-aos-delay="80" data-magnetic>
+              <div class="service__num">02</div>
+              <div class="service__body">
+                <h2>3D & WebGL Development</h2>
+                <p>
+                  Real-time 3D scenes, scroll-driven worlds, and shader art built
+                  on Three.js and GSAP. We don't bolt WebGL on as an afterthought —
+                  real-time 3D is woven into the bones of every site.
+                </p>
+                <ul style="margin-top: 16px; list-style: none; color: var(--ink-dim);">
+                  <li style="padding: 4px 0;">✦ Interactive 3D product showcases</li>
+                  <li style="padding: 4px 0;">✦ Scroll-driven 3D storytelling</li>
+                  <li style="padding: 4px 0;">✦ Custom shader effects & particles</li>
+                  <li style="padding: 4px 0;">✦ WebGL performance optimisation</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="service" data-aos="fade-up" data-aos-delay="160" data-magnetic>
+              <div class="service__num">03</div>
+              <div class="service__body">
+                <h2>SEO Engineering</h2>
+                <p>
+                  Technical SEO, Core Web Vitals, and structured data baked into
+                  every build for compounding growth. We build sites that search
+                  engines love and users trust.
+                </p>
+                <ul style="margin-top: 16px; list-style: none; color: var(--ink-dim);">
+                  <li style="padding: 4px 0;">✦ Technical SEO audits & implementation</li>
+                  <li style="padding: 4px 0;">✦ Core Web Vitals optimisation</li>
+                  <li style="padding: 4px 0;">✦ Structured data & schema markup</li>
+                  <li style="padding: 4px 0;">✦ AI search optimisation (llms.txt)</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="service" data-aos="fade-up" data-aos-delay="240" data-magnetic>
+              <div class="service__num">04</div>
+              <div class="service__body">
+                <h2>Brand & Art Direction</h2>
+                <p>
+                  Identity systems, type, and motion language that make brands
+                  impossible to ignore. We treat type, rhythm, and easing like
+                  instruments tuned until the page feels alive.
+                </p>
+                <ul style="margin-top: 16px; list-style: none; color: var(--ink-dim);">
+                  <li style="padding: 4px 0;">✦ Brand identity & visual systems</li>
+                  <li style="padding: 4px 0;">✦ Art direction & mood boards</li>
+                  <li style="padding: 4px 0;">✦ Motion language & design tokens</li>
+                  <li style="padding: 4px 0;">✦ Style guides & brand documentation</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Pricing ===== -->
+      <section class="capabilities" id="pricing">
+        <div class="slide-curve slide-curve--left" aria-hidden="true"></div>
+        <div class="slide-curve slide-curve--right" aria-hidden="true"></div>
+        <div class="container">
+          <div class="section-head">
+            <span class="section-head__tag" data-aos="fade-up">Pricing</span>
+            <h2 class="section-head__title" data-aos="fade-up" data-aos-delay="100">
+              Transparent <em>pricing.</em>
+            </h2>
+            <p class="section-head__lede" data-aos="fade-up" data-aos-delay="200">
+              No hidden fees, no surprises. Just clear, fixed pricing for premium work.
+            </p>
+          </div>
+
+          <div class="capabilities__grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+            <article class="cap" data-aos="fade-up" data-magnetic>
+              <h3>Website Project</h3>
+              <p style="font-size: 2.5rem; font-family: var(--font-display); color: var(--accent); margin: 16px 0;">£1,000</p>
+              <p>A complete, custom-built website tailored to your brand. Includes design, development, SEO setup, and launch.</p>
+              <p style="margin-top: 12px; color: var(--ink-dim); font-size: 0.9rem;">Payment is <strong style="color: var(--ink);">50% upfront</strong> to begin the project, with the <strong style="color: var(--ink);">remaining 50% due upon completion</strong> and before launch.</p>
+            </article>
+
+            <article class="cap" data-aos="fade-up" data-aos-delay="100" data-magnetic>
+              <div style="display: inline-block; background: rgba(46, 230, 196, 0.15); color: var(--accent-3); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 4px 10px; border-radius: 20px; margin-bottom: 12px;">OPTIONAL</div>
+              <h3>Maintenance Plan</h3>
+              <p style="font-size: 2.5rem; font-family: var(--font-display); color: var(--accent-3); margin: 8px 0;">£200<span style="font-size: 1rem; color: var(--ink-dim);">/4 weeks</span></p>
+              <p>This is a <strong style="color: var(--ink);">completely optional</strong> add-on for ongoing support after your website launches. You can choose to add it at any time — there's no obligation and no pressure.</p>
+              <p style="margin-top: 12px; color: var(--ink-dim); font-size: 0.9rem;">Includes updates, security patches, monitoring, and priority support, tailored direction and branding, page updates, and lots more, customised for your brand.</p>
+            </article>
+          </div>
+
+          <div style="max-width: 640px; margin: 40px auto 0; text-align: center; color: var(--ink-dim); font-size: 0.9rem;">
+            <p>All prices are in GBP (£). No hidden fees, no surprise costs. Every project begins with a free consultation to discuss your goals, timeline, and budget. <a href="contact.html" style="color: var(--accent); text-decoration: underline;">Get in touch</a> to get started.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== CTA ===== -->
+      <section class="contact" id="contact">
+        <div class="slide-curve slide-curve--left" aria-hidden="true"></div>
+        <div class="slide-curve slide-curve--right" aria-hidden="true"></div>
+        <div class="container contact__inner">
+          <h2 class="contact__title" data-aos="fade-up">
+            Ready to get <em>started?</em>
+          </h2>
+          <p class="contact__sub" data-aos="fade-up" data-aos-delay="100">
+            Tell us about your project and we'll get back to you within one business day.
+          </p>
+          <a href="contact.html" class="btn btn--primary btn--lg" data-magnetic data-aos="fade-up" data-aos-delay="200">
+            <span>Start a project</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== Footer ===== -->
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div class="footer__brand">
+          <span class="nav__logo-mark"></span>
+          <span>nuvisco</span>
+        </div>
+        <nav class="footer__links" aria-label="Footer navigation">
+          <a href="index.html" data-magnetic>Home</a>
+          <a href="services.html" data-magnetic>Services &amp; Pricing</a>
+          <a href="about.html" data-magnetic>About</a>
+          <a href="contact.html" data-magnetic>Contact</a>
+        </nav>
+
+        <div class="footer__legal">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms-and-conditions.html">Terms & Conditions</a>
+          <a href="accessibility-statement.html">Accessibility</a>
+        </div>
+        <p class="footer__copy">© 2026 Nuvisco. Crafted with obsession.</p>
+      </div>
+    </footer>
+
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous"></script>
+
+    <!-- Scripts -->
+    <script src="cursor.js"></script>
+    <script src="sub-page.js"></script>
+    <script src="accessibility.js"></script>
+    <script>
+      AOS.init({ duration: 900, easing: "ease-out-cubic", once: true, offset: 80 });
+    </script>
+  </body>
+</html>
