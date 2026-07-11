@@ -5,11 +5,6 @@ Disallow: /dashboard.html
 Disallow: /login.html
 Disallow: /reset-password.html
 
-Sitemap: https://nuvisco.com/sitemap.xml
-
-AI-readable information:
-https://nuvisco.com/llms.txt
-
 User-agent: GPTBot
 Allow: /
 
@@ -19,7 +14,7 @@ Allow: /
 User-agent: ClaudeBot
 Allow: /
 
-User-agent: *
-Allow: /
-Disallow: /dashboard.html
-...
+Sitemap: https://nuvisco.com/sitemap.xml
+
+AI-readable information:
+https://nuvisco.com/llms.txt
