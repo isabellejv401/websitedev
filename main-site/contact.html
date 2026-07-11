@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact — nuvisco | Start Your Project</title>
+    <title>Contact — Nuvisco | Start Your Project</title>
     <meta
       name="description"
       content="Get in touch with nuvisco. Start your project, book a call, or send us a message. We reply within one business day."
@@ -12,6 +12,31 @@
       http-equiv="Content-Security-Policy"
       content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://formspree.io; base-uri 'self'; form-action 'self' https://formspree.io;"
     />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "@id": "https://nuvisco.com/contact.html#webpage",
+      "url": "https://nuvisco.com/contact.html",
+      "name": "Contact — nuvisco | Start Your Project",
+      "description": "Get in touch with nuvisco. Start your project, book a call, or send us a message. We reply within one business day.",
+      "isPartOf": {"@id": "https://nuvisco.com/#website"},
+      "about": {"@id": "https://nuvisco.com/#organization"},
+      "inLanguage": "en-GB",
+      "mainEntity": {
+        "@type": "Organization",
+        "@id": "https://nuvisco.com/#organization",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer service",
+          "availableLanguage": ["English"],
+          "url": "https://nuvisco.com/contact.html"
+        }
+      }
+    }
+    </script>
 
     <!-- Open Graph / Social -->
     <meta property="og:type" content="website" />
