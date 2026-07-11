@@ -14,7 +14,7 @@ Allow: /
 User-agent: ClaudeBot
 Allow: /
 
-Sitemap: https://nuvisco.com/sitemap.xml
-
 AI-readable information:
 https://nuvisco.com/llms.txt
+
+Sitemap: https://nuvisco.com/sitemap.xml
