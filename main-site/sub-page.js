@@ -153,9 +153,174 @@
   }
 
   /* ---------------------------------------------------------
+     4. Toast notification helpers (shared pattern with login page)
+     --------------------------------------------------------- */
+  var TOAST_ICONS = {
+    error: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>',
+    success: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>',
+    warning: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>'
+  };
+
+  function showToast(title, msg, type, duration) {
+    var toastEl = document.getElementById("toast");
+    if (!toastEl) return;
+    type = type || "error";
+    duration = duration || 5000;
+
+    var iconEl = toastEl.querySelector(".toast__icon");
+    if (iconEl) iconEl.innerHTML = TOAST_ICONS[type] || TOAST_ICONS.error;
+
+    var titleEl = toastEl.querySelector(".toast__title");
+    var msgEl = toastEl.querySelector(".toast__msg");
+    if (titleEl) titleEl.textContent = title;
+    if (msgEl) msgEl.textContent = msg;
+
+    toastEl.className = "toast toast--" + type;
+
+    var progress = toastEl.querySelector(".toast__progress span");
+    if (progress) {
+      progress.style.animation = "none";
+      void progress.offsetWidth;
+      progress.style.animation = "toastProgress " + duration + "ms linear forwards";
+    }
+
+    toastEl.classList.add("is-visible");
+    toastEl.setAttribute("aria-hidden", "false");
+
+    clearTimeout(window._toastTimer);
+    window._toastTimer = setTimeout(function () {
+      toastEl.classList.remove("is-visible");
+      toastEl.setAttribute("aria-hidden", "true");
+    }, duration);
+  }
+
+  function shake(el) {
+    if (!el) return;
+    el.classList.add("is-shake");
+    setTimeout(function () {
+      el.classList.remove("is-shake");
+    }, 450);
+  }
+
+  /* ---------------------------------------------------------
+     5. Floating label fix — ensures labels float up when inputs have content
+     --------------------------------------------------------- */
+  function fixLabels() {
+    var inputs = document.querySelectorAll('.field input, .field textarea');
+    for (var i = 0; i < inputs.length; i++) {
+      var el = inputs[i];
+      if (el.value.trim().length > 0) {
+        el.classList.add('has-content');
+      }
+      el.addEventListener('input', function () {
+        if (this.value.trim().length > 0) {
+          this.classList.add('has-content');
+        } else {
+          this.classList.remove('has-content');
+        }
+      });
+    }
+  }
+
+  /* ---------------------------------------------------------
+     6. Contact form — validates required fields, rate-limited,
+        sends data to Formspree via fetch
+     --------------------------------------------------------- */
+  function initContactForm() {
+    var form = document.getElementById("contactForm");
+    if (!form) return;
+
+    // Fix floating labels on page load
+    fixLabels();
+
+    // Toast close button
+    var toastClose = document.getElementById("toastClose");
+    if (toastClose) {
+      toastClose.addEventListener("click", function () {
+        var toastEl = document.getElementById("toast");
+        if (toastEl) {
+          toastEl.classList.remove("is-visible");
+          toastEl.setAttribute("aria-hidden", "true");
+        }
+        clearTimeout(window._toastTimer);
+      });
+    }
+
+    // Rate limiting state
+    var formBlockedUntil = 0;
+    var FORM_COOLDOWN = 3000; // 3 seconds between submissions
+
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      // Rate limit check
+      var now = Date.now();
+      if (now < formBlockedUntil) {
+        showToast("Slow down", "Please wait a moment before sending another message.", "warning", 3000);
+        shake(form);
+        return;
+      }
+
+      // Required field validation
+      var requiredFields = form.querySelectorAll("[required]");
+      var firstInvalid = null;
+      for (var i = 0; i < requiredFields.length; i++) {
+        var field = requiredFields[i];
+        if (!field.value.trim()) {
+          if (!firstInvalid) firstInvalid = field;
+        }
+      }
+
+      if (firstInvalid) {
+        var label = form.querySelector('label[for="' + firstInvalid.id + '"]');
+        var fieldName = label ? label.textContent : "This field";
+        showToast("Required", fieldName + " is required. Please fill it in.", "warning", 4000);
+        shake(firstInvalid);
+        firstInvalid.focus();
+        return;
+      }
+
+      formBlockedUntil = now + FORM_COOLDOWN;
+
+      var btn = form.querySelector("button");
+      var btnSpan = btn ? btn.querySelector("span") : null;
+      var original = btnSpan ? btnSpan.textContent : "";
+      if (btn) btn.disabled = true;
+      if (btnSpan) btnSpan.textContent = "Sending…";
+
+      try {
+        var data = new FormData(form);
+        var response = await fetch(form.action, {
+          method: form.method,
+          body: data,
+          headers: { Accept: "application/json" },
+        });
+
+        if (response.ok) {
+          if (btnSpan) btnSpan.textContent = "Sent! ✓";
+          form.reset();
+          showToast("Message sent", "We'll get back to you within one business day.", "success", 5000);
+        } else {
+          if (btnSpan) btnSpan.textContent = "Oops — try again";
+          showToast("Couldn't send", "Something went wrong. Please try again.", "error", 5000);
+        }
+      } catch (err) {
+        if (btnSpan) btnSpan.textContent = "Oops — try again";
+        showToast("Network error", "Couldn't reach our server. Please check your connection.", "error", 5000);
+      }
+
+      setTimeout(function () {
+        if (btn) btn.disabled = false;
+        if (btnSpan) btnSpan.textContent = original;
+      }, 3000);
+    });
+  }
+
+  /* ---------------------------------------------------------
      Init
      --------------------------------------------------------- */
   init3D();
   initScrollProgress();
   initScrollIndicator();
+  initContactForm();
 })();

@@ -852,17 +852,17 @@
           method="POST"
           data-aos="fade-up"
           data-aos-delay="200"
-        >
+          novalidate>
           <div class="field">
-            <input type="text" id="name" name="name" required />
+            <input type="text" id="name" name="name" required placeholder=" " />
             <label for="name">Your name</label>
           </div>
           <div class="field">
-            <input type="email" id="email" name="email" required />
+            <input type="email" id="email" name="email" required placeholder=" " />
             <label for="email">Email</label>
           </div>
           <div class="field field--full">
-            <textarea id="message" name="message" rows="3" required></textarea>
+            <textarea id="message" name="message" rows="3" required placeholder=" "></textarea>
             <label for="message">Tell us about your project</label>
           </div>
           <button type="submit" class="btn btn--primary btn--lg" data-magnetic>
@@ -915,6 +915,19 @@
         </p>
       </div>
     </footer>
+
+    <!-- Toast notification (for form validation feedback) -->
+    <div class="toast" id="toast" role="alert" aria-live="assertive" aria-atomic="true" aria-hidden="true">
+      <div class="toast__icon" aria-hidden="true"></div>
+      <div class="toast__body">
+        <p class="toast__title"></p>
+        <p class="toast__msg"></p>
+      </div>
+      <button class="toast__close" type="button" id="toastClose" aria-label="Dismiss notification">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+      </button>
+      <div class="toast__progress" aria-hidden="true"><span></span></div>
+    </div>
 
     <!-- ===== Libraries ===== -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"></script>
